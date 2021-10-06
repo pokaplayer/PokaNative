@@ -10,8 +10,13 @@ import SwiftUI
 @main
 struct PokaNativeApp: App {
     var body: some Scene {
-        WindowGroup {
+        let windowView = WindowGroup {
             ContentView()
         }
+        #if os(iOS)
+        return windowView        
+        #else
+        return windowView.windowStyle(HiddenTitleBarWindowStyle())
+        #endif
     }
 }

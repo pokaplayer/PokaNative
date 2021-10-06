@@ -13,6 +13,16 @@
 		159673DA26DB1FBE00621279 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C526DB1FBC00621279 /* ContentView.swift */; };
 		159673DB26DB1FBE00621279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159673C626DB1FBE00621279 /* Assets.xcassets */; };
 		159673DC26DB1FBE00621279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159673C626DB1FBE00621279 /* Assets.xcassets */; };
+		159673E626DB223D00621279 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E526DB223D00621279 /* Home.swift */; };
+		159673E726DB223D00621279 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E526DB223D00621279 /* Home.swift */; };
+		159673E926DB315C00621279 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* Albums.swift */; };
+		159673EA26DB315C00621279 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* Albums.swift */; };
+		159673ED26DB31DB00621279 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EC26DB31DB00621279 /* Player.swift */; };
+		159673EE26DB31DB00621279 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EC26DB31DB00621279 /* Player.swift */; };
+		159673F026DB33D400621279 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EF26DB33D400621279 /* Login.swift */; };
+		159673F126DB33D400621279 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EF26DB33D400621279 /* Login.swift */; };
+		15E0B7B1270DD87900C8DED3 /* Poka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* Poka.swift */; };
+		15E0B7B2270DD87900C8DED3 /* Poka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* Poka.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +34,11 @@
 		159673D326DB1FBE00621279 /* PokaNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokaNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		159673D526DB1FBE00621279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		159673D626DB1FBE00621279 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		159673E526DB223D00621279 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		159673E826DB315C00621279 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
+		159673EC26DB31DB00621279 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		159673EF26DB33D400621279 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		15E0B7B0270DD87900C8DED3 /* Poka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poka.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +75,8 @@
 				159673C426DB1FBC00621279 /* PokaNativeApp.swift */,
 				159673C526DB1FBC00621279 /* ContentView.swift */,
 				159673C626DB1FBE00621279 /* Assets.xcassets */,
+				15E0B7AF270D31FE00C8DED3 /* Network */,
+				159673EB26DB317900621279 /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -88,6 +105,25 @@
 				159673D626DB1FBE00621279 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		159673EB26DB317900621279 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				159673E526DB223D00621279 /* Home.swift */,
+				159673E826DB315C00621279 /* Albums.swift */,
+				159673EC26DB31DB00621279 /* Player.swift */,
+				159673EF26DB33D400621279 /* Login.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15E0B7AF270D31FE00C8DED3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				15E0B7B0270DD87900C8DED3 /* Poka.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +224,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				159673D926DB1FBE00621279 /* ContentView.swift in Sources */,
+				159673E626DB223D00621279 /* Home.swift in Sources */,
+				15E0B7B1270DD87900C8DED3 /* Poka.swift in Sources */,
 				159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
+				159673F026DB33D400621279 /* Login.swift in Sources */,
+				159673ED26DB31DB00621279 /* Player.swift in Sources */,
+				159673E926DB315C00621279 /* Albums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +238,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				159673DA26DB1FBE00621279 /* ContentView.swift in Sources */,
+				159673E726DB223D00621279 /* Home.swift in Sources */,
+				15E0B7B2270DD87900C8DED3 /* Poka.swift in Sources */,
 				159673D826DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
+				159673F126DB33D400621279 /* Login.swift in Sources */,
+				159673EE26DB31DB00621279 /* Player.swift in Sources */,
+				159673EA26DB315C00621279 /* Albums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
