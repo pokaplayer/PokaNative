@@ -6,10 +6,24 @@
 //
 
 import SwiftUI
-
+ 
 struct Home: View {
+    @State var resData = [HomeResponse]()
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            Text("Home")
+            /*List(resData){ homeItem in
+                
+                Text(homeItem.title)
+                
+            }.onAppear() {
+                PokaAPI.shared.getHome() { (result) in
+                    self.resData = result
+                }
+            }*/
+            
+            
+        }.navigationTitle("Home")
     }
 }
 

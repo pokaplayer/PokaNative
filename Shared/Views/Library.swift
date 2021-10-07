@@ -1,21 +1,17 @@
 //
-//  ContentView.swift
-//  Shared
+//  Library.swift
+//  PokaNative
 //
-//  Created by 勝勝寶寶 on 2021/8/29.
+//  Created by 勝勝寶寶 on 2021/10/7.
 //
 
 import SwiftUI
-struct ContentView: View {
-    @State private var selectedView: Int? = 0
+
+struct Library: View {
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
-                List (selection: $selectedView){ 
-                    NavigationLink(destination: Home()) {
-                        Label("Home", systemImage: "house")
-                    }.tag(0)
-                        .padding( 5.0)
+            HStack{
+                List {
                     NavigationLink(destination: Albums()) {
                         Label("Albums", systemImage: "opticaldisc")
                     }
@@ -37,14 +33,16 @@ struct ContentView: View {
                     }
                     .padding( 5.0)
                 }
-            }
-            Home()
+                Spacer()
+                
+            }.navigationTitle("Library")
         }
+        
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct Library_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Library()
     }
 }

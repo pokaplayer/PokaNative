@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct Login: View {
-    @State var server: String = ""
-    @State var username: String = ""
-    @State var password: String = ""
+    @State var server: String = defaults.string(forKey: "baseURL") ?? ""
+    @State var username: String = defaults.string(forKey: "username") ?? ""
+    @State var password: String = defaults.string(forKey: "password") ?? ""
     
     @Binding var showLogin: Bool
     var body: some View {
         VStack {
+            HStack{
+                Spacer()
+                Button(action:{showLogin.toggle()}) {
+                    Image(systemName: "xmark.circle.fill")
+                        .padding()
+                        .foregroundColor(.gray)
+                        .frame(width: 13, height: 13)
+                }
+            }
+            Spacer()
             Label("Your account", systemImage: "person")
                 .font(.title)
                 .labelStyle(IconOnlyLabelStyle())
@@ -22,39 +32,52 @@ struct Login: View {
                 .font(.title)
                 .fontWeight(.light)
                 .padding(.bottom, 20)
+            List {
+                TextField("Server", text: $server)
+                TextField("Username", text: $username)
+                SecureField("Password", text: $password)
+                
+            }.listStyle(.plain)
             
-            TextField("Server", text: $server)
-                .cornerRadius(5.0)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Username", text: $username)
-                .cornerRadius(5.0)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            SecureField("Password", text: $password)
-                .cornerRadius(5.0)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button(action: {PokaAPI.shared.login( server: server,  username: username,  password: password) { result in
-                switch result {
-                case .success(let LoginResponse):
-                    print(LoginResponse)
-                    showLogin = false
-                case .failure(let LoginResponse):
-                    print(LoginResponse)
+            Button(action: {
+                // set defaults
+                let defaults = UserDefaults.standard
+                if server.hasSuffix("/") {
+                    server.removeLast()
                 }
-            }}, label: {
+                defaults.set(server, forKey: "baseURL")
+                defaults.set(username, forKey: "username")
+                defaults.set(password, forKey: "password")
+                // login
+                PokaAPI.shared.login(username: username, password: password) { result in
+                    switch result {
+                    case .success(let LoginResponse):
+                        print(LoginResponse)
+                        showLogin = false
+                    case .failure(let LoginResponse):
+                        print(LoginResponse)
+                    }
+                }
+                
+            }, label: {
                 Text("Login")
-                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .frame(width: 300.0)
+                    .background(Color.purple)
+                    .foregroundColor(.white)
+                    .cornerRadius(80)
+                    .padding(10)
             })
                 .padding(.top, 20)
                 .padding(.bottom, 20)
             
-            Button("Close") {
-                showLogin.toggle()
-            }
-            
+            Spacer()
+            Text("PokaNative 0.1.0")
+                .foregroundColor(Color.gray)
+                .font(.system(size: 10, weight: .regular, design: .monospaced))
         }
         .padding(20.0)
-        .frame(width: 300.0)
+        .frame(maxWidth: .infinity)
     }
 }
 
