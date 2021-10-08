@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15872AB62710933700680A4A /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = 15872AB52710933700680A4A /* SwiftAudioEx */; };
+		15872AB82710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
+		15872AB92710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
+		15872ABB27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
+		15872ABC27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
+		15872ABE27109E2A00680A4A /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABD27109E2A00680A4A /* ComposerView.swift */; };
+		15872ABF27109E2A00680A4A /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABD27109E2A00680A4A /* ComposerView.swift */; };
 		159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D826DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D926DB1FBE00621279 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C526DB1FBC00621279 /* ContentView.swift */; };
@@ -15,8 +22,8 @@
 		159673DC26DB1FBE00621279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159673C626DB1FBE00621279 /* Assets.xcassets */; };
 		159673E626DB223D00621279 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E526DB223D00621279 /* Home.swift */; };
 		159673E726DB223D00621279 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E526DB223D00621279 /* Home.swift */; };
-		159673E926DB315C00621279 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* Albums.swift */; };
-		159673EA26DB315C00621279 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* Albums.swift */; };
+		159673E926DB315C00621279 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* AlbumView.swift */; };
+		159673EA26DB315C00621279 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673E826DB315C00621279 /* AlbumView.swift */; };
 		159673ED26DB31DB00621279 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EC26DB31DB00621279 /* Player.swift */; };
 		159673EE26DB31DB00621279 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EC26DB31DB00621279 /* Player.swift */; };
 		159673F026DB33D400621279 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673EF26DB33D400621279 /* Login.swift */; };
@@ -24,8 +31,10 @@
 		15A6DF1E270EB6E30038F17E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF1D270EB6E30038F17E /* Library.swift */; };
 		15A6DF1F270EB6E30038F17E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF1D270EB6E30038F17E /* Library.swift */; };
 		15A6DF21270EB9E50038F17E /* ContentViewiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF20270EB9E50038F17E /* ContentViewiOS.swift */; };
-		15A6DF34270F217A0038F17E /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF33270F217A0038F17E /* AlbumView.swift */; };
-		15A6DF35270F217A0038F17E /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF33270F217A0038F17E /* AlbumView.swift */; };
+		15A6DF37271038350038F17E /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF36271038350038F17E /* FolderView.swift */; };
+		15A6DF38271038350038F17E /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6DF36271038350038F17E /* FolderView.swift */; };
+		15BB9DB82710A54900CF911C /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DB72710A54900CF911C /* AlbumsView.swift */; };
+		15BB9DB92710A54900CF911C /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DB72710A54900CF911C /* AlbumsView.swift */; };
 		15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B2270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B4270DF07300C8DED3 /* Defaults.swift */; };
@@ -35,6 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15872AB72710947900680A4A /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		15872ABA27109B6800680A4A /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
+		15872ABD27109E2A00680A4A /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
 		159673C426DB1FBC00621279 /* PokaNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaNativeApp.swift; sourceTree = "<group>"; };
 		159673C526DB1FBC00621279 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		159673C626DB1FBE00621279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,12 +56,13 @@
 		159673D526DB1FBE00621279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		159673D626DB1FBE00621279 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		159673E526DB223D00621279 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		159673E826DB315C00621279 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
+		159673E826DB315C00621279 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		159673EC26DB31DB00621279 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		159673EF26DB33D400621279 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		15A6DF1D270EB6E30038F17E /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		15A6DF20270EB9E50038F17E /* ContentViewiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewiOS.swift; sourceTree = "<group>"; };
-		15A6DF33270F217A0038F17E /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		15A6DF36271038350038F17E /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		15BB9DB72710A54900CF911C /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
 		15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaAPI.swift; sourceTree = "<group>"; };
 		15E0B7B4270DF07300C8DED3 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		15E0B7B8270DF96800C8DED3 /* Poka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poka.swift; sourceTree = "<group>"; };
@@ -60,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15872AB62710933700680A4A /* SwiftAudioEx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,11 +142,15 @@
 			isa = PBXGroup;
 			children = (
 				159673E526DB223D00621279 /* Home.swift */,
-				159673E826DB315C00621279 /* Albums.swift */,
+				159673E826DB315C00621279 /* AlbumView.swift */,
 				159673EC26DB31DB00621279 /* Player.swift */,
 				159673EF26DB33D400621279 /* Login.swift */,
 				15A6DF1D270EB6E30038F17E /* Library.swift */,
-				15A6DF33270F217A0038F17E /* AlbumView.swift */,
+				15872ABD27109E2A00680A4A /* ComposerView.swift */,
+				15A6DF36271038350038F17E /* FolderView.swift */,
+				15872AB72710947900680A4A /* PlayerView.swift */,
+				15872ABA27109B6800680A4A /* ArtistView.swift */,
+				15BB9DB72710A54900CF911C /* AlbumsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +195,9 @@
 			dependencies = (
 			);
 			name = "PokaNative (iOS)";
+			packageProductDependencies = (
+				15872AB52710933700680A4A /* SwiftAudioEx */,
+			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
+			packageReferences = (
+				15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */,
+			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,17 +282,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15872ABE27109E2A00680A4A /* ComposerView.swift in Sources */,
 				159673D926DB1FBE00621279 /* ContentView.swift in Sources */,
 				15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */,
+				15872ABB27109B6800680A4A /* ArtistView.swift in Sources */,
+				15A6DF37271038350038F17E /* FolderView.swift in Sources */,
 				159673E626DB223D00621279 /* Home.swift in Sources */,
 				15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */,
 				15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */,
 				159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
-				15A6DF34270F217A0038F17E /* AlbumView.swift in Sources */,
 				159673F026DB33D400621279 /* Login.swift in Sources */,
+				15BB9DB82710A54900CF911C /* AlbumsView.swift in Sources */,
+				15872AB82710947900680A4A /* PlayerView.swift in Sources */,
 				15A6DF1E270EB6E30038F17E /* Library.swift in Sources */,
 				159673ED26DB31DB00621279 /* Player.swift in Sources */,
-				159673E926DB315C00621279 /* Albums.swift in Sources */,
+				159673E926DB315C00621279 /* AlbumView.swift in Sources */,
 				15A6DF21270EB9E50038F17E /* ContentViewiOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,15 +307,19 @@
 			files = (
 				159673DA26DB1FBE00621279 /* ContentView.swift in Sources */,
 				15E0B7B6270DF07300C8DED3 /* Defaults.swift in Sources */,
+				15A6DF38271038350038F17E /* FolderView.swift in Sources */,
 				159673E726DB223D00621279 /* Home.swift in Sources */,
 				15E0B7B2270DD87900C8DED3 /* PokaAPI.swift in Sources */,
+				15872ABF27109E2A00680A4A /* ComposerView.swift in Sources */,
 				15E0B7BA270DF96800C8DED3 /* Poka.swift in Sources */,
 				159673D826DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
-				15A6DF35270F217A0038F17E /* AlbumView.swift in Sources */,
+				15872AB92710947900680A4A /* PlayerView.swift in Sources */,
+				15872ABC27109B6800680A4A /* ArtistView.swift in Sources */,
 				159673F126DB33D400621279 /* Login.swift in Sources */,
 				15A6DF1F270EB6E30038F17E /* Library.swift in Sources */,
 				159673EE26DB31DB00621279 /* Player.swift in Sources */,
-				159673EA26DB315C00621279 /* Albums.swift in Sources */,
+				159673EA26DB315C00621279 /* AlbumView.swift in Sources */,
+				15BB9DB92710A54900CF911C /* AlbumsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +448,7 @@
 				DEVELOPMENT_TEAM = B9L8C6DP9L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -438,7 +470,7 @@
 				DEVELOPMENT_TEAM = B9L8C6DP9L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,6 +563,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DoubleSymmetry/SwiftAudio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15872AB52710933700680A4A /* SwiftAudioEx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */;
+			productName = SwiftAudioEx;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }

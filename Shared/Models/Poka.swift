@@ -61,7 +61,7 @@ struct Artists: Decodable{
     let artists: [Artist]
 }
 
-struct Artist: Decodable {
+struct Artist: Decodable, Identifiable {
     let name: String
     let source: String
     let cover, id: String
@@ -72,7 +72,7 @@ struct Composers: Decodable {
     let composers: [Composer]
 }
 
-struct Composer: Decodable {
+struct Composer: Decodable, Identifiable {
     let name: String
     let source: String
     let cover, id: String
@@ -84,7 +84,7 @@ struct Folders: Decodable {
     let songs: [Song]
 }
 
-struct Folder: Decodable {
+struct Folder: Decodable, Hashable {
     let name, source, id, cover: String
 }
 

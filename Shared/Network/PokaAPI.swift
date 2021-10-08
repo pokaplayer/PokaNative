@@ -54,11 +54,18 @@ class PokaAPI {
             }
         }.resume()
     }
-    func getAlbums(completion: @escaping (AlbumsResponse) -> ()){
-        let url = baseURL.appendingPathComponent("pokaapi/albums")
+    func getAlbums(itemID: String?, source: String?, itemType: String?,completion: @escaping (AlbumsResponse) -> ()){
+        var stringUrl = baseURLString + "/pokaapi/albums/"
+        if itemType ?? "" == "artist" {
+            stringUrl = baseURLString + "/pokaapi/artistAlbums?moduleName=\(source ?? "")&id=\(itemID ?? "")"
+        } else if  itemType ?? "" == "composor" {
+            stringUrl = baseURLString + "/pokaapi/composerAlbums?moduleName=\(source ?? "")&id=\(itemID ?? "")"
+        }
+        
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 do {
@@ -77,13 +84,75 @@ class PokaAPI {
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 do {
                     let decoder = JSONDecoder()
                     let AlbumSongsResponse = try decoder.decode(AlbumSongsResponse.self, from: data)
                     completion(AlbumSongsResponse)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
+    func getFolder(folderID: String?,source: String? ,completion: @escaping (Folders) -> ()){
+        var stringUrl: String
+        if folderID != nil && source != nil {
+            stringUrl = baseURLString + "/pokaapi/folderFiles?moduleName=\(source ?? "")&id=\(folderID ?? "")"
+        } else {
+            stringUrl = baseURLString + "/pokaapi/folders/"
+        }
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(Folders.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
+    func getArtist(completion: @escaping (Artists) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/artists/"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(Artists.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
+    func getComposers(completion: @escaping (Composers) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/composers/"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(Composers.self, from: data)
+                    completion(res)
                 } catch  {
                     print(error)
                     //completion(.failure(nil))

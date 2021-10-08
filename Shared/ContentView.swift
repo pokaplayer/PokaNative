@@ -16,19 +16,19 @@ struct ContentView: View {
                         Label("Home", systemImage: "house")
                     }.tag(0)
                         .padding( 5.0)
-                    NavigationLink(destination: Albums()) {
+                    NavigationLink(destination: AlbumsView()) {
                         Label("Albums", systemImage: "opticaldisc")
                     }
                     .padding( 5.0)
-                    NavigationLink(destination: Text("Folders")) {
+                    NavigationLink(destination: FolderView()) {
                         Label("Folders", systemImage: "folder")
                     }
                     .padding( 5.0)
-                    NavigationLink(destination: Text("Artists")) {
+                    NavigationLink(destination: ArtistView()) {
                         Label("Artists", systemImage: "music.mic")
                     }
                     .padding( 5.0)
-                    NavigationLink(destination: Text("Composers")) {
+                    NavigationLink(destination: ComposerView()) {
                         Label("Composers", systemImage: "pencil")
                     }
                     .padding( 5.0)
