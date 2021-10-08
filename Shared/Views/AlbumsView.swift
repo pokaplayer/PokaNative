@@ -8,6 +8,14 @@
 import SwiftUI
 struct AlbumsView: View { 
     var itemID, source, name, itemType: String?
+    init(itemID: String, source: String, name: String, itemType: String) {
+        self.itemID = itemID
+        self.source = source
+        self.name = name
+        self.itemType = itemType
+    }
+    init() {
+    }
     @State var resData = [Album]()
     private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
     private var baseURL = defaults.string(forKey: "baseURL") ?? ""
@@ -61,7 +69,7 @@ struct AlbumsView: View {
         .onAppear() {
             PokaAPI.shared.getAlbums(itemID: itemID, source: source, itemType: itemType) { (result) in
                 self.resData = result.albums
-            } 
+            }
         }
         .navigationTitle(name ?? "Albums")
     }
