@@ -58,7 +58,7 @@ class PokaAPI {
         var stringUrl = baseURLString + "/pokaapi/albums/"
         if itemType ?? "" == "artist" {
             stringUrl = baseURLString + "/pokaapi/artistAlbums?moduleName=\(source ?? "")&id=\(itemID ?? "")"
-        } else if  itemType ?? "" == "composor" {
+        } else if  itemType ?? "" == "composer" {
             stringUrl = baseURLString + "/pokaapi/composerAlbums?moduleName=\(source ?? "")&id=\(itemID ?? "")"
         }
         
