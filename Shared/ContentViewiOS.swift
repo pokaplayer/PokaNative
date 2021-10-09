@@ -11,12 +11,10 @@ struct ContentViewiOS: View {
     var body: some View {
         VStack {
             TabView{
-                
                 Home()
                     .tabItem{
                         Label("Home", systemImage: "house")
                     }
-                
                 Library()
                     .tabItem{
                         Label("Library", systemImage: "rectangle.stack")
@@ -33,8 +31,7 @@ struct ContentViewiOS: View {
                     .tabItem{
                         Label("Setting", systemImage: "gearshape")
                     }
-            }
-            
+            } 
         }
     }
 }

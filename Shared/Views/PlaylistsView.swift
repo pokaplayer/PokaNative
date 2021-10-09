@@ -53,37 +53,41 @@ struct PlaylistsView: View {
     var body: some View {
         
         VStack{
-            List{
-                if resData != nil {
-                    Section(header: Text("Playlists")) {
-                        ForEach(resData?.playlists ?? [Playlist](), id: \.self) { item in
-                            PlaylistItemView(playlist: item)
+            if resData != nil || playlist != nil {
+                List{
+                    if resData != nil {
+                        Section(header: Text("Playlists")) {
+                            ForEach(resData?.playlists ?? [Playlist](), id: \.self) { item in
+                                PlaylistItemView(playlist: item)
+                            }
                         }
-                    }
-                    Section(header: Text("Folders")) {
-                        ForEach(resData?.playlistFolders ?? [PlaylistFolder](), id: \.self) { item in
-                            NavigationLink(destination: PlaylistsView(title: item.name, playlist: item.playlists)) {
-                                HStack{
-                                    if item.image != nil {
-                                        PlaylistCoverView(coverURL: item.image ?? "/img/icons/apple-touch-icon.png")
-                                    } else {
-                                        Image(systemName: "folder")
-                                            .padding()
-                                            .foregroundColor(.white)
-                                            .background(Color.green)
-                                            .frame(width: 40, height: 40)
-                                            .cornerRadius(5)
+                        Section(header: Text("Folders")) {
+                            ForEach(resData?.playlistFolders ?? [PlaylistFolder](), id: \.self) { item in
+                                NavigationLink(destination: PlaylistsView(title: item.name, playlist: item.playlists)) {
+                                    HStack{
+                                        if item.image != nil {
+                                            PlaylistCoverView(coverURL: item.image ?? "/img/icons/apple-touch-icon.png")
+                                        } else {
+                                            Image(systemName: "folder")
+                                                .padding()
+                                                .foregroundColor(.white)
+                                                .background(Color.green)
+                                                .frame(width: 40, height: 40)
+                                                .cornerRadius(5)
+                                        }
+                                        Text(item.name)
                                     }
-                                    Text(item.name)
                                 }
                             }
                         }
-                    }
-                } else {
-                    ForEach(playlist ?? [Playlist](), id: \.self) { item in
-                        PlaylistItemView(playlist: item)
+                    } else if playlist != nil{
+                        ForEach(playlist ?? [Playlist](), id: \.self) { item in
+                            PlaylistItemView(playlist: item)
+                        }
                     }
                 }
+            } else {
+                ProgressView()
             }
         }.onAppear() {
             if playlist == nil {

@@ -15,27 +15,27 @@ struct ContentView: View {
                     NavigationLink(destination: Home()) {
                         Label("Home", systemImage: "house")
                     }.tag(0)
-                        .padding( 5.0)
+                        .padding(5.0)
                     NavigationLink(destination: AlbumsView()) {
                         Label("Albums", systemImage: "opticaldisc")
                     }
-                    .padding( 5.0)
+                    .padding(5.0)
                     NavigationLink(destination: FolderView()) {
                         Label("Folders", systemImage: "folder")
                     }
-                    .padding( 5.0)
+                    .padding(5.0)
                     NavigationLink(destination: ArtistView()) {
                         Label("Artists", systemImage: "music.mic")
                     }
-                    .padding( 5.0)
+                    .padding(5.0)
                     NavigationLink(destination: ComposerView()) {
                         Label("Composers", systemImage: "pencil")
                     }
-                    .padding( 5.0)
+                    .padding(5.0)
                     NavigationLink(destination: PlaylistsView()) {
                         Label("Playlists", systemImage: "music.note.list")
                     }
-                    .padding( 5.0)
+                    .padding(5.0)
                 }
             }.navigationTitle("PokaPlayer")
             Home()
