@@ -37,7 +37,7 @@ struct ContentView: View {
                     }
                     .padding( 5.0)
                 }
-            }
+            }.navigationTitle("PokaPlayer")
             Home()
         }
     }
