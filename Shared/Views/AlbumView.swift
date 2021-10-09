@@ -50,7 +50,12 @@ struct AlbumView: View {
             .listRowSeparator(.hidden) 
             .padding(.top, 10.0)
             ForEach(resData){item in
-                SongView(song: item)
+				Button(action: {
+                    let songURL = URL(string: baseURL + item.url)
+                    player.add(url: songURL!)
+                }) {
+                    SongView(song: item)
+                }
             }
         }
         /*.toolbar {

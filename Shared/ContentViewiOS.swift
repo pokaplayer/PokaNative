@@ -21,7 +21,10 @@ struct ContentViewiOS: View {
                     .tabItem{
                         Label("Library", systemImage: "rectangle.stack")
                     }
-                
+                PlayerView()
+                    .tabItem{
+                        Label("Player", systemImage: "music.note")
+                    }
                 Text("Search")
                     .tabItem{
                         Label("Search", systemImage: "magnifyingglass")
