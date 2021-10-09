@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -227,7 +227,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					159673CA26DB1FBE00621279 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -247,7 +247,6 @@
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
-				15BB9DBE2711B89400CF911C /* XCRemoteSwiftPackageReference "SFBAudioEngine" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -493,6 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B9L8C6DP9L;
@@ -517,6 +517,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B9L8C6DP9L;
@@ -566,17 +567,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		15BB9DBE2711B89400CF911C /* XCRemoteSwiftPackageReference "SFBAudioEngine" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sbooth/SFBAudioEngine";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }
