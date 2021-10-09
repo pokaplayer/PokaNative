@@ -8,6 +8,7 @@
 import SwiftUI
 struct PlaylistCoverView: View {
     var coverURL: String
+    var size: CGFloat = 40
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
         AsyncImage(url: URL(string: coverURL.hasPrefix("http") ? coverURL : baseURL + coverURL)){ image in
@@ -17,7 +18,7 @@ struct PlaylistCoverView: View {
         } placeholder: {
             ProgressView()
         }
-        .frame(width: 40, height: 40)
+        .frame(width: size, height: size)
         .cornerRadius(5)
     }
 }
@@ -26,7 +27,7 @@ struct PlaylistItemView: View {
     var playlist: Playlist
     
     var body: some View {
-        NavigationLink(destination: FolderView()) {
+        NavigationLink(destination: PlaylistView(playlist: playlist)) {
             HStack{
                 if playlist.image != nil {
                     PlaylistCoverView(coverURL: playlist.image ?? "/img/icons/apple-touch-icon.png")

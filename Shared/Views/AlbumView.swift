@@ -50,13 +50,7 @@ struct AlbumView: View {
             .listRowSeparator(.hidden) 
             .padding(.top, 10.0)
             ForEach(resData){item in
-                VStack(alignment: .leading){
-                    Text(item.name)
-                    Text(item.artist)
-                        .font(.caption)
-                        .foregroundColor(Color.black.opacity(0.75))
-                }
-                
+                SongView(song: item)
             }
         }
         /*.toolbar {

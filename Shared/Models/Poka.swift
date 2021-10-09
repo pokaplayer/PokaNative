@@ -53,6 +53,10 @@ struct PlaylistReponse: Decodable {
     let playlistFolders: [PlaylistFolder]
 }
 
+
+struct PlaylistSongsResponse: Decodable { 
+    let songs: [Song]
+}
 // MARK: - PlaylistFolder
 struct PlaylistFolder: Decodable, Identifiable, Hashable {
     let name, source, id: String
