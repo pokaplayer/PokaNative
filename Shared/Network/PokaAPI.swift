@@ -160,4 +160,23 @@ class PokaAPI {
             }
         }.resume()
     }
+    func getPlaylists(completion: @escaping ([Playlist]) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/playlists/"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(PlaylistReponse.self, from: data) 
+                    completion(res.playlists)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
 }

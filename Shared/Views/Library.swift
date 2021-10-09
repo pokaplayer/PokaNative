@@ -28,7 +28,7 @@ struct Library: View {
                         Label("Composers", systemImage: "pencil")
                     }
                     .padding( 5.0)
-                    NavigationLink(destination: Text("Playlists")) {
+                    NavigationLink(destination: PlaylistsView()) {
                         Label("Playlists", systemImage: "music.note.list")
                     }
                     .padding( 5.0)

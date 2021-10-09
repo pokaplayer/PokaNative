@@ -17,12 +17,12 @@ struct AlbumsView: View {
     init() {
     }
     @State var resData = [Album]()
-    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
+    private var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
     private var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
         HStack{
             ScrollView {
-                LazyVGrid(columns: gridItemLayout, spacing: 20) {
+                LazyVGrid(columns: gridItemLayout, spacing: 10) {
                     ForEach(resData, id: \.self) { item in
                         NavigationLink(destination: AlbumView(album: item)) {
                             VStack(alignment: .leading){
@@ -48,6 +48,7 @@ struct AlbumsView: View {
                                 }
                                 Text(item.name)
                                     .font(.body)
+                                    .fontWeight(.bold)
                                     .lineLimit(1)
                                 Text(item.artist)
                                     .font(.caption)
@@ -57,11 +58,12 @@ struct AlbumsView: View {
                                     Spacer()
                                 }
                             }
-                            .padding(10)
+                            .padding(.horizontal, 5.0)
                             
                         }.buttonStyle(PlainButtonStyle())
                     }
                 }
+                .padding(.horizontal, 10)
             }
             
         }
