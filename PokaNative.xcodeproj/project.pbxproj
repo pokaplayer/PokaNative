@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15872AB62710933700680A4A /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = 15872AB52710933700680A4A /* SwiftAudioEx */; };
 		15872AB82710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872AB92710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872ABB27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
@@ -76,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15872AB62710933700680A4A /* SwiftAudioEx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +198,6 @@
 			);
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
-				15872AB52710933700680A4A /* SwiftAudioEx */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -250,7 +247,7 @@
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
-				15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */,
+				15BB9DBE2711B89400CF911C /* XCRemoteSwiftPackageReference "SFBAudioEngine" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -571,23 +568,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */ = {
+		15BB9DBE2711B89400CF911C /* XCRemoteSwiftPackageReference "SFBAudioEngine" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DoubleSymmetry/SwiftAudio.git";
+			repositoryURL = "https://github.com/sbooth/SFBAudioEngine";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.3;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		15872AB52710933700680A4A /* SwiftAudioEx */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15872AB42710933700680A4A /* XCRemoteSwiftPackageReference "SwiftAudio" */;
-			productName = SwiftAudioEx;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }

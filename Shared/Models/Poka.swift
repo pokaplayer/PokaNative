@@ -50,30 +50,19 @@ struct AlbumSongsResponse: Decodable {
 // MARK: - Playlist
 struct PlaylistReponse: Decodable {
     let playlists: [Playlist]
+    let playlistFolders: [PlaylistFolder]
 }
-struct Playlist: Decodable, Identifiable {
-    let name, id, source: String
+
+// MARK: - PlaylistFolder
+struct PlaylistFolder: Decodable, Identifiable, Hashable {
+    let name, source, id: String
+    let playlists: [Playlist]
     let image: String?
-    let icon, type: String?
-    let playlists: [Playlist]?
-    init(name: String, source: String, id: String, image: String?, icon: String?, type: String?, playlists: [Playlist]?) {
-        self.name = name
-        self.source = source
-        self.id = id
-        self.image = image
-        self.icon = icon
-        self.type = type
-        self.playlists = playlists
-    }
-    init(name: String, source: String, id: String, image: Bool?, icon: String?, type: String?, playlists: [Playlist]?) {
-        self.name = name
-        self.source = source
-        self.id = id
-        self.image = nil
-        self.icon = icon
-        self.type = type
-        self.playlists = playlists
-    }
+}
+struct Playlist: Decodable, Identifiable, Hashable { 
+    let id: String
+    let name, source: String
+    let image: String?
 }
 // MARK: - Artists
 struct Artists: Decodable{
