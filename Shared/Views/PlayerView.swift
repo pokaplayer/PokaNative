@@ -27,6 +27,7 @@ class PPPlayerItem: Identifiable {
 
 class PPPlayer: AVPlayer, ObservableObject {
     static let shared = PPPlayer()
+    private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
     override init() {
         super.init()
         
@@ -46,7 +47,7 @@ class PPPlayer: AVPlayer, ObservableObject {
         }
         
         center.nextTrackCommand.isEnabled = true
-        center.previousTrackCommand.addTarget { event in
+        center.nextTrackCommand.addTarget { event in
             self.nextTrack()
             return .success
         }
@@ -62,6 +63,22 @@ class PPPlayer: AVPlayer, ObservableObject {
         center.pauseCommand.addTarget { event in
             self.pause()
             return .success
+        }
+        
+        center.changePlaybackPositionCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            guard let positionEvent = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
+            
+            print("posion: \(positionEvent.positionTime)")
+            self?.seek(to: CMTime(seconds: positionEvent.positionTime, preferredTimescale: CMTimeScale(1000)))
+            
+            return .success
+        }
+        // Configure the application’s shared audio instance
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
     }
     
@@ -98,16 +115,28 @@ class PPPlayer: AVPlayer, ObservableObject {
             play()
             
             // update nowplaying
-            let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-            var nowPlayingInfo = [String: Any]()
-            print(self.currentItem ?? "")
-            nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.currentItem?.duration ?? 0
-            nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.currentItem?.duration ?? 0
-            nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.rate
-            nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentPlayingItem!.song.name
-            nowPlayingInfo[MPMediaItemPropertyArtist] = self.currentPlayingItem!.song.artist
-            nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = self.currentPlayingItem!.song.album
-            nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+            var info = [String: Any]()
+            info[MPMediaItemPropertyTitle] = self.currentPlayingItem!.song.name
+            info[MPMediaItemPropertyArtist] = self.currentPlayingItem!.song.artist
+            info[MPMediaItemPropertyAlbumTitle] = self.currentPlayingItem!.song.album
+            
+            info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.currentItem?.currentTime().seconds
+            info[MPMediaItemPropertyPlaybackDuration] = self.currentItem?.asset.duration.seconds
+            info[MPNowPlayingInfoPropertyPlaybackRate] = self.rate
+            
+            DispatchQueue.global().async { [weak self] in
+                if let artworkUrl = URL(string: baseURL + self!.currentPlayingItem!.song.cover),
+                   let artworkData = try? Data(contentsOf: artworkUrl),
+                   let artworkImage = UIImage(data: artworkData) {
+                    if var currentInfo = self?.nowPlayingCenter.nowPlayingInfo {
+                        currentInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size) { _ in artworkImage }
+                        self?.nowPlayingCenter.nowPlayingInfo = currentInfo
+                    }
+                }
+            }
+            
+            
+            self.nowPlayingCenter.nowPlayingInfo = info
         }
     }
     func switchTrack(index: Int){
