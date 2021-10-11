@@ -139,7 +139,7 @@ struct PlayerView: View {
         if (ppplayer.currentPlayingItem != nil) {
             VStack{
                 if #available(iOS 15.0, *) {
-                    AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.coverURL) ){ image in
+                    AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.coverURL) ){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{
@@ -157,11 +157,11 @@ struct PlayerView: View {
                     .aspectRatio(1, contentMode: .fill)
                     .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 }
-                Text(player.currentPlayingItem!.title)
+                Text(player.currentPlayingItem!.song.title)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-                Text(player.currentPlayingItem!.artist)
+                Text(player.currentPlayingItem!.song.artist)
                     .font(.caption)
                     .foregroundColor(Color.black.opacity(0.75))
                     .multilineTextAlignment(.center)
@@ -197,8 +197,8 @@ struct PlayerView: View {
                             player.switchTrack(index: index)
                         }){
                             VStack(alignment: .leading){
-                                Text(item.title)
-                                Text(item.artist)
+                                Text(item.song.title)
+                                Text(item.song.artist)
                                     .font(.caption)
                                     .foregroundColor(Color.black.opacity(0.75))
                                 
