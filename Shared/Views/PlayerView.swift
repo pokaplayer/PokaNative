@@ -9,21 +9,20 @@ import SwiftUI
 import AVFoundation
 import MediaPlayer
 
-struct PPPlayerItem: Identifiable {
-    var id = UUID()
-    let title, songID, artist, artistID, album, albumID, songURL, coverURL: String
-    let item: AVPlayerItem
-    /*init(title: String, songID: String, artist: String, artistID: String, album: String, albumID: String, songURL: String, coverURL: String, item: AVPlayerItem){
-     self.title = title
-     self.songID = songID
-     self.artist = artist
-     self.artistID = artistID
-     self.album = album
-     self.albumID = albumID
-     self.songURL = songURL
-     self.coverURL = coverURL
-     self.item = item
-     }*/
+class PPPlayerItem: Identifiable {
+    @Published var id = UUID()
+    @Published var song: Song
+    @Published var item: AVPlayerItem?
+    init(song: Song){
+        self.song = song
+        
+        player.initPlayerAsset(with: URL(string: baseURL + song.url)!) { [weak self] (asset: AVAsset) in
+            DispatchQueue.main.async {
+                let item = AVPlayerItem(asset: asset)
+                self?.item = item
+            }
+        }
+    }
 }
 
 class PPPlayer: AVPlayer, ObservableObject {
@@ -39,26 +38,26 @@ class PPPlayer: AVPlayer, ObservableObject {
         )
         
         let center = MPRemoteCommandCenter.shared()
-         
+        
         center.previousTrackCommand.isEnabled = true
         center.previousTrackCommand.addTarget { event in
             self.previousTrack()
             return .success
         }
- 
+        
         center.nextTrackCommand.isEnabled = true
         center.previousTrackCommand.addTarget { event in
             self.nextTrack()
             return .success
         }
         
-         
+        
         center.playCommand.isEnabled = true
         center.playCommand.addTarget { event in
             self.playTrack()
             return .success
         }
- 
+        
         center.pauseCommand.isEnabled = true
         center.pauseCommand.addTarget { event in
             self.pause()
@@ -70,8 +69,7 @@ class PPPlayer: AVPlayer, ObservableObject {
     @Published var playerItems = [PPPlayerItem]()
     var currentTrack = 0
     
-    
-    private func initPlayerAsset(with url: URL, completion: ((_ asset: AVAsset) -> Void)?) {
+    func initPlayerAsset(with url: URL, completion: ((_ asset: AVAsset) -> Void)?) {
         let asset = AVURLAsset(url: url, options: [
             AVURLAssetHTTPCookiesKey: HTTPCookieStorage.shared.cookies!
         ])
@@ -80,16 +78,17 @@ class PPPlayer: AVPlayer, ObservableObject {
             completion?(asset)
         }
     }
-    func add(song: Song){
+    let dispatchQueue = DispatchQueue(label: "concurrent.queue", qos: .utility, attributes: .concurrent)
+    func add(songs: [Song], index: Int?){
+        self.playerItems = [PPPlayerItem]()
         let tempCount = self.playerItems.count
-        self.initPlayerAsset(with: URL(string: baseURL + song.url)!) { (asset: AVAsset) in
-            let item = AVPlayerItem(asset: asset)
-            self.playerItems.append(PPPlayerItem(title: song.name, songID: song.id, artist: song.artist, artistID: song.artistID ?? "", album: song.album, albumID: song.albumID ?? "", songURL: song.url, coverURL: song.cover, item: item))
-            if tempCount == 0 {
-                self.playTrack()
-            }
+        for i in 0...songs.count-1 {
+            self.playerItems.append(PPPlayerItem(song: songs[i]))
         }
-        
+        if tempCount == 0 {
+            self.currentTrack = index ?? 0
+            self.playTrack()
+        }
     }
     
     func playTrack() {
@@ -97,19 +96,24 @@ class PPPlayer: AVPlayer, ObservableObject {
             replaceCurrentItem(with: self.playerItems[self.currentTrack].item)
             self.currentPlayingItem = self.playerItems[self.currentTrack]
             play()
-            // update nowplaying
             
+            // update nowplaying
             let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
             var nowPlayingInfo = [String: Any]()
-            
-            nowPlayingInfo[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.audio.rawValue
-            nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentPlayingItem!.title
-            nowPlayingInfo[MPMediaItemPropertyArtist] = self.currentPlayingItem!.artist
-            nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = self.currentPlayingItem!.album
+            print(self.currentItem ?? "")
+            nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.currentItem?.duration ?? 0
+            nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.currentItem?.duration ?? 0
+            nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.rate
+            nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentPlayingItem!.song.name
+            nowPlayingInfo[MPMediaItemPropertyArtist] = self.currentPlayingItem!.song.artist
+            nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = self.currentPlayingItem!.song.album
             nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         }
-    } 
-    
+    }
+    func switchTrack(index: Int){
+        self.currentTrack = index
+        self.playTrack()
+    }
     func previousTrack() {
         if self.currentTrack - 1 < 0 {
             self.currentTrack = (self.playerItems.count - 1) < 0 ? 0 : (self.playerItems.count - 1)
@@ -130,7 +134,7 @@ class PPPlayer: AVPlayer, ObservableObject {
 }
 
 struct PlayerView: View {
-    @StateObject private var ppplayer = player 
+    @StateObject private var ppplayer = player
     var body: some View {
         if (ppplayer.currentPlayingItem != nil) {
             VStack{
@@ -187,14 +191,26 @@ struct PlayerView: View {
                     }
                     Spacer()
                 }
-                List(ppplayer.playerItems) { item in
-                    VStack{
-                        Text(item.title)
-                        Text(item.artist)
-                            .font(.caption)
-                            .foregroundColor(Color.black.opacity(0.75))
+                ScrollView{
+                    ForEach(Array(ppplayer.playerItems.enumerated()), id: \.offset) { index, item in
+                        Button(action: {
+                            player.switchTrack(index: index)
+                        }){
+                            VStack(alignment: .leading){
+                                Text(item.title)
+                                Text(item.artist)
+                                    .font(.caption)
+                                    .foregroundColor(Color.black.opacity(0.75))
+                                
+                                HStack{
+                                    Spacer()
+                                }
+                            }
+                        }
+                        Divider()
                     }
                 }
+                .padding(.horizontal, 5.0)
                 Spacer()
             }
         }

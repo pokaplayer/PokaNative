@@ -48,10 +48,8 @@ struct AlbumView: View {
                 }
             }
             .listRowSeparator(.hidden) 
-            .padding(.top, 10.0)
-            ForEach(resData){item in
-                    SongView(song: item) 
-            }
+            .padding(.top, 10.0) 
+            SongView(songs: resData)
         }
         /*.toolbar {
          ToolbarItem(placement: .principal) {
@@ -64,8 +62,7 @@ struct AlbumView: View {
          }
          }*/.onAppear() {
              PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { (result) in
-                 self.resData = result.songs
-                 print(result.songs)
+                 self.resData = result.songs 
              }
          }
         

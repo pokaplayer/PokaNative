@@ -24,12 +24,11 @@ struct PlaylistView: View {
                 HStack  {
                     Spacer()
                 }
+                SongView(songs: resData)
             }
             .listRowSeparator(.hidden)
             .padding(.top, 10.0)
-            ForEach(resData){item in
-                SongView(song: item)
-            }
+            
         }.onAppear() {
             PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { (result) in
                 self.resData = result

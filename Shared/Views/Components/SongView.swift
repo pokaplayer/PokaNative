@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct SongView: View {
-    var song: Song
+    var songs: [Song]
     var body: some View {
-        
-        Button(action: {
-            player.add(song: song)
-        }) {
-            VStack(alignment: .leading){
-                Text(song.name)
-                Text(song.artist)
-                    .font(.caption)
-                    .foregroundColor(Color.black.opacity(0.75))
+        ForEach(Array(songs.enumerated()), id: \.offset) { index, item in
+            Button(action: {
+                player.add(songs: songs,index: index)
+            }) {
+                VStack(alignment: .leading){
+                    Text(item.name)
+                    Text(item.artist)
+                        .font(.caption)
+                        .foregroundColor(Color.black.opacity(0.75))
+                }
+                
             }
-            
         }
-        
     }
 }
 
