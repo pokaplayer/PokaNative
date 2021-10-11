@@ -12,7 +12,8 @@ struct SongView: View {
     var body: some View {
         ForEach(Array(songs.enumerated()), id: \.offset) { index, item in
             Button(action: {
-                player.add(songs: songs,index: index)
+                player.setSongs(songs: songs)
+                player.setTrack(index: index)
             }) {
                 VStack(alignment: .leading){
                     Text(item.name)

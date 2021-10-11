@@ -67,7 +67,7 @@ struct PlayerView: View {
                 List {
                     ForEach(Array(ppplayer.playerItems.enumerated()), id: \.offset) { index, item in
                         Button(action: {
-                            player.switchTrack(index: index)
+                            player.setTrack(index: index)
                         }){
                             VStack(alignment: .leading){
                                 Text(item.song.name)

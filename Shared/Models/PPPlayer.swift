@@ -10,12 +10,15 @@ import SwiftUI
 import AVFoundation
 import MediaPlayer
 
-class PPPlayerItem: Identifiable {
+@objc class PPPlayerItem: NSObject, Identifiable, ObservableObject {
     @Published var id = UUID()
     @Published var song: Song
-    @Published var item: AVPlayerItem?
+    @Published @objc dynamic var item: AVPlayerItem?
+    var observer: NSKeyValueObservation?
+    
     init(song: Song){
         self.song = song
+        super.init()
         
         player.initPlayerAsset(with: URL(string: baseURL + song.url)!) { [weak self] (asset: AVAsset) in
             DispatchQueue.main.async {
@@ -29,6 +32,11 @@ class PPPlayerItem: Identifiable {
 class PPPlayer: AVPlayer, ObservableObject {
     static let shared = PPPlayer()
     private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
+    
+    @Published var currentPlayingItem: PPPlayerItem?
+    @Published var playerItems = [PPPlayerItem]()
+    var currentTrack = 0
+    
     override init() {
         super.init()
         
@@ -83,79 +91,87 @@ class PPPlayer: AVPlayer, ObservableObject {
         }
     }
     
-    @Published var currentPlayingItem: PPPlayerItem?
-    @Published var playerItems = [PPPlayerItem]()
-    var currentTrack = 0
-    
     func initPlayerAsset(with url: URL, completion: ((_ asset: AVAsset) -> Void)?) {
-        let asset = AVURLAsset(url: url, options: [
-            AVURLAssetHTTPCookiesKey: HTTPCookieStorage.shared.cookies!
-        ])
+        let asset = AVAsset(url: url)
         
         asset.loadValuesAsynchronously(forKeys: ["playable"]) {
             completion?(asset)
         }
     }
     let dispatchQueue = DispatchQueue(label: "concurrent.queue", qos: .utility, attributes: .concurrent)
-    func add(songs: [Song], index: Int?){
-        self.playerItems = [PPPlayerItem]()
-        for i in 0...songs.count-1 {
-            self.playerItems.append(PPPlayerItem(song: songs[i]))
+    
+    private func getNowPlayingInfo() -> [String : Any]{
+        let song = self.currentPlayingItem!.song
+        let info = [
+            MPMediaItemPropertyTitle:      song.name,
+            MPMediaItemPropertyArtist:     song.artist,
+            MPMediaItemPropertyAlbumTitle: song.album,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: self.currentItem?.currentTime().seconds ?? 0,
+            MPMediaItemPropertyPlaybackDuration: self.currentItem?.asset.duration.seconds ?? 0,
+            MPNowPlayingInfoPropertyPlaybackRate: self.rate
+        ] as [String : Any]
+        return info
+    }
+    
+    override func play() {
+        super.play()
+        dispatchQueue.async { [weak self] in
+            if let artworkUrl = URL(string: baseURL + self!.currentPlayingItem!.song.cover),
+               let artworkData = try? Data(contentsOf: artworkUrl),
+               let artworkImage = UIImage(data: artworkData) {
+                if var currentInfo = self?.nowPlayingCenter.nowPlayingInfo {
+                    currentInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size) { _ in artworkImage }
+                    self?.nowPlayingCenter.nowPlayingInfo = currentInfo
+                }
+            }
         }
-        self.currentTrack = index ?? 0
-        self.playTrack()
-        
+        self.nowPlayingCenter.nowPlayingInfo = getNowPlayingInfo()
     }
     
     func playTrack() {
         if self.playerItems.count > 0 {
-            replaceCurrentItem(with: self.playerItems[self.currentTrack].item)
+            print("playTrack")
             self.currentPlayingItem = self.playerItems[self.currentTrack]
-            play()
             
-            // update nowplaying
-            var info = [String: Any]()
-            info[MPMediaItemPropertyTitle] = self.currentPlayingItem!.song.name
-            info[MPMediaItemPropertyArtist] = self.currentPlayingItem!.song.artist
-            info[MPMediaItemPropertyAlbumTitle] = self.currentPlayingItem!.song.album
-            
-            info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.currentItem?.currentTime().seconds
-            info[MPMediaItemPropertyPlaybackDuration] = self.currentItem?.asset.duration.seconds
-            info[MPNowPlayingInfoPropertyPlaybackRate] = self.rate
-            
-            DispatchQueue.global().async { [weak self] in
-                if let artworkUrl = URL(string: baseURL + self!.currentPlayingItem!.song.cover),
-                   let artworkData = try? Data(contentsOf: artworkUrl),
-                   let artworkImage = UIImage(data: artworkData) {
-                    if var currentInfo = self?.nowPlayingCenter.nowPlayingInfo {
-                        currentInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size) { _ in artworkImage }
-                        self?.nowPlayingCenter.nowPlayingInfo = currentInfo
-                    }
-                }
-            }
-            
-            
-            self.nowPlayingCenter.nowPlayingInfo = info
+            self.currentPlayingItem?.observer?.invalidate()
+            self.currentPlayingItem?.observer = self.currentPlayingItem?.observe(
+                 \.item,
+                 options: [.initial, .new],
+                 changeHandler: {(playingItem, change) in
+                     if playingItem.item != nil {
+                         self.replaceCurrentItem(with: playingItem.item)
+                         self.play()
+                     }
+                 }
+            )
         }
     }
-    func switchTrack(index: Int){
+    
+    func setSongs(songs: [Song]){
+        self.playerItems = [PPPlayerItem]()
+        for i in 0...songs.count-1 {
+            self.playerItems.append(PPPlayerItem(song: songs[i]))
+        }
+    }
+    
+    func setTrack(index: Int){
         self.currentTrack = index
         self.playTrack()
     }
+    
     func previousTrack() {
         if self.currentTrack - 1 < 0 {
-            self.currentTrack = (self.playerItems.count - 1) < 0 ? 0 : (self.playerItems.count - 1)
+            self.setTrack(index: (self.playerItems.count - 1) < 0 ? 0 : (self.playerItems.count - 1))
         } else {
-            self.currentTrack -= 1
+            self.setTrack(index: self.currentTrack - 1)
         }
-        self.playTrack()
     }
     
     @objc func nextTrack() {
         if self.currentTrack + 1 > self.playerItems.count - 1 {
-            self.currentTrack = 0
+            self.setTrack(index: 0)
         } else {
-            self.currentTrack += 1;
+            self.setTrack(index: self.currentTrack + 1)
         }
         self.playTrack()
     }
