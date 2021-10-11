@@ -9,23 +9,30 @@ import SwiftUI
 
 
 struct PlayerTimeView: View {
-  let timeObserver = PlayerTimeObserver()
-  @State private var currentTime: TimeInterval = 0
-  var body: some View {
-    Text(formatTime(seconds: currentTime))
-          .foregroundColor(Color.white)
-    .onReceive(timeObserver.publisher) { time in
-      self.currentTime = time
+    let timeObserver = PlayerTimeObserver()
+    @State private var currentTime: TimeInterval = 0
+    var body: some View {
+        Text(formatTime(seconds: currentTime))
+            .foregroundColor(Color.white)
+            .onReceive(timeObserver.publisher) { time in
+                self.currentTime = time
+            }
     }
-  }
+}
+struct DurationTimeView: View {
+    var body: some View {
+        Text(formatTime(seconds: player.currentItem?.asset.duration.seconds ?? 0))
+            .foregroundColor(Color.white)
+    }
 }
 
 
 func formatTime(seconds: TimeInterval) -> String {
-    let formatter = DateComponentsFormatter()
-    formatter.allowedUnits =  [.minute, .second]
-    formatter.unitsStyle = .positional
-    return formatter.string(from: DateComponents(second: Int(seconds))) ?? "0:00"
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.dateFormat = "mm:ss"
+    return formatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(Int(seconds))))
 }
 
 struct PlayerView: View {
@@ -69,12 +76,12 @@ struct PlayerView: View {
                                         ProgressView()
                                     }
                                 }
-                                    .frame(width: 200, height: 200)
-                                    .cornerRadius(5)
-                                    .aspectRatio(1, contentMode: .fill)
-                                    .offset(y: 10)
-                                    .blur(radius: 10)
-                                    .opacity(0.25)
+                                .frame(width: 200, height: 200)
+                                .cornerRadius(5)
+                                .aspectRatio(1, contentMode: .fill)
+                                .offset(y: 10)
+                                .blur(radius: 10)
+                                .opacity(0.25)
                                 AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover) ){ image in
                                     image.resizable()
                                 } placeholder: {
@@ -88,9 +95,9 @@ struct PlayerView: View {
                                         ProgressView()
                                     }
                                 }
-                                    .frame(width: 200, height: 200)
-                                    .cornerRadius(5)
-                                    .aspectRatio(1, contentMode: .fill)
+                                .frame(width: 200, height: 200)
+                                .cornerRadius(5)
+                                .aspectRatio(1, contentMode: .fill)
                             }
                         }
                         Text(player.currentPlayingItem!.song.name)
@@ -103,14 +110,21 @@ struct PlayerView: View {
                             .foregroundColor(Color.white)
                             .opacity(0.75)
                             .multilineTextAlignment(.center)
-                        HStack  {
+                        HStack{
                             PlayerTimeView()
+                                .font(.system(size: 10, weight: .regular, design: .monospaced))
+                            Spacer()
+                            Text(formatTime(seconds: ppplayer.currentItem?.asset.duration.seconds ?? 0))
+                                .foregroundColor(Color.white)
+                            .font(.system(size: 10, weight: .regular, design: .monospaced))
+                        }
+                        HStack  {
                             Spacer()
                             Button(action: {player.previousTrack()}) {
                                 Image(systemName: "backward.end.alt")
                                     .font(.system(size: 20))
                                     .padding()
-                                .foregroundColor(Color.white)
+                                    .foregroundColor(Color.white)
                             }.buttonStyle(PlainButtonStyle())
                             Button(action: { ppplayer.isPaused ? player.playTrack() : player.pause() }) {
                                 Image(systemName: ppplayer.isPaused ? "play" :"pause")
@@ -129,8 +143,9 @@ struct PlayerView: View {
                                     .foregroundColor(Color.white)
                             }.buttonStyle(PlainButtonStyle())
                             Spacer()
-                            Text("0:00")
+                
                         }
+                        
                     }
                     List {
                         ForEach(Array(ppplayer.playerItems.enumerated()), id: \.offset) { index, item in
