@@ -21,7 +21,7 @@ struct SongView: View {
                         .foregroundColor(Color.black.opacity(0.75))
                 }
                 
-            }
+            }.buttonStyle(PlainButtonStyle())
         }
     }
 }

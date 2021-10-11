@@ -47,7 +47,6 @@ struct AlbumView: View {
                     Spacer()
                 }
             }
-            .listRowSeparator(.hidden) 
             .padding(.top, 10.0) 
             SongView(songs: resData)
         }
@@ -65,7 +64,7 @@ struct AlbumView: View {
                  self.resData = result.songs 
              }
          }
-        
+         .listStyle(GroupedListStyle())
          .frame(maxWidth: .infinity)
          .navigationTitle("Album")
     }

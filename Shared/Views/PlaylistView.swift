@@ -24,16 +24,16 @@ struct PlaylistView: View {
                 HStack  {
                     Spacer()
                 }
-                SongView(songs: resData)
             }
-            .listRowSeparator(.hidden)
             .padding(.top, 10.0)
+            
+            SongView(songs: resData)
             
         }.onAppear() {
             PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { (result) in
                 self.resData = result
             }
-        }
+        }.listStyle(GroupedListStyle())
         
         .frame(maxWidth: .infinity)
         .navigationTitle("Playlist")

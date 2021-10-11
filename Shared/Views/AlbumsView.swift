@@ -28,8 +28,7 @@ struct AlbumsView: View {
                             VStack(alignment: .leading){
                                 if #available(iOS 15.0, *) {
                                     AsyncImage(url: URL(string: baseURL + item.cover)){ image in
-                                        image
-                                            .resizable()
+                                        image.resizable()
                                     } placeholder: {
                                         ZStack{
                                             VStack {
