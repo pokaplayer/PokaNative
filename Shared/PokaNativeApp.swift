@@ -15,8 +15,9 @@ extension UIDevice {
     static var isIPhone: Bool {
         UIDevice.current.userInterfaceIdiom == .phone
     }
-}
+} 
 let defaults = UserDefaults.standard
+let player = PPPlayer.shared
 @main
 struct PokaNativeApp: App {
     

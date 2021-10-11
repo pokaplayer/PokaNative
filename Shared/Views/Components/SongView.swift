@@ -11,13 +11,18 @@ struct SongView: View {
     var song: Song
     var body: some View {
         
-        VStack(alignment: .leading){
-            Text(song.name)
-            Text(song.artist)
-                .font(.caption)
-                .foregroundColor(Color.black.opacity(0.75))
-        }
+        Button(action: {
+            player.add(song: song)
+        }) {
+            VStack(alignment: .leading){
+                Text(song.name)
+                Text(song.artist)
+                    .font(.caption)
+                    .foregroundColor(Color.black.opacity(0.75))
+            }
             
+        }
+        
     }
 }
- 
+

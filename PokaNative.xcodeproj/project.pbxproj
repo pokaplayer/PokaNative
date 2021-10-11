@@ -40,6 +40,8 @@
 		15BB9DC22711DC2100CF911C /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC02711DC2100CF911C /* SongView.swift */; };
 		15BB9DC42711DC9500CF911C /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC32711DC9500CF911C /* PlaylistView.swift */; };
 		15BB9DC52711DC9500CF911C /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC32711DC9500CF911C /* PlaylistView.swift */; };
+		15BB9DC72712026000CF911C /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC62712026000CF911C /* MiniPlayerView.swift */; };
+		15BB9DC82712026000CF911C /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC62712026000CF911C /* MiniPlayerView.swift */; };
 		15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B2270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B4270DF07300C8DED3 /* Defaults.swift */; };
@@ -71,6 +73,7 @@
 		15BB9DBA2711656300CF911C /* PlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
 		15BB9DC02711DC2100CF911C /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		15BB9DC32711DC9500CF911C /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		15BB9DC62712026000CF911C /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaAPI.swift; sourceTree = "<group>"; };
 		15E0B7B4270DF07300C8DED3 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		15E0B7B8270DF96800C8DED3 /* Poka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poka.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				15BB9DC02711DC2100CF911C /* SongView.swift */,
+				15BB9DC62712026000CF911C /* MiniPlayerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -306,6 +310,7 @@
 				159673E626DB223D00621279 /* Home.swift in Sources */,
 				15BB9DBB2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */,
+				15BB9DC72712026000CF911C /* MiniPlayerView.swift in Sources */,
 				15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */,
 				15BB9DC42711DC9500CF911C /* PlaylistView.swift in Sources */,
 				15BB9DC12711DC2100CF911C /* SongView.swift in Sources */,
@@ -338,6 +343,7 @@
 				159673F126DB33D400621279 /* Login.swift in Sources */,
 				15BB9DC52711DC9500CF911C /* PlaylistView.swift in Sources */,
 				15A6DF1F270EB6E30038F17E /* Library.swift in Sources */,
+				15BB9DC82712026000CF911C /* MiniPlayerView.swift in Sources */,
 				159673EE26DB31DB00621279 /* Player.swift in Sources */,
 				159673EA26DB315C00621279 /* AlbumView.swift in Sources */,
 				15BB9DBC2711656300CF911C /* PlaylistsView.swift in Sources */,
