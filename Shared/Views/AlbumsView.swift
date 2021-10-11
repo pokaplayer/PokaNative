@@ -52,7 +52,7 @@ struct AlbumsView: View {
                                 Text(item.artist)
                                     .font(.caption)
                                     .lineLimit(1)
-                                    .foregroundColor(Color.black.opacity(0.75))
+                                    .opacity(0.75)
                                 HStack{
                                     Spacer()
                                 }

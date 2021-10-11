@@ -19,7 +19,7 @@ struct SongView: View {
                     Text(item.name)
                     Text(item.artist)
                         .font(.caption)
-                        .foregroundColor(Color.black.opacity(0.75))
+                        .opacity(0.75)
                 }
                 
             }.buttonStyle(PlainButtonStyle())

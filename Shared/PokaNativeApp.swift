@@ -25,19 +25,19 @@ struct PokaNativeApp: App {
     var body: some Scene {
         let windowView = WindowGroup {
             if showLogin {
-                    Login(showLogin: self.$showLogin)
+                Login(showLogin: self.$showLogin)
             } else {
                 if UIDevice.isIPhone {
                     ContentViewiOS()
                 } else {
                     ContentView()
                 }
-            }
+            } 
         }
-        #if os(iOS)
-            return windowView
-        #else
-            return windowView.windowStyle(HiddenTitleBarWindowStyle())
-        #endif
+#if os(iOS)
+        return windowView
+#else
+        return windowView.windowStyle(HiddenTitleBarWindowStyle())
+#endif
     }
 }

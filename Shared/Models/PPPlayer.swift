@@ -9,6 +9,23 @@
 import SwiftUI
 import AVFoundation
 import MediaPlayer
+import Combine
+
+
+class PlayerTimeObserver {
+  let publisher = PassthroughSubject<TimeInterval, Never>()
+  private var timeObservation: Any?
+  
+  init() {
+    // Periodically observe the player's current time, whilst playing
+      timeObservation = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(1000)), queue: nil) { [weak self] time in
+      guard let self = self else { return }
+      // Publish the new player time
+      self.publisher.send(time.seconds)
+    }
+  }
+}
+
 
 @objc class PPPlayerItem: NSObject, Identifiable, ObservableObject {
     @Published var id = UUID()
@@ -35,6 +52,7 @@ class PPPlayer: AVPlayer, ObservableObject {
     
     @Published var currentPlayingItem: PPPlayerItem?
     @Published var playerItems = [PPPlayerItem]()
+    @Published var isPaused: Bool = true
     var currentTrack = 0
     
     override init() {
@@ -115,6 +133,7 @@ class PPPlayer: AVPlayer, ObservableObject {
     
     override func play() {
         super.play()
+        self.isPaused = false
         dispatchQueue.async { [weak self] in
             if let artworkUrl = URL(string: baseURL + self!.currentPlayingItem!.song.cover),
                let artworkData = try? Data(contentsOf: artworkUrl),
@@ -127,6 +146,10 @@ class PPPlayer: AVPlayer, ObservableObject {
         }
         self.nowPlayingCenter.nowPlayingInfo = getNowPlayingInfo()
     }
+    override func pause() {
+        super.pause()
+        self.isPaused = true
+    }
     
     func playTrack() {
         if self.playerItems.count > 0 {
@@ -135,7 +158,7 @@ class PPPlayer: AVPlayer, ObservableObject {
             
             self.currentPlayingItem?.observer?.invalidate()
             self.currentPlayingItem?.observer = self.currentPlayingItem?.observe(
-                 \.item,
+                \.item,
                  options: [.initial, .new],
                  changeHandler: {(playingItem, change) in
                      if playingItem.item != nil {
