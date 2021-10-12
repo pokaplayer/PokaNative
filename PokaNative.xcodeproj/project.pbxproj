@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151256582715501B00704491 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 151256572715501B00704491 /* Sliders */; };
+		1512565B27156E3F00704491 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565A27156E3F00704491 /* SettingView.swift */; };
+		1512565C27156E3F00704491 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565A27156E3F00704491 /* SettingView.swift */; };
+		1512565E27156E8800704491 /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565D27156E8800704491 /* SettingAboutView.swift */; };
+		1512565F27156E8800704491 /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565D27156E8800704491 /* SettingAboutView.swift */; };
 		1553B88D271422E2002CFB8F /* PPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553B88C271422E2002CFB8F /* PPPlayer.swift */; };
 		1553B88E271422E2002CFB8F /* PPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553B88C271422E2002CFB8F /* PPPlayer.swift */; };
 		15872AB82710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
@@ -53,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1512565A27156E3F00704491 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		1512565D27156E8800704491 /* SettingAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutView.swift; sourceTree = "<group>"; };
 		1553B88C271422E2002CFB8F /* PPPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPlayer.swift; sourceTree = "<group>"; };
 		15872AB72710947900680A4A /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		15872ABA27109B6800680A4A /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151256582715501B00704491 /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1512565927156E2B00704491 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				1512565A27156E3F00704491 /* SettingView.swift */,
+				1512565D27156E8800704491 /* SettingAboutView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		159673BE26DB1FBC00621279 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +171,7 @@
 		159673EB26DB317900621279 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1512565927156E2B00704491 /* Setting */,
 				15BB9DBF2711DC0400CF911C /* Components */,
 				159673E526DB223D00621279 /* Home.swift */,
 				159673E826DB315C00621279 /* AlbumView.swift */,
@@ -222,6 +240,7 @@
 			);
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
+				151256572715501B00704491 /* Sliders */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -271,6 +290,7 @@
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
+				151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -312,6 +332,7 @@
 				15872ABB27109B6800680A4A /* ArtistView.swift in Sources */,
 				1553B88D271422E2002CFB8F /* PPPlayer.swift in Sources */,
 				15A6DF37271038350038F17E /* FolderView.swift in Sources */,
+				1512565E27156E8800704491 /* SettingAboutView.swift in Sources */,
 				159673E626DB223D00621279 /* Home.swift in Sources */,
 				15BB9DBB2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */,
@@ -327,6 +348,7 @@
 				159673ED26DB31DB00621279 /* Player.swift in Sources */,
 				159673E926DB315C00621279 /* AlbumView.swift in Sources */,
 				15A6DF21270EB9E50038F17E /* ContentViewiOS.swift in Sources */,
+				1512565B27156E3F00704491 /* SettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +359,7 @@
 				159673DA26DB1FBE00621279 /* ContentView.swift in Sources */,
 				15E0B7B6270DF07300C8DED3 /* Defaults.swift in Sources */,
 				15BB9DC22711DC2100CF911C /* SongView.swift in Sources */,
+				1512565C27156E3F00704491 /* SettingView.swift in Sources */,
 				15A6DF38271038350038F17E /* FolderView.swift in Sources */,
 				159673E726DB223D00621279 /* Home.swift in Sources */,
 				15E0B7B2270DD87900C8DED3 /* PokaAPI.swift in Sources */,
@@ -354,6 +377,7 @@
 				159673EA26DB315C00621279 /* AlbumView.swift in Sources */,
 				15BB9DBC2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15BB9DB92710A54900CF911C /* AlbumsView.swift in Sources */,
+				1512565F27156E8800704491 /* SettingAboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +511,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
 				PRODUCT_NAME = PokaNative;
 				SDKROOT = iphoneos;
@@ -509,6 +534,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
 				PRODUCT_NAME = PokaNative;
 				SDKROOT = iphoneos;
@@ -536,6 +562,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
 				PRODUCT_NAME = PokaNative;
 				SDKROOT = macosx;
@@ -561,6 +588,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
 				PRODUCT_NAME = PokaNative;
 				SDKROOT = macosx;
@@ -599,6 +627,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		151256572715501B00704491 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }

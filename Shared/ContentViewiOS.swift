@@ -28,7 +28,7 @@ struct ContentViewiOS: View {
                     .tabItem{
                         Label("Search", systemImage: "magnifyingglass")
                     }
-                Text("Setting")
+                SettingView()
                     .tabItem{
                         Label("Setting", systemImage: "gearshape")
                     }

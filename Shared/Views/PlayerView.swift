@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Sliders
 struct PlayerTimeView: View {
     @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()
@@ -22,6 +22,13 @@ struct PlayerTimeView: View {
                 }),
                 in: 0.0...duration
             ) .accentColor(.blue)
+            /*ValueSlider(value:  Binding(get: {
+                Double(self.currentTime)
+            }, set: { (newVal) in
+                ppplayer.seek(to: newVal)
+            }),
+                        in: 0.0...duration
+            )*/
             HStack{
                 Text(formatTime(seconds: currentTime))
                     .foregroundColor(Color.white)

@@ -12,6 +12,8 @@ struct Login: View {
     @State var username: String = defaults.string(forKey: "username") ?? ""
     @State var password: String = defaults.string(forKey: "password") ?? ""
     
+    var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    
     @Binding var showLogin: Bool
     var body: some View {
         VStack {
@@ -25,10 +27,11 @@ struct Login: View {
                 }
             }*/
             Spacer()
-            Label("Your account", systemImage: "person")
-                .font(.title)
-                .labelStyle(IconOnlyLabelStyle())
-            Text("Login")
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64.0, height: 64.0)
+            Text("PokaPlayer")
                 .font(.title)
                 .fontWeight(.light)
                 .padding(.bottom, 20)
@@ -59,7 +62,7 @@ struct Login: View {
                 .padding(.bottom, 20)
             
             Spacer()
-            Text("PokaNative 0.1.0")
+            Text("PokaNative \(version)")
                 .foregroundColor(Color.gray)
                 .font(.system(size: 10, weight: .regular, design: .monospaced))
         }
