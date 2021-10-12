@@ -9,13 +9,16 @@ import SwiftUI
 
 struct SettingAboutView: View {
     var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    @State private var showAlert: Bool = false
+    @State private var versionClickTimes: Int = 0
     var body: some View {
         List{
-            VStack{ 
+            VStack{
                 Image("Logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 128.0, height: 128.0)
+                    .frame(width: 64.0, height: 64.0)
+                    .padding(.top, 5.0)
                 Text("PoakPlayer")
                     .font(.headline)
                     .fontWeight(.bold)
@@ -28,12 +31,20 @@ struct SettingAboutView: View {
                     Spacer()
                 }
             }
-            HStack{
-                Image(systemName: "info.circle")
-                Text("App version")
-                Spacer()
-                Text(version).opacity(0.5)
-            }
+            Button(action: {
+                versionClickTimes += 1
+                if versionClickTimes >= 7 {
+                    versionClickTimes = 0
+                    showAlert = true
+                }
+            }){
+                HStack{
+                    Image(systemName: "info.circle")
+                    Text("App version")
+                    Spacer()
+                    Text(version).opacity(0.5)
+                }
+            }.buttonStyle(PlainButtonStyle())
             
             Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative")!){
                 HStack{
@@ -51,7 +62,10 @@ struct SettingAboutView: View {
                 }
             }
         }
-            .navigationTitle("About")
+        .navigationTitle("About")
+        .alert("點那麼多次是要命ㄛ",isPresented: $showAlert)  {
+            Button("：（", role: .cancel) { }
+        }
     }
 }
 
