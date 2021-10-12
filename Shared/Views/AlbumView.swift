@@ -41,7 +41,7 @@ struct AlbumView: View {
                     .multilineTextAlignment(.center)
                 Text(album.artist)
                     .font(.caption)
-                    .foregroundColor(Color.black.opacity(0.75))
+                    .opacity(0.75)
                     .multilineTextAlignment(.center)
                 HStack  {
                     Spacer()

@@ -7,16 +7,38 @@
 
 import SwiftUI
 
-
 struct PlayerTimeView: View {
+    @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()
     @State private var currentTime: TimeInterval = 0
+    @State private var duration: Double = 0
     var body: some View {
-        Text(formatTime(seconds: currentTime))
-            .foregroundColor(Color.white)
-            .onReceive(timeObserver.publisher) { time in
-                self.currentTime = time
+        VStack{
+            Slider(
+                value: Binding(get: {
+                    Double(self.currentTime)
+                }, set: { (newVal) in
+                    ppplayer.seek(to: newVal)
+                }),
+                in: 0.0...duration
+            ) .accentColor(.blue)
+            HStack{
+                Text(formatTime(seconds: currentTime))
+                    .foregroundColor(Color.white)
+                    .onReceive(timeObserver.publisher) { time in
+                        self.currentTime = time
+                        self.duration = ppplayer.currentItem?.asset.duration.seconds ?? 0
+                    }
+                    .font(.system(size: 10, weight: .regular, design: .monospaced))
+                Spacer()
+                Text(formatTime(seconds: duration))
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 10, weight: .regular, design: .monospaced))
             }
+            
+        }
+        .padding(.horizontal, 20)
+        
     }
 }
 struct DurationTimeView: View {
@@ -53,11 +75,13 @@ struct PlayerView: View {
                         
                     }
                     .frame(width: .infinity, height: .infinity)
-                    .blur(radius: 10, opaque: true)
+                    .blur(radius: 50, opaque: true)
                     .ignoresSafeArea()
                 }
                 
-                Rectangle() .fill(Color.black.opacity(0.5))
+                Rectangle()
+                    .fill(Color.black)
+                    .opacity(0.5)
                     .ignoresSafeArea()
                 VStack{
                     VStack{
@@ -76,7 +100,6 @@ struct PlayerView: View {
                                         ProgressView()
                                     }
                                 }
-                                .frame(width: 200, height: 200)
                                 .cornerRadius(5)
                                 .aspectRatio(1, contentMode: .fill)
                                 .offset(y: 10)
@@ -95,29 +118,24 @@ struct PlayerView: View {
                                         ProgressView()
                                     }
                                 }
-                                .frame(width: 200, height: 200)
                                 .cornerRadius(5)
                                 .aspectRatio(1, contentMode: .fill)
-                            }
+                            }.padding(.horizontal, 20)
                         }
-                        Text(player.currentPlayingItem!.song.name)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                            .multilineTextAlignment(.center)
-                        Text(player.currentPlayingItem!.song.artist)
-                            .font(.headline)
-                            .foregroundColor(Color.white)
-                            .opacity(0.75)
-                            .multilineTextAlignment(.center)
-                        HStack{
-                            PlayerTimeView()
-                                .font(.system(size: 10, weight: .regular, design: .monospaced))
-                            Spacer()
-                            Text(formatTime(seconds: ppplayer.currentItem?.asset.duration.seconds ?? 0))
+                        VStack(alignment: .leading){
+                            Text(player.currentPlayingItem!.song.name)
+                                .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                                .fontWeight(.bold)
                                 .foregroundColor(Color.white)
-                            .font(.system(size: 10, weight: .regular, design: .monospaced))
-                        }
+                            Text(player.currentPlayingItem!.song.artist)
+                                .font(.subheadline)
+                                .foregroundColor(Color.white)
+                                .opacity(0.75)
+                            HStack{
+                                Spacer()
+                            }
+                        }.padding(.horizontal, 20)
+                        PlayerTimeView()
                         HStack  {
                             Spacer()
                             Button(action: {player.previousTrack()}) {
@@ -143,7 +161,7 @@ struct PlayerView: View {
                                     .foregroundColor(Color.white)
                             }.buttonStyle(PlainButtonStyle())
                             Spacer()
-                
+                            
                         }
                         
                     }
@@ -162,6 +180,7 @@ struct PlayerView: View {
                         }
                         .padding(.horizontal, 5.0)
                     } .listStyle(GroupedListStyle())
+                    
                 }
             }
         } else{

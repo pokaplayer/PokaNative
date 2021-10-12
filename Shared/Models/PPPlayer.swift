@@ -96,7 +96,7 @@ class PPPlayer: AVPlayer, ObservableObject {
             guard let positionEvent = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
             
             print("posion: \(positionEvent.positionTime)")
-            self?.seek(to: CMTime(seconds: positionEvent.positionTime, preferredTimescale: CMTimeScale(1000)))
+            self!.seek(to: positionEvent.positionTime)
             
             return .success
         }
@@ -150,7 +150,9 @@ class PPPlayer: AVPlayer, ObservableObject {
         super.pause()
         self.isPaused = true
     }
-    
+    func seek(to: Double){
+        super.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(1000)))
+    }
     func playTrack() {
         if self.playerItems.count > 0 {
             print("playTrack")
