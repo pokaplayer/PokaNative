@@ -37,7 +37,7 @@ class PlayerTimeObserver {
         self.song = song
         super.init()
         
-        player.initPlayerAsset(with: URL(string: baseURL + song.url)!) { [weak self] (asset: AVAsset) in
+        player.initPlayerAsset(with: URL(string: baseURL + song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self?.item = item

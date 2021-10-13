@@ -16,6 +16,9 @@ struct SettingView: View {
                     NavigationLink(destination: SettingAboutView()) {
                         Label("About", systemImage: "info.circle")
                     }
+                    NavigationLink(destination: SettingAudioQualityView()) {
+                        Label("Audio quality", systemImage: "headphones")
+                    }
                 }
             }.navigationTitle("Setting")
         }
