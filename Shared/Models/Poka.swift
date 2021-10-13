@@ -106,3 +106,24 @@ struct Song: Decodable, Identifiable, Hashable {
     let codec, lrc, artistID, albumID: String?
     let track, year, bitrate: Int?
 }
+
+// MARK: - StatusReponse
+struct StatusReponse: Decodable {
+    let login, version: String
+    let debug: Bool
+    var debugString: String?
+    
+    init(login: String, version: String, debug: Bool) {
+        self.login = login
+        self.version = version
+        self.debug = debug
+        self.debugString = ""
+    }
+    
+    init(login: String, version: String, debug: String) {
+        self.login = login
+        self.version = version
+        self.debug = true
+        self.debugString = debug
+    }
+}
