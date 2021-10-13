@@ -12,20 +12,14 @@ struct Login: View {
     @State var username: String = defaults.string(forKey: "username") ?? ""
     @State var password: String = defaults.string(forKey: "password") ?? ""
     
+    @State var showErrorAlert: Bool = false
+    @State var loginErrorString: String = ""
+    
     var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
     @Binding var showLogin: Bool
     var body: some View {
         VStack {
-            /*HStack{
-                Spacer()
-                Button(action:{showLogin.toggle()}) {
-                    Image(systemName: "xmark.circle.fill")
-                        .padding()
-                        .foregroundColor(.gray)
-                        .frame(width: 13, height: 13)
-                }
-            }*/
             Spacer()
             Image("Logo")
                 .resizable()
@@ -68,6 +62,13 @@ struct Login: View {
         }
         .padding(20.0)
         .frame(maxWidth: .infinity)
+        .alert(Text(loginErrorString), isPresented: $showErrorAlert){
+            Button(action: {
+                self.showErrorAlert = false
+            }){
+                Text("OK")
+            }
+        }
     }
     func login(){
         // set defaults
@@ -78,14 +79,17 @@ struct Login: View {
         defaults.set(server, forKey: "baseURL")
         defaults.set(username, forKey: "username")
         defaults.set(password, forKey: "password")
+        
+        PokaAPI.shared.baseURL =  URL(string: defaults.string(forKey: "baseURL") ?? "")!
+        PokaAPI.shared.baseURLString =  server
+         
         // login
         PokaAPI.shared.login(username: username, password: password) { result in
-            switch result {
-            case .success(let LoginResponse):
-                print(LoginResponse)
+            if result.success {
                 showLogin = false
-            case .failure(let LoginResponse):
-                print(LoginResponse)
+            } else {
+                loginErrorString = result.error ?? ""
+                showErrorAlert = true
             }
         }
         

@@ -13,7 +13,7 @@ class PokaAPI {
     
     var baseURLString = defaults.string(forKey: "baseURL") ?? ""
     
-    func login(username: String, password: String, completion: @escaping (Result<LoginResponse,Error>) -> Void){
+    func login(username: String, password: String, completion: @escaping (LoginResponse)-> ()){
         let url = baseURL.appendingPathComponent("login")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -26,13 +26,15 @@ class PokaAPI {
             if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    let LoginResponse = try decoder.decode(LoginResponse.self, from: data)
-                    print(LoginResponse)
-                    completion(.success(LoginResponse))
+                    let LoginResponse = try decoder.decode(LoginResponse.self, from: data) 
+                    completion(LoginResponse)
                 } catch  {
-                    print(error)
-                    completion(.failure(LoginResponse(success: false) as! Error))
+                    print("Err")
+                    completion(LoginResponse(success: false))
                 }
+            }
+            if (error != nil) {
+                completion(LoginResponse(error: "Could not connect to the server.", success: false))
             }
         }.resume()
     }
