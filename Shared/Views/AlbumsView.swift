@@ -24,42 +24,7 @@ struct AlbumsView: View {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 10) {
                     ForEach(resData, id: \.self) { item in
-                        NavigationLink(destination: AlbumView(album: item)) {
-                            VStack(alignment: .leading){
-                                if #available(iOS 15.0, *) {
-                                    AsyncImage(url: URL(string: baseURL + item.cover)){ image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        ZStack{
-                                            VStack {
-                                                Rectangle()
-                                                    .fill(Color.black.opacity(0))
-                                                    .aspectRatio(1, contentMode: .fit)
-                                                    .cornerRadius(5)
-                                                    .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
-                                                Spacer()
-                                            }
-                                            ProgressView()
-                                        }
-                                    }.cornerRadius(5)
-                                        .aspectRatio(1, contentMode: .fill)
-                                        .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
-                                }
-                                Text(item.name)
-                                    .font(.body)
-                                    .fontWeight(.bold)
-                                    .lineLimit(1)
-                                Text(item.artist)
-                                    .font(.caption)
-                                    .lineLimit(1)
-                                    .opacity(0.75)
-                                HStack{
-                                    Spacer()
-                                }
-                            }
-                            .padding(.horizontal, 5.0)
-                            
-                        }.buttonStyle(PlainButtonStyle())
+                        AlbumItemView(item: item)
                     }
                 }
                 .padding(.horizontal, 10)
