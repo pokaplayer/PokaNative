@@ -8,9 +8,9 @@
 import SwiftUI 
 struct ContentViewiOS: View {
     @State private var tabBarHeight: CGFloat = .zero
+    @State private var showPlayerOverlay = false
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
-        VStack {
             TabView{
                 Home()
                     .tabItem{
@@ -19,10 +19,6 @@ struct ContentViewiOS: View {
                 Library()
                     .tabItem{
                         Label("Library", systemImage: "rectangle.stack")
-                    }
-                PlayerView()
-                    .tabItem{
-                        Label("Player", systemImage: "music.note")
                     }
                 Text("Search")
                     .tabItem{
@@ -33,8 +29,28 @@ struct ContentViewiOS: View {
                         Label("Setting", systemImage: "gearshape")
                     }
             }
-        }
+            .sheet(isPresented: $showPlayerOverlay) {
+                PlayerView()
+            }
             MiniPlayerView()
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                            .onEnded({ value in
+                    if value.translation.width < 0 {
+                        // left
+                    }
+                    
+                    if value.translation.width > 0 {
+                        // right
+                    }
+                    if value.translation.height < 0 {
+                        
+                        self.showPlayerOverlay = true
+                    }
+                    
+                    if value.translation.height > 0 {
+                        // down
+                    }
+                }))
         }
     }
 }
