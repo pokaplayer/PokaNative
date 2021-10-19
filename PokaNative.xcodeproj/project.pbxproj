@@ -18,6 +18,7 @@
 		1553B88E271422E2002CFB8F /* PPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553B88C271422E2002CFB8F /* PPPlayer.swift */; };
 		155C9EA92719B49E0051F8A8 /* PlaylistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */; };
 		155C9EAA2719B49E0051F8A8 /* PlaylistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */; };
+		1572670F271E62CF0085CE42 /* MinimizableView in Frameworks */ = {isa = PBXBuildFile; productRef = 1572670E271E62CF0085CE42 /* MinimizableView */; };
 		15872AB82710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872AB92710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872ABB27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
@@ -107,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				151256582715501B00704491 /* Sliders in Frameworks */,
+				1572670F271E62CF0085CE42 /* MinimizableView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +259,7 @@
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
 				151256572715501B00704491 /* Sliders */,
+				1572670E271E62CF0085CE42 /* MinimizableView */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -303,10 +306,12 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
 				151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				1572670D271E62CF0085CE42 /* XCRemoteSwiftPackageReference "MinimizableView" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -460,10 +465,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -514,9 +521,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -661,6 +670,14 @@
 				kind = branch;
 			};
 		};
+		1572670D271E62CF0085CE42 /* XCRemoteSwiftPackageReference "MinimizableView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DominikButz/MinimizableView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -668,6 +685,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
+		};
+		1572670E271E62CF0085CE42 /* MinimizableView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1572670D271E62CF0085CE42 /* XCRemoteSwiftPackageReference "MinimizableView" */;
+			productName = MinimizableView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

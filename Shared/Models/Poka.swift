@@ -18,7 +18,7 @@ struct LoginResponse: Decodable {
 
 // MARK: - Home
 struct HomeResponse: Identifiable, Decodable {
-    let id = UUID()
+    var id = UUID()
     let title, source, icon: String
     var folders: [Folder]?
     var composers: [Composer]?

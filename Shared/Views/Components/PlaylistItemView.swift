@@ -80,6 +80,8 @@ struct VPlaylistItemView: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 }
                 Text(playlist.name)
+                    .font(.body)
+                    .fontWeight(.bold)
                     .lineLimit(1)
             }
             .padding(.horizontal, 5.0)

@@ -11,40 +11,44 @@ struct HomeItem: View {
     let item: HomeResponse
     var body: some View {
         
-        VStack{
-            VStack(alignment: .leading){
-                HStack{
-                    Text(item.title)
-                        .font(.title)
-                    Spacer()
-                    Text(item.source)
-                        .font(.caption)
-                }
-                if item.albums != nil {
-                    Text("Albums")
-                    ScrollView(.horizontal){
-                        HStack(spacing: 10){
-                            ForEach(item.albums!){ item in
-                                AlbumItemView(item: item)
-                                    .frame(width: 150)
-                            }
-                        }
-                    }
-                }
-                if item.playlists != nil {
-                    Text("Playlists")
-                    ScrollView(.horizontal){
-                        HStack(spacing: 10){
-                            ForEach(item.playlists!){ item in
-                                VPlaylistItemView(playlist: item)
-                                    .frame(width: 150)
-                            }
-                        }
-                    }
-                }
+        VStack(alignment: .leading){
+            HStack{
+                Text(item.title)
+                    .font(.title)
+                Spacer()
+                Text(item.source)
+                    .font(.caption)
             }
             .padding(.horizontal, 10.0)
+            if item.albums != nil && item.albums?.count ?? 0 > 0 {
+                Text("Albums")
+                    .padding(.horizontal, 10.0)
+                ScrollView(.horizontal){
+                    HStack(spacing: 10){
+                        ForEach(item.albums!){ item in
+                            AlbumItemView(item: item)
+                                .frame(width: 150)
+                        }
+                    }
+                    .padding(.horizontal, 10.0)
+                }
+            } 
+            if item.playlists != nil && item.playlists?.count ?? 0 > 0 {
+                Text("Playlists")
+                    .padding(.horizontal, 10.0)
+                ScrollView(.horizontal){
+                    HStack(spacing: 10){
+                        ForEach(item.playlists!){ item in
+                            VPlaylistItemView(playlist: item)
+                                .frame(width: 150)
+                        }
+                    }
+                    .padding(.horizontal, 10.0)
+                }
+            }
         }
+        .padding(.vertical, 5.0)
+        
     }
 }
 /*
