@@ -11,15 +11,19 @@ struct SettingView: View {
     
     var body: some View {
         NavigationView {
-            HStack{
-                List {
+            List {
+                Section(header: Text("About")){
                     NavigationLink(destination: SettingAboutView()) {
                         Label("About", systemImage: "info.circle")
                     }
+                    
+                }
+                Section(header: Text("Settings")){
                     NavigationLink(destination: SettingAudioQualityView()) {
                         Label("Audio quality", systemImage: "headphones")
                     }
-                }
+                    
+                } 
             }.navigationTitle("Setting")
         }
     }

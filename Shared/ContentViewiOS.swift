@@ -26,13 +26,16 @@ struct ContentViewiOS: View {
                     }
                 SettingView()
                     .tabItem{
-                        Label("Setting", systemImage: "gearshape")
+                        Label("Settings", systemImage: "gearshape")
                     }
             }
             .sheet(isPresented: $showPlayerOverlay) {
-                PlayerView()
+                PlayerControllerView()
             }
             MiniPlayerView()
+                .onTapGesture {
+                    self.showPlayerOverlay = true
+                }
                 .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                             .onEnded({ value in
                     if value.translation.width < 0 {
@@ -42,8 +45,7 @@ struct ContentViewiOS: View {
                     if value.translation.width > 0 {
                         // right
                     }
-                    if value.translation.height < 0 {
-                        
+                    if value.translation.height < 0 { 
                         self.showPlayerOverlay = true
                     }
                     

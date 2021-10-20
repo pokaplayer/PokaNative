@@ -46,8 +46,7 @@ class PokaAPI {
             if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    let HomeResponse = try decoder.decode([HomeResponse].self, from: data)
-                    print(HomeResponse)
+                    let HomeResponse = try decoder.decode([HomeResponse].self, from: data) 
                     completion(HomeResponse)
                 } catch  {
                     print(error)
