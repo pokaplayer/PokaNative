@@ -56,19 +56,11 @@ struct VPlaylistItemView: View {
                     AsyncImage(url: URL(string: playlist.image!.hasPrefix("http") ? playlist.image! : baseURL + playlist.image!)){ image in
                         image.resizable()
                     } placeholder: {
-                        ZStack{
-                            VStack {
-                                Rectangle()
-                                    .fill(Color.black.opacity(0.2))
-                                    .aspectRatio(1.0, contentMode: .fit)
-                                Spacer()
-                            }
-                            ProgressView()
-                        }
+                        ProgressView()
                     }
                     .frame(width: 140, height: 140)
                     .cornerRadius(5)
-                    .aspectRatio(1, contentMode: .fill)
+                    .aspectRatio(1, contentMode: .fit)
                     .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 } else {
                     Image(systemName: "music.note.list")
@@ -88,11 +80,4 @@ struct VPlaylistItemView: View {
         }.buttonStyle(PlainButtonStyle())
     }
 }
-
-/*
- struct PlaylistItemView_Previews: PreviewProvider {
- static var previews: some View {
- PlaylistItemView()
- }
- }
- */
+ 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerLyricView: View {
     var body: some View {
-        Text("Lyric")
+        Text("TBD").font(.title).foregroundColor(Color.white)
     }
 }
 

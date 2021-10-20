@@ -12,8 +12,15 @@ struct PlayerPlaylistView: View {
     var body: some View {
         
         UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
+        //UITableViewCell.appearance().backgroundColor = .clear
         return List {
+            Text("Playlist")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(Color.white)
+                .listRowBackground(Color.clear)
+                .listSectionSeparatorTint(Color.clear)
+                .listRowSeparatorTint(Color.white.opacity(0.25))
             ForEach(Array(ppplayer.playerItems.enumerated()), id: \.element.id) { index, item in
                 Button(action: {
                     player.setTrack(index: index)
@@ -28,9 +35,6 @@ struct PlayerPlaylistView: View {
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
-                .listRowBackground(Color.clear)
-                .listSectionSeparatorTint(Color.white.opacity(0.25))
-                .listRowSeparatorTint(Color.white.opacity(0.25))
                 .swipeActions {
                     Button("Delete") {
                         print("Right on!")
@@ -39,10 +43,14 @@ struct PlayerPlaylistView: View {
                     .tint(.red)
                     
                 }
+                .listRowBackground(Color.clear)
+                .listSectionSeparatorTint(Color.clear)
+                .listRowSeparatorTint(Color.white.opacity(0.25))
                 
             }
             .padding(.horizontal, 5.0)
         } .listStyle(GroupedListStyle())
+            .background(Color.clear)
         
         
     }

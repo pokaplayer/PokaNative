@@ -6,7 +6,22 @@
 //
 
 import SwiftUI
-
+struct PlayerControllerIconButtonView: View {
+    var action: () -> Void
+    var active: Bool = false
+    var icon: String
+    var body: some View{
+        Button(action: action) {
+            Image(systemName: icon + (active ? ".fill" : ""))
+                .font(.system(size: 24))
+                .padding()
+                .foregroundColor(Color.white)
+        }.buttonStyle(PlainButtonStyle())
+            .frame(width: 56, height: 56)
+            .background(active ? Color.white.opacity(0.1) : Color.clear)
+            .cornerRadius(12)
+    }
+}
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
     @State var activeView = "player"
@@ -26,36 +41,9 @@ struct PlayerControllerView: View {
             HStack(spacing: 20) {
                 Spacer()
                 
-                Button(action: { activeView = "player" }) {
-                    Image(systemName: "play.fill")
-                        .font(.system(size: 24))
-                        .padding()
-                        .foregroundColor(Color.white)
-                }.buttonStyle(PlainButtonStyle())
-                    .frame(width: 56, height: 56)
-                    .background(activeView == "player" ? Color.black.opacity(0.25) : Color.clear)
-                    .cornerRadius(12)
-                
-                Button(action: { activeView = "list" }) {
-                    Image(systemName: "music.note.list")
-                        .font(.system(size: 24))
-                        .padding()
-                        .foregroundColor(Color.white)
-                }.buttonStyle(PlainButtonStyle())
-                    .frame(width: 56, height: 56)
-                    .background(activeView == "list" ? Color.black.opacity(0.25) : Color.clear)
-                    .cornerRadius(12)
-                
-                Button(action: { activeView = "lyric" }) {
-                    Image(systemName: "captions.bubble.fill")
-                        .font(.system(size: 24))
-                        .padding()
-                        .foregroundColor(Color.white)
-                }.buttonStyle(PlainButtonStyle())
-                    .frame(width: 56, height: 56)
-                    .background(activeView == "lyric" ? Color.black.opacity(0.25) : Color.clear)
-                    .cornerRadius(12)
-                  
+                PlayerControllerIconButtonView(action: {activeView = "player"}, active: activeView == "player", icon: "play")
+                PlayerControllerIconButtonView(action: {activeView = "list"}, active: activeView == "list", icon: "list.bullet.circle")
+                PlayerControllerIconButtonView(action: {activeView = "lyric"}, active: activeView == "lyric", icon:  "captions.bubble")
                 
                 Spacer()
             }
@@ -65,9 +53,7 @@ struct PlayerControllerView: View {
                     AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover) ){ image in
                         image.resizable()
                     } placeholder: {
-                        Rectangle()
-                            .fill(Color.black.opacity(0.7))
-                            .aspectRatio(1.0, contentMode: .fit)
+                        EmptyView()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity )
                     .blur(radius: 50, opaque: true)
