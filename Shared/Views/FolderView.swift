@@ -24,14 +24,7 @@ struct FolderView: View {
                 }
                 if resData?.songs != nil && !(resData?.songs.isEmpty ?? false) {
                     Section(header: Text("Songs")) {
-                        ForEach(resData?.songs ?? [Song](), id: \.self) { item in
-                            VStack(alignment: .leading){
-                                Text(item.name)
-                                Text(item.artist)
-                                    .font(.caption)
-                                    .foregroundColor(Color.black.opacity(0.75))
-                            }
-                        }
+                        SongView(songs: resData?.songs ?? [Song]()) 
                     }
                 }
                 

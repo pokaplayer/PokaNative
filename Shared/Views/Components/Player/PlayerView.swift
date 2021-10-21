@@ -74,24 +74,19 @@ struct PlayerView: View {
                 VStack{
                     Spacer()
                     if #available(iOS 15.0, *) {
-                            AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover)){ image in
-                                image.resizable()
-                            } placeholder: {
-                                ZStack{
-                                    VStack {
-                                        Rectangle()
-                                            .fill(Color.black.opacity(0.2))
-                                        Spacer()
-                                    }
-                                    ProgressView()
-                                }
+                        AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover)){ image in
+                            image.resizable()
+                        } placeholder: {
+                            ZStack{ 
+                                Rectangle().opacity(0)
+                                ProgressView()
                             }
-                            .frame(width: UIScreen.main.bounds.size.width - 40 , alignment: .center)
-                            .aspectRatio(1, contentMode: .fit)
-                            .cornerRadius(5)
-                            .padding(20.0)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0) 
-                        
+                        }
+                        .frame(width: UIScreen.main.bounds.size.width - 40 , alignment: .center)
+                        .aspectRatio(1, contentMode: .fit)
+                        .cornerRadius(5)
+                        .padding(20.0)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                     }
                     VStack(alignment: .leading){
                         Text(player.currentPlayingItem!.song.name)
@@ -122,7 +117,7 @@ struct PlayerView: View {
                                 .foregroundColor(Color.white)
                         }.buttonStyle(PlainButtonStyle())
                             .frame(width: 56, height: 56)
-                            .background(Color.black.opacity(0.25))
+                            .background(Color.white.opacity(0.1))
                             .cornerRadius(.infinity)
                         
                         Button(action: {player.nextTrack()}) {

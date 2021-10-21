@@ -18,6 +18,8 @@
 		1553B88E271422E2002CFB8F /* PPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553B88C271422E2002CFB8F /* PPPlayer.swift */; };
 		155C9EA92719B49E0051F8A8 /* PlaylistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */; };
 		155C9EAA2719B49E0051F8A8 /* PlaylistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */; };
+		156F0EB72720FAD100E43109 /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0EB62720FAD000E43109 /* SongDetailView.swift */; };
+		156F0EB82720FAD100E43109 /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0EB62720FAD000E43109 /* SongDetailView.swift */; };
 		15872AB82710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872AB92710947900680A4A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872AB72710947900680A4A /* PlayerView.swift */; };
 		15872ABB27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
@@ -75,6 +77,7 @@
 		1512566027167ED800704491 /* SettingAudioQualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAudioQualityView.swift; sourceTree = "<group>"; };
 		1553B88C271422E2002CFB8F /* PPPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPPlayer.swift; sourceTree = "<group>"; };
 		155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemView.swift; sourceTree = "<group>"; };
+		156F0EB62720FAD000E43109 /* SongDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailView.swift; sourceTree = "<group>"; };
 		15872AB72710947900680A4A /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		15872ABA27109B6800680A4A /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		15872ABD27109E2A00680A4A /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
@@ -215,6 +218,7 @@
 				15BC3CEF2717CFB300491B38 /* HomeItem.swift */,
 				155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */,
 				15BC3CF22717D10700491B38 /* AlbumItemView.swift */,
+				156F0EB62720FAD000E43109 /* SongDetailView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -375,6 +379,7 @@
 				15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */,
 				15BB9DC42711DC9500CF911C /* PlaylistView.swift in Sources */,
 				15BB9DC12711DC2100CF911C /* SongView.swift in Sources */,
+				156F0EB72720FAD100E43109 /* SongDetailView.swift in Sources */,
 				15C59C4F271EED57008D1570 /* PlayerPlaylistView.swift in Sources */,
 				159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
 				15BC3CF02717CFB300491B38 /* HomeItem.swift in Sources */,
@@ -422,6 +427,7 @@
 				159673EA26DB315C00621279 /* AlbumView.swift in Sources */,
 				15BB9DBC2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15BB9DB92710A54900CF911C /* AlbumsView.swift in Sources */,
+				156F0EB82720FAD100E43109 /* SongDetailView.swift in Sources */,
 				1512565F27156E8800704491 /* SettingAboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

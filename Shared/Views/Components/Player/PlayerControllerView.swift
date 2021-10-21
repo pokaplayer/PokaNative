@@ -18,7 +18,7 @@ struct PlayerControllerIconButtonView: View {
                 .foregroundColor(Color.white)
         }.buttonStyle(PlainButtonStyle())
             .frame(width: 56, height: 56)
-            .background(active ? Color.white.opacity(0.1) : Color.clear)
+            .background(active ? Color.white.opacity(0.05) : Color.clear)
             .cornerRadius(12)
     }
 }
@@ -27,6 +27,12 @@ struct PlayerControllerView: View {
     @State var activeView = "player"
     var body: some View{
         VStack{
+            Rectangle()
+                .fill(Color.white)
+                .frame(width: 100, height: 4)
+                .cornerRadius(.infinity)
+                .opacity(0.75)
+                .padding(5.0)
             if activeView == "player" {
                 PlayerView()
             }
@@ -41,29 +47,43 @@ struct PlayerControllerView: View {
             HStack(spacing: 20) {
                 Spacer()
                 
-                PlayerControllerIconButtonView(action: {activeView = "player"}, active: activeView == "player", icon: "play")
-                PlayerControllerIconButtonView(action: {activeView = "list"}, active: activeView == "list", icon: "list.bullet.circle")
-                PlayerControllerIconButtonView(action: {activeView = "lyric"}, active: activeView == "lyric", icon:  "captions.bubble")
+                PlayerControllerIconButtonView(
+                    action: {activeView = "player" },
+                    active: activeView == "player",
+                    icon: "play"
+                )
+                PlayerControllerIconButtonView(
+                    action: {activeView = "list"},
+                    active: activeView == "list",
+                    icon: "list.bullet.circle"
+                )
+                PlayerControllerIconButtonView(
+                    action: {activeView = "lyric"},
+                    active: activeView == "lyric",
+                    icon:  "captions.bubble"
+                )
                 
                 Spacer()
             }
         }.background(
             ZStack{
                 if #available(iOS 15.0, *) {
-                    AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover) ){ image in
-                        image.resizable()
+                    Rectangle()
+                        .fill(Color.black)
+                        .ignoresSafeArea()
+                    AsyncImage(url: URL(string: baseURL + ppplayer.currentPlayingItem!.song.cover)){ image in
+                        image
+                            .resizable()
+                            .blur(radius: 50, opaque: true)
                     } placeholder: {
-                        EmptyView()
+                        ProgressView()
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity )
-                    .blur(radius: 50, opaque: true)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
                     .ignoresSafeArea()
+                    .opacity(0.5)
                 }
                 
-                Rectangle()
-                    .fill(Color.black)
-                    .opacity(0.5)
-                    .ignoresSafeArea()
             }
         )
     }

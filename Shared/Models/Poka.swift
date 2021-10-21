@@ -67,6 +67,24 @@ struct Playlist: Decodable, Identifiable, Hashable {
     let id: String
     let name, source: String
     let image: String?
+    init(id: String, name: String, source: String) {
+        self.id = id
+        self.name = name
+        self.source = source
+        self.image = nil
+    }
+    init(id: String, name: String, source: String, image: String) {
+        self.id = id
+        self.name = name
+        self.source = source
+        self.image = image
+    }
+    init(id: String, name: String, source: String, cover: String) {
+        self.id = id
+        self.name = name
+        self.source = source
+        self.image = cover
+    }
 }
 // MARK: - Artists
 struct Artists: Decodable{
