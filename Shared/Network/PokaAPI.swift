@@ -200,7 +200,7 @@ class PokaAPI {
         }.resume()
     }
     func getRandomSongs(completion: @escaping ([Song]) -> ()){
-        let stringUrl = baseURLString + "/pokaapi/randomSongs"
+        let stringUrl = baseURLString + "/pokaapi/randomSongs?rndID=" + UUID().uuidString
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
