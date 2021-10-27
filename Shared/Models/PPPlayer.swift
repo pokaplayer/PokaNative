@@ -36,13 +36,6 @@ class PlayerTimeObserver {
     init(song: Song){
         self.song = song
         super.init()
-        
-        player.initPlayerAsset(with: URL(string: baseURL + song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
-            DispatchQueue.main.async {
-                let item = AVPlayerItem(asset: asset)
-                self?.item = item
-            }
-        }
     }
 }
 
@@ -173,11 +166,9 @@ class PPPlayer: AVPlayer, ObservableObject {
     }
     
     func setSongs(songs: [Song]){
-        DispatchQueue.main.async {
-            self.playerItems = [PPPlayerItem]()
-            for i in 0...songs.count-1 {
-                self.playerItems.append(PPPlayerItem(song: songs[i]))
-            }
+        self.playerItems = [PPPlayerItem]()
+        for i in 0...songs.count-1 {
+            self.playerItems.append(PPPlayerItem(song: songs[i]))
         }
     }
     func addSong(song: Song){
@@ -189,7 +180,16 @@ class PPPlayer: AVPlayer, ObservableObject {
     
     func setTrack(index: Int){
         self.currentTrack = index
-        self.playTrack()
+        self.pause()
+        // init item
+        self.initPlayerAsset(with: URL(string: baseURL + self.playerItems[index].song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
+            DispatchQueue.main.async {
+                let item = AVPlayerItem(asset: asset)
+                self?.playerItems[index].item = item
+                self?.playTrack()
+            }
+        }
+        
     }
     
     func previousTrack() {
