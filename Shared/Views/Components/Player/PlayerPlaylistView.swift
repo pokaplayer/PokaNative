@@ -12,7 +12,6 @@ struct PlayerPlaylistView: View {
     var body: some View {
         
         UITableView.appearance().backgroundColor = .clear
-        //UITableViewCell.appearance().backgroundColor = .clear
         return List {
             Text("Playlist")
                 .font(.largeTitle)
@@ -51,7 +50,9 @@ struct PlayerPlaylistView: View {
             .padding(.horizontal, 5.0)
         } .listStyle(GroupedListStyle())
             .background(Color.clear)
-        
+            .onDisappear(perform: {
+                UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
+            })
         
     }
 }

@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		151256582715501B00704491 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 151256572715501B00704491 /* Sliders */; };
 		1512565B27156E3F00704491 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565A27156E3F00704491 /* SettingView.swift */; };
 		1512565C27156E3F00704491 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565A27156E3F00704491 /* SettingView.swift */; };
 		1512565E27156E8800704491 /* SettingAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512565D27156E8800704491 /* SettingAboutView.swift */; };
@@ -115,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				151256582715501B00704491 /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +274,6 @@
 			);
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
-				151256572715501B00704491 /* Sliders */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -327,7 +324,6 @@
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
-				151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -682,25 +678,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/spacenation/swiftui-sliders.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		151256572715501B00704491 /* Sliders */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 151256562715501B00704491 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
-			productName = Sliders;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }

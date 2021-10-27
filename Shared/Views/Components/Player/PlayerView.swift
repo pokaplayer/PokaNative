@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Sliders
 struct PlayerTimeView: View {
     @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()

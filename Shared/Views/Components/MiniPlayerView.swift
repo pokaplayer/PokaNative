@@ -57,7 +57,7 @@ struct MiniPlayerView: View {
                 .padding(.horizontal)
                 Spacer()
             }
-            .background(.regularMaterial)
+            .background(.regularMaterial)  
             .frame(height: 56)
             .offset(y: -56)
         }
