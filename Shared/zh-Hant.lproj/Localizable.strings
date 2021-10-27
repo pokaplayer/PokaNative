@@ -1,0 +1,74 @@
+/* 
+ Localizable.strings
+ PokaNative
+ 
+ Created by 勝勝寶寶 on 2021/10/27.
+ 
+ */
+
+// MARK: - Home Items
+"home_recentAlbums" = "最近加入的專輯";
+"home_pins" = "釘選";
+"home_netease" = "網易雲音樂";
+"home_hqPlaylist_netease" = "精品清單";
+"home_topPlaylist_netease" = "熱門清單";
+"home_dailyRecommend_netease" = "每日推薦";
+// MARK: - Source
+"poka" = "PokaPlayer";
+"Netease2" = "網易雲音樂";
+// MARK: - Basic
+"Home" = "首頁";
+"Search" = "搜尋";
+"Library" = "媒體庫";
+"Album" = "專輯";
+"Albums" = "專輯";
+"Playlist" = "播放清單";
+"Playlists" = "播放清單";
+"Folders" = "資料夾";
+"Artist" = "演出者";
+"Artists" = "演出者";
+"Composers" = "作曲者";
+// MARK: - Settings
+"Settings" = "設定";
+// MARK: - About
+"About" = "關於";
+"App Info" = "應用程式資訊";
+"App version" = "版本";
+"Server Status" = "伺服器資訊";
+"Server version" = "伺服器版本";
+"User ID" = "使用者 ID";
+"Contributors" = "貢獻者";
+"Links" = "連結";
+// MARK: - Audio quality
+"Audio quality" = "音質";
+
+"Low" = "低音質";
+"Only use when the internet is slow" = "128K，跟 YouTube 差不多的爛音質，在網路夭壽慢的情況下請選擇此選項";
+
+"Medium" = "中等音質";
+"Able to stream smoothly under 3G network" = "音質只比 YouTube 好那麼一點點，可在 3G 網路下流暢的串流";
+
+"High" = "高音質";
+"Able to stream smoothly under 4G/LTE network" = "音質較原始音質略差，可在 4G 網路下流暢的串流";
+
+"Original" = "原始音質";
+"Uncompressed audio, only use when the internet is fast" = "在網路狀況許可下，可選擇此選項聆聽高音質音樂";
+
+"The audio quality setting will not work for songs that are currently in the queue" = "音質設定不會對目前佇列中的歌曲生效";
+// MARK: - Login
+"Server" = "伺服器";
+"Username" = "使用者名稱";
+"Password" = "密碼";
+"Login" = "登入";
+// MARK: - Song Details
+"Details" = "詳細資料";
+"Actions" = "動作";
+"Add this song to player" = "新增該歌曲至現正播放";
+"Add to playlist" = "新增至播放清單";
+"Info" = "資訊";
+"Track" = "軌道";
+"Source" = "來源";
+"Codec" = "編碼格式";
+"Bitrate" = "位元率";
+"Year" = "年份";
+

@@ -1,0 +1,18 @@
+/* 
+ Localizable.strings
+ PokaNative
+ 
+ Created by 勝勝寶寶 on 2021/10/27.
+ 
+ */
+
+// MARK: - Home Items
+"home_recentAlbums" = "Recent added albums";
+"home_pins" = "Pins";
+"home_netease" = "Netease";
+"home_hqPlaylist_netease" = "HQ Playlist";
+"home_topPlaylist_netease" = "Top Playlist";
+"home_dailyRecommend_netease" = "Daily Recommend";
+// MARK: - Source
+"poka" = "PokaPlayer";
+"Netease2" = "Netease"; 
