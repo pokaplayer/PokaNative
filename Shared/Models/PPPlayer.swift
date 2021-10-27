@@ -128,7 +128,7 @@ class PPPlayer: AVPlayer, ObservableObject {
         super.play()
         self.isPaused = false
         dispatchQueue.async { [weak self] in
-            if let artworkUrl = URL(string: baseURL + self!.currentPlayingItem!.song.cover),
+            if let artworkUrl = URL(string: PokaURLParser(self!.currentPlayingItem!.song.cover)),
                let artworkData = try? Data(contentsOf: artworkUrl),
                let artworkImage = UIImage(data: artworkData) {
                 if var currentInfo = self?.nowPlayingCenter.nowPlayingInfo {

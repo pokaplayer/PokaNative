@@ -72,7 +72,7 @@ struct PlayerControllerView: View {
                     Rectangle()
                         .fill(Color.black)
                         .ignoresSafeArea()
-                    CachedAsyncImage(url: URL(string: baseURL + ppplayer.currentPlayingItem!.song.cover)){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))){ image in
                         image
                             .resizable()
                             .blur(radius: 50, opaque: true)

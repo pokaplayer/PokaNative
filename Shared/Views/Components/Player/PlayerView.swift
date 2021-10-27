@@ -21,7 +21,7 @@ struct PlayerTimeView: View {
                     ppplayer.seek(to: newVal)
                 }),
                 in: 0.0...duration
-            ) .accentColor(.blue)
+            ) .accentColor(.blue) 
             /*ValueSlider(value:  Binding(get: {
              Double(self.currentTime)
              }, set: { (newVal) in
@@ -74,7 +74,7 @@ struct PlayerView: View {
                 VStack{
                     Spacer()
                     if #available(iOS 15.0, *) {
-                        CachedAsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover)){ image in
+                        CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))){ image in
                             image.resizable()
                         } placeholder: {
                             ZStack{ 

@@ -14,7 +14,7 @@ struct SongDetailView: View {
         NavigationView {
             List {
                 HStack{
-                    CachedAsyncImage(url: URL(string:  baseURL + item.cover)){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{

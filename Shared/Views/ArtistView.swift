@@ -15,7 +15,7 @@ struct ArtistView: View {
         List(resData?.artists ?? [Artist]()){ item in 
             NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "artist")) {
                 HStack{
-                    CachedAsyncImage(url: URL(string: baseURL + item.cover) ){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))){ image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()

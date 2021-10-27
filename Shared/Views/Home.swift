@@ -10,29 +10,25 @@ import SwiftUI
 struct Home: View {
     @State var resData = [HomeResponse]()
     var body: some View {
-        
-        NavigationView {
-            ScrollView{
-                HomeRandomPlay()
+        ScrollView{
+            HomeRandomPlay()
+                .background(.ultraThinMaterial)
+                .cornerRadius(5)
+                .padding(5)
+            ForEach(resData) { item in
+                HomeItem(item: item)
                     .background(.ultraThinMaterial)
                     .cornerRadius(5)
                     .padding(5)
-                ForEach(resData) { item in
-                    HomeItem(item: item)
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(5)
-                        .padding(5)
-                }
-                Spacer()
             }
-            .navigationTitle("Home")
-            .onAppear() {
-                PokaAPI.shared.getHome() { (result) in
-                    self.resData = result
-                }
-            } 
-            
+            Spacer()
         }
+        .navigationTitle("Home")
+        .onAppear() {
+            PokaAPI.shared.getHome() { (result) in
+                self.resData = result
+            }
+        } 
     }
 }
 

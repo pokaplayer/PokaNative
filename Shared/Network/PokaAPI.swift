@@ -162,7 +162,7 @@ class PokaAPI {
         }.resume()
     }
     func getPlaylists(completion: @escaping (PlaylistReponse) -> ()){
-        let stringUrl = baseURLString + "/pokaapi/playlists/"
+        let stringUrl = baseURLString + "/pokaapi/playlists/?kz"
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -237,4 +237,7 @@ class PokaAPI {
             }
         }.resume()
     }
+}
+func PokaURLParser(_ u: String) -> String{
+    return u.hasPrefix("http") ? u : (baseURL + u)
 }

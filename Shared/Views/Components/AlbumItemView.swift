@@ -15,7 +15,7 @@ struct AlbumItemView: View {
             NavigationLink(destination: AlbumView(album: item)) {
                 VStack(alignment: .leading){
                     if #available(iOS 15.0, *) {
-                        CachedAsyncImage(url: URL(string: baseURL + item.cover)){ image in
+                        CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))){ image in
                             image.resizable()
                         } placeholder: {
                             ZStack{
@@ -47,7 +47,8 @@ struct AlbumItemView: View {
                 }
                 .padding(.horizontal, 5.0)
                 
-            }.buttonStyle(PlainButtonStyle())
+            }
+            .buttonStyle(PlainButtonStyle()) 
     }
 }
 /*

@@ -18,7 +18,7 @@ struct AlbumView: View {
         List{
             VStack{
                 if #available(iOS 15.0, *) {
-                    CachedAsyncImage(url: URL(string: baseURL + album.cover) ){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(album.cover))){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{

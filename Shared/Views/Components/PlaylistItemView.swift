@@ -13,7 +13,7 @@ struct PlaylistCoverView: View {
     var size: CGFloat = 40
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        CachedAsyncImage(url: URL(string: coverURL.hasPrefix("http") ? coverURL : baseURL + coverURL)){ image in
+        CachedAsyncImage(url: URL(string: PokaURLParser(coverURL))){ image in
             image
                 .resizable()
                 .scaledToFill()
@@ -50,14 +50,14 @@ struct PlaylistItemView: View {
 struct VPlaylistItemView: View {
     var playlist: Playlist
     var body: some View {
-         var imgLink: String? = playlist.image ?? playlist.cover ?? nil
+        var imgLink: String? = playlist.image ?? playlist.cover ?? nil
         if imgLink != nil {
             if !imgLink!.hasPrefix("http") {
-                imgLink =   baseURL + imgLink!
+                imgLink = PokaURLParser(imgLink!)
             }
         }
         return
-            NavigationLink(destination: PlaylistView(playlist: playlist)) {
+        NavigationLink(destination: PlaylistView(playlist: playlist)) {
             VStack(alignment: .leading){
                 if #available(iOS 15.0, *), imgLink != nil {
                     CachedAsyncImage(url: URL(string: imgLink!)){ image in
@@ -85,8 +85,8 @@ struct VPlaylistItemView: View {
             }
             .padding(.horizontal, 5.0)
         }.buttonStyle(PlainButtonStyle())
-            
+        
         
     }
 }
- 
+
