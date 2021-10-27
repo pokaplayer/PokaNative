@@ -13,6 +13,9 @@
 "home_hqPlaylist_netease" = "精品清單";
 "home_topPlaylist_netease" = "熱門清單";
 "home_dailyRecommend_netease" = "每日推薦";
+
+"Shuffle" = "隨機播放";
+"Click the button below to randomly play the songs in the library" = "點選下方按鈕來隨機播放媒體庫中的歌曲。";
 // MARK: - Source
 "poka" = "PokaPlayer";
 "Netease2" = "網易雲音樂";
@@ -28,6 +31,7 @@
 "Artist" = "演出者";
 "Artists" = "演出者";
 "Composers" = "作曲者";
+"Play" = "播放";
 // MARK: - Settings
 "Settings" = "設定";
 // MARK: - About

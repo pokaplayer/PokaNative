@@ -23,7 +23,11 @@ struct HomeRandomPlay: View {
                     player.setTrack(index: 0)
                 }
             }){
-                Text("Play")
+                HStack{
+                    Image(systemName: "play")
+                    Text("Play")
+                        .font(.caption)
+                }
             }
             .padding(5)
             .overlay(
