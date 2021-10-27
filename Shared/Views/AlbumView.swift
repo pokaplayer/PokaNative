@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct AlbumView: View {
     var album: Album
@@ -17,7 +18,7 @@ struct AlbumView: View {
         List{
             VStack{
                 if #available(iOS 15.0, *) {
-                    AsyncImage(url: URL(string: baseURL + album.cover) ){ image in
+                    CachedAsyncImage(url: URL(string: baseURL + album.cover) ){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{

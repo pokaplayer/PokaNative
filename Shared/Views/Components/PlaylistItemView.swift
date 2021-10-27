@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct PlaylistCoverView: View {
     var coverURL: String
     var size: CGFloat = 40
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        AsyncImage(url: URL(string: coverURL.hasPrefix("http") ? coverURL : baseURL + coverURL)){ image in
+        CachedAsyncImage(url: URL(string: coverURL.hasPrefix("http") ? coverURL : baseURL + coverURL)){ image in
             image
                 .resizable()
                 .scaledToFill()
@@ -59,7 +60,7 @@ struct VPlaylistItemView: View {
             NavigationLink(destination: PlaylistView(playlist: playlist)) {
             VStack(alignment: .leading){
                 if #available(iOS 15.0, *), imgLink != nil {
-                    AsyncImage(url: URL(string: imgLink!)){ image in
+                    CachedAsyncImage(url: URL(string: imgLink!)){ image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()

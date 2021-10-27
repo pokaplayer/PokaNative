@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 struct PlayerControllerIconButtonView: View {
     var action: () -> Void
     var active: Bool = false
@@ -71,7 +72,7 @@ struct PlayerControllerView: View {
                     Rectangle()
                         .fill(Color.black)
                         .ignoresSafeArea()
-                    AsyncImage(url: URL(string: baseURL + ppplayer.currentPlayingItem!.song.cover)){ image in
+                    CachedAsyncImage(url: URL(string: baseURL + ppplayer.currentPlayingItem!.song.cover)){ image in
                         image
                             .resizable()
                             .blur(radius: 50, opaque: true)

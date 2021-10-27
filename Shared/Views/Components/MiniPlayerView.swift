@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct MiniPlayerView: View {
     
@@ -15,7 +16,7 @@ struct MiniPlayerView: View {
             VStack(alignment: .leading) {
                 Spacer()
                 HStack {
-                    AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover) ){ image in
+                    CachedAsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover) ){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{

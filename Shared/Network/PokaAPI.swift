@@ -170,7 +170,7 @@ class PokaAPI {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 do {
-                    let decoder = JSONDecoder()
+                    let decoder = JSONDecoder() 
                     let res = try decoder.decode(PlaylistReponse.self, from: data)
                     completion(res)
                 } catch  {

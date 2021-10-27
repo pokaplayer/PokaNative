@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct SongDetailView: View {
     var item: Song
@@ -13,7 +14,7 @@ struct SongDetailView: View {
         NavigationView {
             List {
                 HStack{
-                    AsyncImage(url: URL(string:  baseURL + item.cover)){ image in
+                    CachedAsyncImage(url: URL(string:  baseURL + item.cover)){ image in
                         image.resizable()
                     } placeholder: {
                         ZStack{

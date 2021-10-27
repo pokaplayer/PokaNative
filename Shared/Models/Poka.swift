@@ -63,7 +63,7 @@ struct PlaylistFolder: Decodable, Identifiable, Hashable {
     let playlists: [Playlist]
     let image: String?
 }
-struct Playlist: Decodable, Identifiable, Hashable { 
+struct Playlist: Decodable, Identifiable, Hashable {
     let id: String
     let name, source: String
     let image: String?

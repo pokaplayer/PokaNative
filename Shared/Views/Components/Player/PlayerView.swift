@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 struct PlayerTimeView: View {
     @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()
@@ -73,7 +74,7 @@ struct PlayerView: View {
                 VStack{
                     Spacer()
                     if #available(iOS 15.0, *) {
-                        AsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover)){ image in
+                        CachedAsyncImage(url: URL(string: baseURL + player.currentPlayingItem!.song.cover)){ image in
                             image.resizable()
                         } placeholder: {
                             ZStack{ 

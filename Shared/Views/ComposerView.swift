@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ComposerView: View {
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
@@ -14,7 +15,7 @@ struct ComposerView: View {
         List(resData?.composers ?? [Composer]()){ item in
             NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "composer")) {
                 HStack{
-                    AsyncImage(url: URL(string: baseURL + item.cover) ){ image in
+                    CachedAsyncImage(url: URL(string: baseURL + item.cover) ){ image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()

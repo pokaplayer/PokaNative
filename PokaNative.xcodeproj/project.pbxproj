@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		158F733E2728F72C00E39865 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 158F73402728F72C00E39865 /* Localizable.strings */; };
 		158F73432729787900E39865 /* HomeRandomPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F73422729787900E39865 /* HomeRandomPlay.swift */; };
 		158F73442729787900E39865 /* HomeRandomPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F73422729787900E39865 /* HomeRandomPlay.swift */; };
+		158F7347272990A800E39865 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 158F7346272990A800E39865 /* CachedAsyncImage */; };
 		159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D826DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D926DB1FBE00621279 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C526DB1FBC00621279 /* ContentView.swift */; };
@@ -120,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158F7347272990A800E39865 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +284,7 @@
 			);
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
+				158F7346272990A800E39865 /* CachedAsyncImage */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -311,7 +314,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					159673CA26DB1FBE00621279 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -332,6 +335,7 @@
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
+				158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -458,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -520,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -701,6 +707,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/SwiftUI-CachedAsyncImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		158F7346272990A800E39865 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159673BF26DB1FBC00621279 /* Project object */;
 }
