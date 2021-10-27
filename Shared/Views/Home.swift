@@ -13,6 +13,10 @@ struct Home: View {
         
         NavigationView {
             ScrollView{
+                HomeRandomPlay()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(5)
+                    .padding(5)
                 ForEach(resData) { item in
                     HomeItem(item: item)
                         .background(.ultraThinMaterial)

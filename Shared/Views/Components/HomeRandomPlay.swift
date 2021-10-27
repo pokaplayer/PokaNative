@@ -8,11 +8,41 @@
 import SwiftUI
 
 struct HomeRandomPlay: View {
+    @State private var items: [Song]?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+            Text("Shuffle")
+                .font(.body)
+                .fontWeight(.bold)
+            Text("Click the button below to randomly play the songs in the library")
+                .opacity(0.5)
+                .font(.caption)
+            Button(action: {
+                if items != nil {
+                    player.setSongs(songs: items!)
+                    player.setTrack(index: 0)
+                }
+            }){
+                Text("Play")
+            }
+            .padding(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.purple, lineWidth: 1)
+            )
+            HStack{
+                Spacer()
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .onAppear(perform: {
+            PokaAPI.shared.getRandomSongs() { result in
+                self.items = result
+            }
+        })
     }
 }
-
 struct HomeRandomPlay_Previews: PreviewProvider {
     static var previews: some View {
         HomeRandomPlay()

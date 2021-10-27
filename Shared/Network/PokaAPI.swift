@@ -199,6 +199,25 @@ class PokaAPI {
             }
         }.resume()
     }
+    func getRandomSongs(completion: @escaping ([Song]) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/randomSongs"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(PlaylistSongsResponse.self, from: data)
+                    completion(res.songs)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
     func getStatus(completion: @escaping (StatusReponse) -> ()){
         let stringUrl = baseURLString + "/pokaapi/v2/info"
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!

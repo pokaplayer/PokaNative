@@ -13,17 +13,17 @@ import Combine
 
 
 class PlayerTimeObserver {
-  let publisher = PassthroughSubject<TimeInterval, Never>()
-  private var timeObservation: Any?
-  
-  init() {
-    // Periodically observe the player's current time, whilst playing
-      timeObservation = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(1000)), queue: nil) { [weak self] time in
-      guard let self = self else { return }
-      // Publish the new player time
-      self.publisher.send(time.seconds)
+    let publisher = PassthroughSubject<TimeInterval, Never>()
+    private var timeObservation: Any?
+    
+    init() {
+        // Periodically observe the player's current time, whilst playing
+        timeObservation = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(1000)), queue: nil) { [weak self] time in
+            guard let self = self else { return }
+            // Publish the new player time
+            self.publisher.send(time.seconds)
+        }
     }
-  }
 }
 
 
@@ -173,9 +173,11 @@ class PPPlayer: AVPlayer, ObservableObject {
     }
     
     func setSongs(songs: [Song]){
-        self.playerItems = [PPPlayerItem]()
-        for i in 0...songs.count-1 {
-            self.playerItems.append(PPPlayerItem(song: songs[i]))
+        DispatchQueue.main.async {
+            self.playerItems = [PPPlayerItem]()
+            for i in 0...songs.count-1 {
+                self.playerItems.append(PPPlayerItem(song: songs[i]))
+            }
         }
     }
     func addSong(song: Song){
