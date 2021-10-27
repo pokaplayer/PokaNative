@@ -41,7 +41,6 @@ struct SettingAboutView: View {
                     }
                 }){
                     HStack{
-                        Image(systemName: "info.circle")
                         Text("App version")
                         Spacer()
                         Text(version).opacity(0.5)
@@ -51,29 +50,23 @@ struct SettingAboutView: View {
             }
             if serverStatus != nil {
                 Section(header: Text("Server Status")) {
-                    
                     VStack(alignment: .leading){
                         HStack{
-                            Image(systemName: "info.circle")
-                            Text("Server version")
-                            Spacer()
-                        }
-                        Text(serverStatus!.version).opacity(0.5)
-                    }
-                    VStack(alignment: .leading){
-                        HStack{
-                            Image(systemName: "person")
                             Text("User ID")
                             Spacer()
                         }
-                        Text(serverStatus!.login)
+                        Text(serverStatus!.uid)
                             .opacity(0.5)
                             .font(.system(size: 16, weight: .regular, design: .monospaced))
                     }
+                    HStack{
+                        Text("Server version")
+                        Spacer()
+                        Text(serverStatus!.version).opacity(0.5)
+                    } 
                     if serverStatus!.debug {
                         HStack{
-                            Image(systemName: "chevron.left.forwardslash.chevron.right")
-                            Text("Debug")
+                            Text("Commit")
                             Spacer()
                             Text(serverStatus!.debugString ?? "None").opacity(0.5)
                         }
@@ -84,19 +77,17 @@ struct SettingAboutView: View {
             Section(header: Text("Links")) {
                 Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative")!){
                     HStack{
-                        Image(systemName: "globe.asia.australia")
                         Text("GitHub")
                         Spacer()
-                        Image(systemName: "arrow.right").opacity(0.5)
+                        Image(systemName: "arrow.up.right.square.fill")
                     }
                 }
                 
                 Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative/graphs/contributors")!){
                     HStack{
-                        Image(systemName: "person")
                         Text("Contributors")
                         Spacer()
-                        Image(systemName: "arrow.right").opacity(0.5)
+                        Image(systemName: "arrow.up.right.square.fill")
                     }
                 }
                 

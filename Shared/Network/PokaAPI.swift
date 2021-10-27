@@ -200,7 +200,7 @@ class PokaAPI {
         }.resume()
     }
     func getStatus(completion: @escaping (StatusReponse) -> ()){
-        let stringUrl = baseURLString + "/status"
+        let stringUrl = baseURLString + "/pokaapi/v2/info"
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

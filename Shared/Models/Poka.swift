@@ -109,22 +109,8 @@ struct Song: Decodable, Identifiable, Hashable {
 }
 
 // MARK: - StatusReponse
-struct StatusReponse: Decodable {
-    let login, version: String
+class StatusReponse: Decodable {
+    let uid, version: String
     let debug: Bool
-    var debugString: String?
-    
-    init(login: String, version: String, debug: Bool) {
-        self.login = login
-        self.version = version
-        self.debug = debug
-        self.debugString = ""
-    }
-    
-    init(login: String, version: String, debug: String) {
-        self.login = login
-        self.version = version
-        self.debug = true
-        self.debugString = debug
-    }
+    var debugString: String?  
 }
