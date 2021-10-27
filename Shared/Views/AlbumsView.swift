@@ -37,7 +37,7 @@ struct AlbumsView: View {
                 self.resData = result.albums
             }
         }
-        .navigationTitle(name ?? "Albums")
+        .navigationTitle(name ?? NSLocalizedString("Albums", comment: ""))
     }
 }
 

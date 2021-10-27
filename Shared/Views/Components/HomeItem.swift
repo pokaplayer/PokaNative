@@ -13,10 +13,10 @@ struct HomeItem: View {
         
         VStack(alignment: .leading){
             HStack{
-                Text(item.title)
+                Text(NSLocalizedString(item.title, comment: ""))
                     .font(.title)
                 Spacer()
-                Text(item.source)
+                Text(NSLocalizedString(item.source, comment: ""))
                     .font(.caption)
             }
             .padding(.horizontal, 10.0)

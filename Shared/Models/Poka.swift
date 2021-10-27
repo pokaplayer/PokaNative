@@ -66,7 +66,8 @@ struct PlaylistFolder: Decodable, Identifiable, Hashable {
 struct Playlist: Decodable, Identifiable, Hashable { 
     let id: String
     let name, source: String
-    let image: String? 
+    let image: String?
+    let cover: String?
 }
 // MARK: - Artists
 struct Artists: Decodable{

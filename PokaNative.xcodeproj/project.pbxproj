@@ -25,6 +25,7 @@
 		15872ABC27109B6800680A4A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABA27109B6800680A4A /* ArtistView.swift */; };
 		15872ABE27109E2A00680A4A /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABD27109E2A00680A4A /* ComposerView.swift */; };
 		15872ABF27109E2A00680A4A /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15872ABD27109E2A00680A4A /* ComposerView.swift */; };
+		158F733E2728F72C00E39865 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 158F73402728F72C00E39865 /* Localizable.strings */; };
 		159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D826DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D926DB1FBE00621279 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C526DB1FBC00621279 /* ContentView.swift */; };
@@ -80,6 +81,8 @@
 		15872AB72710947900680A4A /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		15872ABA27109B6800680A4A /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		15872ABD27109E2A00680A4A /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
+		158F733F2728F72C00E39865 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		158F73412728F72E00E39865 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159673C426DB1FBC00621279 /* PokaNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaNativeApp.swift; sourceTree = "<group>"; };
 		159673C526DB1FBC00621279 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		159673C626DB1FBE00621279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 				159673C626DB1FBE00621279 /* Assets.xcassets */,
 				15E0B7AF270D31FE00C8DED3 /* Network */,
 				159673EB26DB317900621279 /* Views */,
+				158F73402728F72C00E39865 /* Localizable.strings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -341,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				159673DB26DB1FBE00621279 /* Assets.xcassets in Resources */,
+				158F733E2728F72C00E39865 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +434,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		158F73402728F72C00E39865 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				158F733F2728F72C00E39865 /* en */,
+				158F73412728F72E00E39865 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		159673DD26DB1FBE00621279 /* Debug */ = {

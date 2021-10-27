@@ -34,7 +34,7 @@ struct FolderView: View {
                 self.resData = result
             }
         }
-        .navigationTitle(title ?? "Folders")
+        .navigationTitle(title ?? NSLocalizedString("Folders", comment: ""))
     }
 }
 

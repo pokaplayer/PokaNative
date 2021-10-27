@@ -178,6 +178,12 @@ class PPPlayer: AVPlayer, ObservableObject {
             self.playerItems.append(PPPlayerItem(song: songs[i]))
         }
     }
+    func addSong(song: Song){
+        self.playerItems.append(PPPlayerItem(song: song))
+        if self.isPaused {
+            self.nextTrack()
+        }
+    }
     
     func setTrack(index: Int){
         self.currentTrack = index
@@ -190,6 +196,7 @@ class PPPlayer: AVPlayer, ObservableObject {
         } else {
             self.setTrack(index: self.currentTrack - 1)
         }
+        self.seek(to: 0)
     }
     
     @objc func nextTrack() {
@@ -198,6 +205,7 @@ class PPPlayer: AVPlayer, ObservableObject {
         } else {
             self.setTrack(index: self.currentTrack + 1)
         }
+        self.seek(to: 0)
         self.playTrack()
     }
 }

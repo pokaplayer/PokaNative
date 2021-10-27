@@ -32,7 +32,7 @@ struct PlaylistItemView: View {
         NavigationLink(destination: PlaylistView(playlist: playlist)) {
             HStack{
                 if playlist.image != nil {
-                    PlaylistCoverView(coverURL: playlist.image ?? "/img/icons/apple-touch-icon.png")
+                    PlaylistCoverView(coverURL: playlist.image ?? playlist.cover ?? "/img/icons/apple-touch-icon.png")
                 } else {
                     Image(systemName: "music.note.list")
                         .padding()
@@ -48,12 +48,18 @@ struct PlaylistItemView: View {
 }
 struct VPlaylistItemView: View {
     var playlist: Playlist
-    
     var body: some View {
-        NavigationLink(destination: PlaylistView(playlist: playlist)) {
+         var imgLink: String? = playlist.image ?? playlist.cover ?? nil
+        if imgLink != nil {
+            if !imgLink!.hasPrefix("http") {
+                imgLink =   baseURL + imgLink!
+            }
+        }
+        return
+            NavigationLink(destination: PlaylistView(playlist: playlist)) {
             VStack(alignment: .leading){
-                if #available(iOS 15.0, *), playlist.image != nil {
-                    AsyncImage(url: URL(string: playlist.image!.hasPrefix("http") ? playlist.image! : baseURL + playlist.image!)){ image in
+                if #available(iOS 15.0, *), imgLink != nil {
+                    AsyncImage(url: URL(string: imgLink!)){ image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()
@@ -78,6 +84,8 @@ struct VPlaylistItemView: View {
             }
             .padding(.horizontal, 5.0)
         }.buttonStyle(PlainButtonStyle())
+            
+        
     }
 }
  

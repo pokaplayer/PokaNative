@@ -34,9 +34,11 @@ struct SongDetailView: View {
                 }
                 
                 Section(header: Text("Actions")) {
-                    Button(action: {}){
+                    Button(action: {
+                        PPPlayer.shared.addSong(song: item)
+                    }){
                         HStack{
-                            Image(systemName: "play")
+                            Image(systemName: "plus")
                                 .frame(width: 32, height: 32)
                             Text("Add this song to player")
                         }

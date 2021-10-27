@@ -12,10 +12,9 @@ struct PlaylistView: View {
     @State private var resData = [Song]()
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        
         List{
             VStack{
-                PlaylistCoverView(coverURL: playlist.image ?? "/img/icons/apple-touch-icon.png", size: 200)
+                PlaylistCoverView(coverURL: playlist.image ?? playlist.cover ?? "/img/icons/apple-touch-icon.png", size: 200)
                     .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 Text(playlist.name)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)

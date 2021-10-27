@@ -57,7 +57,7 @@ struct PlaylistsView: View {
                 }
             }
         }
-        .navigationTitle(title ?? "Playlists")
+        .navigationTitle(title ?? NSLocalizedString("Playlists", comment: ""))
     }
 }
 /*
