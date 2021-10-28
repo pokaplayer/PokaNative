@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CachedAsyncImage
+import Introspect
 struct PlayerTimeView: View {
     @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()
@@ -21,7 +22,11 @@ struct PlayerTimeView: View {
                     ppplayer.seek(to: newVal)
                 }),
                 in: 0.0...duration
-            ) .accentColor(.blue) 
+            )
+                .introspectSlider { slider in
+                    slider.setThumbImage(UIImage(systemName: "circle.fill"), for: .normal)
+                }
+                .accentColor(.white)
             /*ValueSlider(value:  Binding(get: {
              Double(self.currentTime)
              }, set: { (newVal) in
@@ -79,7 +84,7 @@ struct PlayerView: View {
                                 .aspectRatio(1, contentMode: .fit)
                                 .cornerRadius(5)
                         } placeholder: {
-                            ZStack{ 
+                            ZStack{
                                 Rectangle().opacity(0)
                                 ProgressView()
                             }

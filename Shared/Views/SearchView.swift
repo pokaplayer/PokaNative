@@ -34,10 +34,12 @@ struct SearchView: View {
                         } onCommit: {
                             withAnimation {
                                 searching = false 
-                                    UIApplication.shared.dismissKeyboard()
+                                UIApplication.shared.dismissKeyboard()
                                 getSearchResult()
                             }
-                        } .foregroundColor(.label)
+                        }
+                        .foregroundColor(.label)
+                        .submitLabel(.go)
                     }
                     .foregroundColor(.gray)
                     .padding(.leading, 13)

@@ -41,6 +41,7 @@
 		15C59C4F271EED57008D1570 /* PlayerPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C59C4E271EED57008D1570 /* PlayerPlaylistView.swift */; };
 		15C59C52271EED6C008D1570 /* PlayerLyricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C59C51271EED6C008D1570 /* PlayerLyricView.swift */; };
 		15C59C55271FA24F008D1570 /* PlayerControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C59C54271FA24F008D1570 /* PlayerControllerView.swift */; };
+		15D1012D272AFBA800B83A73 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 15D1012C272AFBA800B83A73 /* Introspect */; };
 		15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B4270DF07300C8DED3 /* Defaults.swift */; };
 		15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B8270DF96800C8DED3 /* Poka.swift */; };
@@ -94,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				158F7347272990A800E39865 /* CachedAsyncImage in Frameworks */,
+				15D1012D272AFBA800B83A73 /* Introspect in Frameworks */,
 				158F734F2729B3A500E39865 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +245,7 @@
 			packageProductDependencies = (
 				158F7346272990A800E39865 /* CachedAsyncImage */,
 				158F734E2729B3A500E39865 /* SwiftUIX */,
+				15D1012C272AFBA800B83A73 /* Introspect */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -276,6 +279,7 @@
 			packageReferences = (
 				158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */,
 				158F734D2729B3A500E39865 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				15D1012B272AFBA800B83A73 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -479,7 +483,7 @@
 		159673E026DB1FBE00621279 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PokaNative (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -504,7 +508,7 @@
 		159673E126DB1FBE00621279 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PokaNative (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -567,6 +571,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		15D1012B272AFBA800B83A73 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -579,6 +591,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 158F734D2729B3A500E39865 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		15D1012C272AFBA800B83A73 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D1012B272AFBA800B83A73 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

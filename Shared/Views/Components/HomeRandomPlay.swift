@@ -24,16 +24,17 @@ struct HomeRandomPlay: View {
                 }
             }){
                 HStack{
-                    Image(systemName: "play")
+                    Image(systemName: "play.fill")
                     Text("Play")
                         .font(.caption)
                 }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 7)
+                .background(Color.purple)
+                .foregroundColor(.white)
+                .cornerRadius(13)
             }
-            .padding(5)
-            .overlay(
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.purple, lineWidth: 1)
-            )
+            .padding(.top, 5)
             HStack{
                 Spacer()
             }

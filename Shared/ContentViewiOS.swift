@@ -9,26 +9,27 @@ import SwiftUI
 struct ContentViewiOS: View {
     @State private var tabBarHeight: CGFloat = .zero
     @State private var showPlayerOverlay = false
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
             TabView{
                 NavigationView { Home() }
-                    .tabItem{
-                        Label("Home", systemImage: "house")
-                    }
+                .tabItem{
+                    Label("Home", systemImage: "house")
+                }
                 Library()
                     .tabItem{
                         Label("Library", systemImage: "rectangle.stack")
                     }
                 NavigationView { SearchView() }
-                    .tabItem{
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
+                .tabItem{
+                    Label("Search", systemImage: "magnifyingglass")
+                }
                 
                 NavigationView { SettingView() }
-                    .tabItem{
-                        Label("Settings", systemImage: "gearshape")
-                    }
+                .tabItem{
+                    Label("Settings", systemImage: "gearshape")
+                }
             }
             .sheet(isPresented: $showPlayerOverlay) {
                 PlayerControllerView()
@@ -46,7 +47,7 @@ struct ContentViewiOS: View {
                     if value.translation.width > 0 {
                         // right
                     }
-                    if value.translation.height < 0 { 
+                    if value.translation.height < 0 {
                         self.showPlayerOverlay = true
                     }
                     

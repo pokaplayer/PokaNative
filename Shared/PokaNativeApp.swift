@@ -30,7 +30,7 @@ struct PokaNativeApp: App {
                 if UIDevice.isIPhone {
                     ContentViewiOS()
                 } else {
-                    ContentView().titleBarHidden(true)
+                    ContentView()
                 }
             } 
         }
