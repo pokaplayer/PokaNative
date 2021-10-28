@@ -81,7 +81,7 @@ struct SettingAudioQualityView: View {
                         }
                     }
                 }.buttonStyle(PlainButtonStyle())
-                    .disabled(true)
+                     
             }
         }.navigationTitle("Audio quality")
     }

@@ -32,7 +32,7 @@ struct HomeRandomPlay: View {
                 .padding(.vertical, 7)
                 .background(Color.purple)
                 .foregroundColor(.white)
-                .cornerRadius(13)
+                .cornerRadius(5)
             }
             .padding(.top, 5)
             HStack{

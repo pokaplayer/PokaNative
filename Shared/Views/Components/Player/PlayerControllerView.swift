@@ -25,7 +25,7 @@ struct PlayerControllerIconButtonView: View {
 }
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
-    @State var activeView = "player"
+    @State var activeView = UIDevice.isIPhone ? "player" : "list"
     
     @Environment(\.presentationMode) var presentationMode
     var body: some View{
@@ -47,25 +47,33 @@ struct PlayerControllerView: View {
                     )
                 }
             }
-            if activeView == "player" {
-                PlayerView()
-            }
-            if activeView == "list" {
-                PlayerPlaylistView()
-            }
-            if activeView == "lyric" {
-                PlayerLyricView()
+            HStack{
+                if !UIDevice.isIPhone {
+                    PlayerView()
+                        .frame(width: 500.0)
+                }
+                if activeView == "player" {
+                    PlayerView()
+                }
+                if activeView == "list" {
+                    PlayerPlaylistView()
+                }
+                if activeView == "lyric" {
+                    PlayerLyricView()
+                }
             }
             // Spacer
             Spacer()
             HStack(spacing: 20) {
                 Spacer()
-                
-                PlayerControllerIconButtonView(
-                    action: {activeView = "player" },
-                    active: activeView == "player",
-                    icon: "play"
-                )
+                if UIDevice.isIPhone {
+                    PlayerControllerIconButtonView(
+                        action: {activeView = "player" },
+                        active: activeView == "player",
+                        icon: "play"
+                    )
+                    
+                }
                 PlayerControllerIconButtonView(
                     action: {activeView = "list"},
                     active: activeView == "list",
