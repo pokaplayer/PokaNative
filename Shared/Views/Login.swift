@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct LoginTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .padding(10)
+            .padding(.leading, 13)
+            .background(.systemGray6)
+            .cornerRadius(13)
+    }
+}
 struct Login: View {
     @State var server: String = defaults.string(forKey: "baseURL") ?? ""
     @State var username: String = defaults.string(forKey: "username") ?? ""
@@ -24,33 +33,32 @@ struct Login: View {
             Image("Logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 64.0, height: 64.0)
+                .frame(width: 88, height: 88)
             Text("PokaPlayer")
                 .font(.title)
-                .fontWeight(.light)
+                .fontWeight(.bold)
                 .padding(.bottom, 20)
-            List {
-                TextField("Server", text: $server)
-                    .submitLabel(.next)
-                    .keyboardType(.URL)
-                    .autocapitalization(.none)
-                TextField("Username", text: $username)
-                    .submitLabel(.next)
-                    .autocapitalization(.none)
-                SecureField("Password", text: $password)
-                    .onSubmit(login)
-                    .submitLabel(.go)
-                
-            }.listStyle(.inset)
+            TextField("Server", text: $server)
+                .submitLabel(.next)
+                .keyboardType(.URL)
+                .autocapitalization(.none)
+                .textFieldStyle(LoginTextFieldStyle())
+            TextField("Username", text: $username)
+                .submitLabel(.next)
+                .autocapitalization(.none)
+                .textFieldStyle(LoginTextFieldStyle())
+            SecureField("Password", text: $password)
+                .onSubmit(login)
+                .submitLabel(.go)
+                .textFieldStyle(LoginTextFieldStyle())
             
             Button(action: login, label: {
                 Text("Login")
-                    .padding()
+                    .padding(.vertical, 10)
                     .frame(width: 300.0)
                     .background(Color.purple)
                     .foregroundColor(.white)
-                    .cornerRadius(80)
-                    .padding(10)
+                    .cornerRadius(13)
             })
                 .padding(.top, 20)
                 .padding(.bottom, 20)
@@ -60,8 +68,8 @@ struct Login: View {
                 .foregroundColor(Color.gray)
                 .font(.system(size: 10, weight: .regular, design: .monospaced))
         }
+        .frame(width: 300.0)
         .padding(20.0)
-        .frame(maxWidth: .infinity)
         .alert(Text(loginErrorString), isPresented: $showErrorAlert){
             Button(action: {
                 self.showErrorAlert = false
@@ -82,7 +90,7 @@ struct Login: View {
         
         PokaAPI.shared.baseURL =  URL(string: defaults.string(forKey: "baseURL") ?? "")!
         PokaAPI.shared.baseURLString =  server
-         
+        
         // login
         PokaAPI.shared.login(username: username, password: password) { result in
             if result.success {

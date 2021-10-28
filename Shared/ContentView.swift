@@ -46,13 +46,7 @@ struct ContentView: View {
                         NavigationLink(destination: SettingView()) {
                             Label("Settings", systemImage: "gearshape")
                         }
-                        .padding(5.0)
-                        if player.currentPlayingItem != nil {
-                            NavigationLink(destination: PlayerControllerView()) {
-                                Label("Player", systemImage: "play")
-                            }
-                            .padding(5.0)
-                        }
+                        .padding(5.0) 
                     }
                 }.navigationTitle("PokaPlayer")
                 Home()
