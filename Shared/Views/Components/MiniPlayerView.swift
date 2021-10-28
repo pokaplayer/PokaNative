@@ -20,7 +20,7 @@ struct PokaMiniplayer: View {
                     ZStack{
                         VStack {
                             Rectangle()
-                                .fill(Color.black.opacity(0.2))
+                                .fill(Color.black.opacity(0))
                                 .aspectRatio(1.0, contentMode: .fit)
                             Spacer()
                         }

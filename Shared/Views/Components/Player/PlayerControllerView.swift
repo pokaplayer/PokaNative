@@ -46,6 +46,15 @@ struct PlayerControllerView: View {
                         icon:  "chevron.down"
                     )
                 }
+                .contentShape(Rectangle())
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onEnded({ value in
+                            if value.translation.height > 0 {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        })
+                )
             }
             HStack{
                 if !UIDevice.isIPhone {
