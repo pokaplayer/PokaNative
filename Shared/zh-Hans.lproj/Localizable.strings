@@ -1,0 +1,80 @@
+/* 
+ Localizable.strings
+ PokaNative
+ 
+ Created by 勝勝寶寶 on 2021/10/27.
+ 
+ */
+
+// MARK: - Home Items
+"home_recentAlbums" = "最近加入的专辑";
+"home_pins" = "钉选";
+"home_netease" = "网易云音乐";
+"home_hqPlaylist_netease" = "精品清单";
+"home_topPlaylist_netease" = "热门清单";
+"home_dailyRecommend_netease" = "每日推荐";
+
+"Shuffle" = "随机播放";
+"Click the button below to randomly play the songs in the library" = "点选下方按钮来随机播放媒体库中的歌曲。";
+// MARK: - Source
+"poka" = "PokaPlayer";
+"Netease2" = "网易云音乐";
+// MARK: - Basic
+"Home" = "首页";
+"Search" = "搜寻";
+"Search ..." = "搜寻 ...";
+"Cancel" = "取消";
+"Library" = "媒体库";
+"Album" = "专辑";
+"Albums" = "专辑";
+"Playlist" = "播放清单";
+"Playlists" = "播放清单";
+"Folders" = "资料夹";
+"Artist" = "演出者";
+"Artists" = "演出者";
+"Composers" = "作曲者";
+"Play" = "播放";
+// MARK: - Settings
+"Settings" = "设定";
+// MARK: - About
+"About" = "关于";
+"App Info" = "应用程序资讯";
+"App version" = "版本";
+"Server Status" = "服务器资讯";
+"Server version" = "服务器版本";
+"User ID" = "使用者 ID";
+"Contributors" = "贡献者";
+"Links" = "连结";
+// MARK: - Audio quality
+"Audio quality" = "音质";
+
+"Low" = "低音质";
+"Only use when the internet is slow" = "128K，跟 YouTube 差不多的烂音质，在网络夭寿慢的情况下请选择此选项";
+
+"Medium" = "中等音质";
+"Able to stream smoothly under 3G network" = "音质只比 YouTube 好那么一点点，可在 3G 网络下流畅的串流";
+
+"High" = "高音质";
+"Able to stream smoothly under 4G/LTE network" = "音质较原始音质略差，可在 4G 网络下流畅的串流";
+
+"Original" = "原始音质";
+"Uncompressed audio, only use when the internet is fast" = "在网络状况许可下，可选择此选项聆听高音质音乐";
+
+"The audio quality setting will not work for songs that are currently in the queue" = "音质设定不会对目前伫列中的歌曲生效";
+// MARK: - Login
+"Server" = "服务器";
+"Username" = "使用者名称";
+"Password" = "密码";
+"Login" = "登入";
+// MARK: - Song Details
+"Details" = "详细资料";
+"Actions" = "动作";
+"Add this song to player" = "新增该歌曲至现正播放";
+"Add to playlist" = "新增至播放清单";
+"Info" = "资讯";
+"Track" = "轨道";
+"Source" = "来源";
+"Codec" = "编码格式";
+"Bitrate" = "位元率";
+"Year" = "年份";
+
