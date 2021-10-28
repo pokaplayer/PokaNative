@@ -22,9 +22,11 @@ struct Login: View {
     @State var password: String = defaults.string(forKey: "password") ?? ""
     
     @State var showErrorAlert: Bool = false
+    @State var showBundleVersion: Bool = false
     @State var loginErrorString: String = ""
     
     var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    var bundleVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
     
     @Binding var showLogin: Bool
     var body: some View {
@@ -64,15 +66,24 @@ struct Login: View {
                 .padding(.bottom, 20)
             
             Spacer()
-            Text("PokaNative \(version)")
-                .foregroundColor(Color.gray)
-                .font(.system(size: 10, weight: .regular, design: .monospaced))
+            Button(action: { showBundleVersion = true }){
+                Text("PokaNative \(version)")
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 10, weight: .regular, design: .monospaced))
+            }
         }
         .frame(width: 300.0)
         .padding(20.0)
         .alert(Text(loginErrorString), isPresented: $showErrorAlert){
             Button(action: {
                 self.showErrorAlert = false
+            }){
+                Text("OK")
+            }
+        }
+        .alert(Text("Bundle version: " + bundleVersion), isPresented: $showBundleVersion){
+            Button(action: {
+                self.showBundleVersion = false
             }){
                 Text("OK")
             }

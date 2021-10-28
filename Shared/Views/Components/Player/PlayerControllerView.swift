@@ -43,7 +43,7 @@ struct PlayerControllerView: View {
                     PlayerControllerIconButtonView(
                         action: { presentationMode.wrappedValue.dismiss() },
                         active: false,
-                        icon:  "xmark"
+                        icon:  "chevron.down"
                     )
                 }
             }
