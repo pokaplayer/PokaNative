@@ -62,6 +62,7 @@
 		158F734C2729A85C00E39865 /* PokaNative (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PokaNative (iOS).entitlements"; sourceTree = "<group>"; };
 		158F7350272A312700E39865 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		158F7352272A437B00E39865 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		158F7354272A468C00E39865 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159673C426DB1FBC00621279 /* PokaNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaNativeApp.swift; sourceTree = "<group>"; };
 		159673C526DB1FBC00621279 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		159673C626DB1FBE00621279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -283,6 +284,7 @@
 				en,
 				Base,
 				"zh-Hant",
+				"zh-Hans",
 			);
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
@@ -359,6 +361,7 @@
 			children = (
 				158F733F2728F72C00E39865 /* en */,
 				158F73412728F72E00E39865 /* zh-Hant */,
+				158F7354272A468C00E39865 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

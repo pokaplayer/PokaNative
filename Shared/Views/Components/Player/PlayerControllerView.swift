@@ -26,14 +26,27 @@ struct PlayerControllerIconButtonView: View {
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
     @State var activeView = "player"
+    
+    @Environment(\.presentationMode) var presentationMode
     var body: some View{
         VStack{
-            Rectangle()
-                .fill(Color.white)
-                .frame(width: 100, height: 4)
-                .cornerRadius(.infinity)
-                .opacity(0.75)
-                .padding(5.0)
+            if UIDevice.isIPhone {
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(width: 100, height: 4)
+                    .cornerRadius(.infinity)
+                    .opacity(0.75)
+                    .padding(5.0)
+            } else {
+                HStack{
+                    Spacer()
+                    PlayerControllerIconButtonView(
+                        action: { presentationMode.wrappedValue.dismiss() },
+                        active: false,
+                        icon:  "xmark"
+                    )
+                }
+            }
             if activeView == "player" {
                 PlayerView()
             }
@@ -63,9 +76,9 @@ struct PlayerControllerView: View {
                     active: activeView == "lyric",
                     icon:  "captions.bubble"
                 )
-                
                 Spacer()
             }
+            Spacer()
         }.background(
             ZStack{
                 if #available(iOS 15.0, *) {
@@ -80,7 +93,7 @@ struct PlayerControllerView: View {
                         ProgressView()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+                    
                     .ignoresSafeArea()
                     .opacity(0.5)
                 }

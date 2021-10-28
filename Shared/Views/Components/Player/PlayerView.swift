@@ -76,6 +76,8 @@ struct PlayerView: View {
                     if #available(iOS 15.0, *) {
                         CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))){ image in
                             image.resizable()
+                                .aspectRatio(1, contentMode: .fit)
+                                .cornerRadius(5)
                         } placeholder: {
                             ZStack{ 
                                 Rectangle().opacity(0)
@@ -84,7 +86,6 @@ struct PlayerView: View {
                         }
                         .frame(width: UIScreen.main.bounds.size.width - 40 , alignment: .center)
                         .aspectRatio(1, contentMode: .fit)
-                        .cornerRadius(5)
                         .padding(20.0)
                         .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                     }
@@ -129,7 +130,6 @@ struct PlayerView: View {
                         Spacer()
                         
                     }
-                    
                     Spacer()
                 }
             }

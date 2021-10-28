@@ -33,7 +33,9 @@ struct SearchView: View {
                             }
                         } onCommit: {
                             withAnimation {
-                                searching = false
+                                searching = false 
+                                    UIApplication.shared.dismissKeyboard()
+                                getSearchResult()
                             }
                         } .foregroundColor(.label)
                     }
@@ -43,7 +45,6 @@ struct SearchView: View {
                 .frame(height: 40)
                 .cornerRadius(13)
                 .padding()
-                Spacer()
                 if searching {
                     Button(action: {
                         UIApplication.shared.dismissKeyboard() 

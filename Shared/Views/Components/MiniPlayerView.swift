@@ -9,6 +9,7 @@ import SwiftUI
 import CachedAsyncImage
 struct PokaMiniplayer: View {
     
+    @StateObject private var ppplayer = player
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
@@ -58,8 +59,7 @@ struct PokaMiniplayer: View {
         .background(.regularMaterial)
     }
 }
-struct MiniPlayerView: View {
-    
+struct MiniPlayerView: View { 
     @StateObject private var ppplayer = player
     var body: some View {
         if player.currentPlayingItem != nil {
