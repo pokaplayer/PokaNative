@@ -22,6 +22,8 @@
 // MARK: - Basic
 "Home" = "首頁";
 "Search" = "搜尋";
+"Search ..." = "搜尋 ...";
+"Cancel" = "取消";
 "Library" = "媒體庫";
 "Album" = "專輯";
 "Albums" = "專輯";

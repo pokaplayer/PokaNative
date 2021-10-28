@@ -8,14 +8,20 @@
 import SwiftUI
 struct ContentView: View {
     @State private var selectedView: Int? = 0
+    
+    @StateObject private var ppplayer = player
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                List (selection: $selectedView){ 
+                List (selection: $selectedView){
                     NavigationLink(destination: Home()) {
                         Label("Home", systemImage: "house")
                     }.tag(0)
                         .padding(5.0)
+                    NavigationLink(destination: SearchView()) {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    .padding(5.0)
                     NavigationLink(destination: AlbumsView()) {
                         Label("Albums", systemImage: "opticaldisc")
                     }
@@ -36,9 +42,18 @@ struct ContentView: View {
                         Label("Playlists", systemImage: "music.note.list")
                     }
                     .padding(5.0)
+                    NavigationLink(destination: SettingView()) { 
+                        Label("Settings", systemImage: "gearshape")
+                    }
+                    .padding(5.0)
+                    if player.currentPlayingItem != nil {
+                        NavigationLink(destination: PlayerControllerView()) {
+                            Label("Player", systemImage: "play")
+                        }
+                        .padding(5.0)
+                    }
                 }
             }.navigationTitle("PokaPlayer")
-            Home()
         }
     }
 }

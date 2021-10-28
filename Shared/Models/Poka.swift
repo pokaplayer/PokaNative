@@ -114,3 +114,14 @@ class StatusReponse: Decodable {
     let debug: Bool
     var debugString: String?  
 }
+
+// MARK: - Search 
+struct SearchReponse: Decodable {
+    let folders: [Folder]
+    let songs: [Song]
+    let albums: [Album]
+    let artists: [Artist]
+    let composers: [Composer]
+    let playlists: [Playlist]
+}
+

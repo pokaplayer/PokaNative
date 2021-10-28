@@ -12,7 +12,7 @@ struct ContentViewiOS: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
             TabView{
-                Home()
+                NavigationView { Home() }
                     .tabItem{
                         Label("Home", systemImage: "house")
                     }
@@ -20,11 +20,12 @@ struct ContentViewiOS: View {
                     .tabItem{
                         Label("Library", systemImage: "rectangle.stack")
                     }
-                Text("Search")
+                NavigationView { SearchView() }
                     .tabItem{
                         Label("Search", systemImage: "magnifyingglass")
                     }
-                SettingView()
+                
+                NavigationView { SettingView() }
                     .tabItem{
                         Label("Settings", systemImage: "gearshape")
                     }

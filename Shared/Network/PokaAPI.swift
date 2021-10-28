@@ -237,6 +237,25 @@ class PokaAPI {
             }
         }.resume()
     }
+    func getSearchResult(keyword: String, completion: @escaping (SearchReponse) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/search/?keyword=" + keyword
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(SearchReponse.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                    //completion(.failure(nil))
+                }
+            }
+        }.resume()
+    }
 }
 func PokaURLParser(_ u: String) -> String{
     return u.hasPrefix("http") ? u : (baseURL + u)

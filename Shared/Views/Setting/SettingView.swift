@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingView: View {
     
     var body: some View {
-        NavigationView {
             List {
                 Section(header: Text("About")){
                     NavigationLink(destination: SettingAboutView()) {
@@ -25,7 +24,7 @@ struct SettingView: View {
                     
                 } 
             }.navigationTitle("Settings")
-        }
+       
     }
 }
 

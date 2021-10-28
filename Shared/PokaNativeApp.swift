@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 extension UIDevice {
     static var isIPad: Bool {
@@ -20,24 +21,18 @@ let defaults = UserDefaults.standard
 let player = PPPlayer.shared
 @main
 struct PokaNativeApp: App {
-    
     @State var showLogin = true
-    var body: some Scene {
-        let windowView = WindowGroup {
+     var body: some Scene {
+         WindowGroup {
             if showLogin {
                 Login(showLogin: self.$showLogin)
             } else {
                 if UIDevice.isIPhone {
                     ContentViewiOS()
                 } else {
-                    ContentView()
+                    ContentView().titleBarHidden(true)
                 }
             } 
         }
-#if os(iOS)
-        return windowView
-#else
-        return windowView.windowStyle(HiddenTitleBarWindowStyle())
-#endif
     }
 }

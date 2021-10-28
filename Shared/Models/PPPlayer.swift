@@ -142,6 +142,7 @@ class PPPlayer: AVPlayer, ObservableObject {
     override func pause() {
         super.pause()
         self.isPaused = true
+        MPNowPlayingInfoCenter.default().playbackState = .paused
     }
     func seek(to: Double){
         super.seek(to: CMTime(seconds: to, preferredTimescale: CMTimeScale(1000)))
@@ -159,6 +160,8 @@ class PPPlayer: AVPlayer, ObservableObject {
                      if playingItem.item != nil {
                          self.replaceCurrentItem(with: playingItem.item)
                          self.play()
+                         
+                         MPNowPlayingInfoCenter.default().playbackState = .playing
                      }
                  }
             )

@@ -19,6 +19,9 @@
 		158F733E2728F72C00E39865 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 158F73402728F72C00E39865 /* Localizable.strings */; };
 		158F73432729787900E39865 /* HomeRandomPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F73422729787900E39865 /* HomeRandomPlay.swift */; };
 		158F7347272990A800E39865 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 158F7346272990A800E39865 /* CachedAsyncImage */; };
+		158F734F2729B3A500E39865 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 158F734E2729B3A500E39865 /* SwiftUIX */; };
+		158F7351272A312700E39865 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F7350272A312700E39865 /* SearchView.swift */; };
+		158F7353272A437B00E39865 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F7352272A437B00E39865 /* SearchResultView.swift */; };
 		159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C426DB1FBC00621279 /* PokaNativeApp.swift */; };
 		159673D926DB1FBE00621279 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159673C526DB1FBC00621279 /* ContentView.swift */; };
 		159673DB26DB1FBE00621279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159673C626DB1FBE00621279 /* Assets.xcassets */; };
@@ -57,6 +60,8 @@
 		158F73412728F72E00E39865 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		158F73422729787900E39865 /* HomeRandomPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRandomPlay.swift; sourceTree = "<group>"; };
 		158F734C2729A85C00E39865 /* PokaNative (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PokaNative (iOS).entitlements"; sourceTree = "<group>"; };
+		158F7350272A312700E39865 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		158F7352272A437B00E39865 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		159673C426DB1FBC00621279 /* PokaNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaNativeApp.swift; sourceTree = "<group>"; };
 		159673C526DB1FBC00621279 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		159673C626DB1FBE00621279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				158F7347272990A800E39865 /* CachedAsyncImage in Frameworks */,
+				158F734F2729B3A500E39865 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +172,7 @@
 				15BB9DBF2711DC0400CF911C /* Components */,
 				159673E526DB223D00621279 /* Home.swift */,
 				159673E826DB315C00621279 /* AlbumView.swift */,
+				158F7350272A312700E39865 /* SearchView.swift */,
 				159673EF26DB33D400621279 /* Login.swift */,
 				15A6DF1D270EB6E30038F17E /* Library.swift */,
 				15872ABD27109E2A00680A4A /* ComposerView.swift */,
@@ -189,6 +196,7 @@
 				15BC3CF22717D10700491B38 /* AlbumItemView.swift */,
 				156F0EB62720FAD000E43109 /* SongDetailView.swift */,
 				158F73422729787900E39865 /* HomeRandomPlay.swift */,
+				158F7352272A437B00E39865 /* SearchResultView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 			name = "PokaNative (iOS)";
 			packageProductDependencies = (
 				158F7346272990A800E39865 /* CachedAsyncImage */,
+				158F734E2729B3A500E39865 /* SwiftUIX */,
 			);
 			productName = "PokaNative (iOS)";
 			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
@@ -278,6 +287,7 @@
 			mainGroup = 159673BE26DB1FBC00621279;
 			packageReferences = (
 				158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */,
+				158F734D2729B3A500E39865 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 159673CC26DB1FBE00621279 /* Products */;
 			projectDirPath = "";
@@ -333,6 +343,8 @@
 				15C59C55271FA24F008D1570 /* PlayerControllerView.swift in Sources */,
 				159673E926DB315C00621279 /* AlbumView.swift in Sources */,
 				15A6DF21270EB9E50038F17E /* ContentViewiOS.swift in Sources */,
+				158F7353272A437B00E39865 /* SearchResultView.swift in Sources */,
+				158F7351272A312700E39865 /* SearchView.swift in Sources */,
 				1512565B27156E3F00704491 /* SettingView.swift in Sources */,
 				158F73432729787900E39865 /* HomeRandomPlay.swift in Sources */,
 				15BC3CF32717D10700491B38 /* AlbumItemView.swift in Sources */,
@@ -556,6 +568,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		158F734D2729B3A500E39865 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -563,6 +583,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 158F7345272990A800E39865 /* XCRemoteSwiftPackageReference "SwiftUI-CachedAsyncImage" */;
 			productName = CachedAsyncImage;
+		};
+		158F734E2729B3A500E39865 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158F734D2729B3A500E39865 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

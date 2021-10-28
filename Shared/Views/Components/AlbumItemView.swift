@@ -30,7 +30,7 @@ struct AlbumItemView: View {
                                 ProgressView()
                             }
                         }.cornerRadius(5)
-                            .aspectRatio(1, contentMode: .fill)
+                            .aspectRatio(1, contentMode: .fit)
                             .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                     }
                     Text(item.name)
