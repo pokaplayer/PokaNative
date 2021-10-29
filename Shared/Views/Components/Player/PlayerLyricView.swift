@@ -9,7 +9,16 @@ import SwiftUI
 
 struct PlayerLyricView: View {
     var body: some View {
-        Text("TBD").font(.title).foregroundColor(Color.white)
+        VStack{
+            ScrollView{
+                HStack{
+                    Spacer()
+                }
+                
+                Text("TBD").font(.title).foregroundColor(Color.white)
+            }
+            Spacer()
+        }
     }
 }
 

@@ -30,11 +30,14 @@ struct HomeRandomPlay: View {
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 7)
-                .background(Color.purple)
-                .foregroundColor(.white)
-                .cornerRadius(5)
+                
             }
+            .background(Color.purple)
+            .foregroundColor(.white)
+            .cornerRadius(5)
             .padding(.top, 5)
+            .opacity(items == nil ? 0.25 : 1)
+            .disabled(items == nil)
             HStack{
                 Spacer()
             }

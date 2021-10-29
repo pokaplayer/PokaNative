@@ -12,49 +12,62 @@ struct PlayerPlaylistView: View {
     var body: some View {
         
         UITableView.appearance().backgroundColor = .clear
-        return List {
-            Text("Playlist")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(Color.white)
-                .listRowBackground(Color.clear)
-                .listSectionSeparatorTint(Color.clear)
-                .listRowSeparatorTint(Color.white.opacity(0.25))
-            ForEach(Array(ppplayer.playerItems.enumerated()), id: \.element.id) { index, item in
-                Button(action: {
-                    player.setTrack(index: index)
-                    player.seek(to: 0)
-                }){
-                    VStack(alignment: .leading){
-                        Text(item.song.name)
-                            .foregroundColor(Color.white)
-                        Text(item.song.artist)
-                            .font(.caption)
-                            .foregroundColor(Color.white)
-                            .opacity(0.75)
+        return ScrollViewReader { value in
+            List {
+                Text("Playlist")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+                    .listRowBackground(Color.clear)
+                    .listSectionSeparatorTint(Color.clear)
+                    .listRowSeparatorTint(Color.white.opacity(0.25))
+                
+                ForEach(Array(ppplayer.playerItems.enumerated()), id: \.element.id) { index, item in
+                    Button(action: {
+                        player.setTrack(index: index)
+                        player.seek(to: 0)
+                        //value.scrollTo(ppplayer.currentTrack, anchor: .center)
+                    }){
+                        HStack{
+                            Image(systemName: "play.fill")
+                            //.opacity(ppplayer?.currentItem == item ? 1 : 0)
+                            VStack(alignment: .leading){
+                                Text(item.song.name)
+                                    .foregroundColor(Color.white)
+                                Text(item.song.artist)
+                                    .font(.caption)
+                                    .foregroundColor(Color.white)
+                                    .opacity(0.75)
+                            }
+                        }
                     }
-                }
-                .buttonStyle(PlainButtonStyle())
-                .swipeActions {
-                    Button("Delete") {
-                        print("Right on!")
-                        ppplayer.playerItems.remove(at: index)
+                    .id(index)
+                    .buttonStyle(PlainButtonStyle())
+                    .swipeActions {
+                        Button("Delete") {
+                            print("Right on!")
+                            ppplayer.playerItems.remove(at: index)
+                        }
+                        .tint(.red)
+                        
                     }
-                    .tint(.red)
+                    .listRowBackground(Color.clear)
+                    .listSectionSeparatorTint(Color.clear)
+                    .listRowSeparatorTint(Color.white.opacity(0.25))
                     
                 }
-                .listRowBackground(Color.clear)
-                .listSectionSeparatorTint(Color.clear)
-                .listRowSeparatorTint(Color.white.opacity(0.25))
-                
-            }
-            .padding(.horizontal, 5.0)
-        } .listStyle(GroupedListStyle())
-            .background(Color.clear)
-            .onDisappear(perform: {
-                UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
-            })
-        
+                .padding(.horizontal, 5.0)
+                .onAppear(perform: {
+                    withAnimation{
+                        value.scrollTo(ppplayer.currentTrack, anchor: .center)
+                    }
+                })
+            } .listStyle(GroupedListStyle())
+                .background(Color.clear)
+                .onDisappear(perform: {
+                    UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
+                })
+        }
     }
 }
 
