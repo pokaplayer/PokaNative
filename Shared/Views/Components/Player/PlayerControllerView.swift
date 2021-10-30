@@ -26,7 +26,6 @@ struct PlayerControllerIconButtonView: View {
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
     @State var activeView = UIDevice.isIPhone ? "player" : "list"
-    
     @Environment(\.presentationMode) var presentationMode
     var body: some View{
         VStack{
@@ -96,7 +95,9 @@ struct PlayerControllerView: View {
                 Spacer()
             }
             Spacer()
-        }.background(
+        }
+        .preferredColorScheme(.dark) 
+        .background(
             ZStack{
                 if #available(iOS 15.0, *) {
                     Rectangle()
