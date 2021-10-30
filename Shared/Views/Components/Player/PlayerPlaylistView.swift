@@ -6,31 +6,32 @@
 //
 
 import SwiftUI
-
+struct PlayingIconView: View {
+    var currentTrack: Int
+    var songIndex: Int
+    var body: some View {
+        if songIndex == currentTrack {
+            Image(systemName: "play.fill")
+                .font(.system(size: 12)) 
+                .foregroundColor(Color.white)
+        }
+    }
+}
 struct PlayerPlaylistView: View {
     @StateObject private var ppplayer = player
     var body: some View {
-        
-        UITableView.appearance().backgroundColor = .clear
-        return ScrollViewReader { value in
+        ScrollViewReader { value in
             List {
-                Text("Playlist")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.white)
-                    .listRowBackground(Color.clear)
-                    .listSectionSeparatorTint(Color.clear)
-                    .listRowSeparatorTint(Color.white.opacity(0.25))
-                
                 ForEach(Array(ppplayer.playerItems.enumerated()), id: \.element.id) { index, item in
                     Button(action: {
                         player.setTrack(index: index)
                         player.seek(to: 0)
-                        //value.scrollTo(ppplayer.currentTrack, anchor: .center)
+                        withAnimation{
+                            value.scrollTo(ppplayer.currentTrack, anchor: .center)
+                        }
                     }){
                         HStack{
-                            Image(systemName: "play.fill")
-                            //.opacity(ppplayer?.currentItem == item ? 1 : 0)
+                            PlayingIconView(currentTrack: ppplayer.currentTrack, songIndex: index)
                             VStack(alignment: .leading){
                                 Text(item.song.name)
                                     .foregroundColor(Color.white)
@@ -62,11 +63,15 @@ struct PlayerPlaylistView: View {
                         value.scrollTo(ppplayer.currentTrack, anchor: .center)
                     }
                 })
-            } .listStyle(GroupedListStyle())
-                .background(Color.clear)
-                .onDisappear(perform: {
-                    UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
-                })
+            }
+            .listStyle(GroupedListStyle())
+            .background(Color.clear)
+            .onAppear(perform: {
+                UITableView.appearance().backgroundColor = .clear
+            })
+            .onDisappear(perform: {
+                UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
+            })
         }
     }
 }
