@@ -6,22 +6,38 @@
 //
 
 import SwiftUI 
-struct PlayingIconView: View {
+struct PlayingItemView: View {
+    var item: PPPlayerItem
     var currentTrack: Int
     var songIndex: Int
     var readerVal: ScrollViewProxy
-
+    
     var body: some View {
-        if songIndex == currentTrack {
-            Image(systemName: "play.fill")
-                .font(.system(size: 12)) 
-                .foregroundColor(Color.white)
-                .onAppear(perform: {
-                    withAnimation{
-                        readerVal.scrollTo(currentTrack, anchor: .center)
-                    }
-                })
+        HStack{
+            if songIndex == currentTrack {
+                Image(systemName: "play.fill")
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.white)
+                    .onAppear(perform: {
+                        withAnimation{
+                            readerVal.scrollTo(currentTrack, anchor: .center)
+                        }
+                    })
+            }
+            VStack(alignment: .leading){
+                Text(item.song.name)
+                    .foregroundColor(Color.white)
+                Text(item.song.artist)
+                    .font(.caption)
+                    .foregroundColor(Color.white)
+                    .opacity(0.75)
+            }
+            Spacer()
         }
+        .padding(.all, 10)
+        .background(songIndex == currentTrack ? .black.opacity(0.1) : .clear)
+        .cornerRadius(10)
+        
     }
 }
 struct PlayerPlaylistView: View {
@@ -34,17 +50,12 @@ struct PlayerPlaylistView: View {
                         player.setTrack(index: index)
                         player.seek(to: 0)
                     }){
-                        HStack{
-                            PlayingIconView(currentTrack: ppplayer.currentTrack, songIndex: index, readerVal: value)
-                            VStack(alignment: .leading){
-                                Text(item.song.name)
-                                    .foregroundColor(Color.white)
-                                Text(item.song.artist)
-                                    .font(.caption)
-                                    .foregroundColor(Color.white)
-                                    .opacity(0.75)
-                            }
-                        }
+                        PlayingItemView(
+                            item: item,
+                            currentTrack: ppplayer.currentTrack,
+                            songIndex: index,
+                            readerVal: value
+                        )
                     }
                     .id(index)
                     .buttonStyle(PlainButtonStyle())
@@ -57,19 +68,13 @@ struct PlayerPlaylistView: View {
                     }
                     .listRowBackground(Color.clear)
                     .listSectionSeparatorTint(Color.clear)
-                    .listRowSeparatorTint(Color.white.opacity(0.25))
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(.init())
                     
                 }
-                .padding(.horizontal, 5.0) 
+                .padding(.horizontal, 5.0)
             }
-            .listStyle(GroupedListStyle())
-            .background(Color.clear)
-            .onAppear(perform: {
-                UITableView.appearance().backgroundColor = .clear
-            })
-            .onDisappear(perform: {
-                UITableView.appearance().backgroundColor = UIColor.systemGroupedBackground
-            })
+            .listStyle(PlainListStyle())
         }
     }
 }
