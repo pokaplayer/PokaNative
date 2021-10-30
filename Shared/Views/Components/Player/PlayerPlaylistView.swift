@@ -5,15 +5,22 @@
 //  Created by 勝勝寶寶 on 2021/10/19.
 //
 
-import SwiftUI
+import SwiftUI 
 struct PlayingIconView: View {
     var currentTrack: Int
     var songIndex: Int
+    var readerVal: ScrollViewProxy
+
     var body: some View {
         if songIndex == currentTrack {
             Image(systemName: "play.fill")
                 .font(.system(size: 12)) 
                 .foregroundColor(Color.white)
+                .onAppear(perform: {
+                    withAnimation{
+                        readerVal.scrollTo(currentTrack, anchor: .center)
+                    }
+                })
         }
     }
 }
@@ -26,12 +33,9 @@ struct PlayerPlaylistView: View {
                     Button(action: {
                         player.setTrack(index: index)
                         player.seek(to: 0)
-                        withAnimation{
-                            value.scrollTo(ppplayer.currentTrack, anchor: .center)
-                        }
                     }){
                         HStack{
-                            PlayingIconView(currentTrack: ppplayer.currentTrack, songIndex: index)
+                            PlayingIconView(currentTrack: ppplayer.currentTrack, songIndex: index, readerVal: value)
                             VStack(alignment: .leading){
                                 Text(item.song.name)
                                     .foregroundColor(Color.white)
@@ -50,19 +54,13 @@ struct PlayerPlaylistView: View {
                             ppplayer.playerItems.remove(at: index)
                         }
                         .tint(.red)
-                        
                     }
                     .listRowBackground(Color.clear)
                     .listSectionSeparatorTint(Color.clear)
                     .listRowSeparatorTint(Color.white.opacity(0.25))
                     
                 }
-                .padding(.horizontal, 5.0)
-                .onAppear(perform: {
-                    withAnimation{
-                        value.scrollTo(ppplayer.currentTrack, anchor: .center)
-                    }
-                })
+                .padding(.horizontal, 5.0) 
             }
             .listStyle(GroupedListStyle())
             .background(Color.clear)
