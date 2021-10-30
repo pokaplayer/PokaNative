@@ -49,6 +49,7 @@ struct ContentView: View {
             }.navigationTitle("PokaPlayer")
             Home()
         }
+        .preferredColorScheme(.light)
         .padding(.bottom, player.currentPlayingItem != nil ? 72.0 : 0)
         .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
         .overlay(

@@ -34,6 +34,8 @@ struct ContentViewiOS: View {
             .sheet(isPresented: $showPlayerOverlay) {
                 PlayerControllerView()
             }
+            
+                .preferredColorScheme(.light)
             MiniPlayerView()
                 .onTapGesture {
                     self.showPlayerOverlay = true
