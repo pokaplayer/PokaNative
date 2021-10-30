@@ -8,7 +8,8 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct SongDetailView: View {
+struct SongDetailView: View { 
+    @Environment(\.presentationMode) var presentationMode
     var item: Song
     var body: some View {
         NavigationView {
@@ -113,7 +114,12 @@ struct SongDetailView: View {
                         }
                     }
                 }
-            }.navigationTitle("Details")
+            }.navigationTitle("Details") 
+                .toolbar {
+                    Button(NSLocalizedString("Close", comment: "")) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
         }
     }
 }
