@@ -23,6 +23,11 @@ struct PlayingItemView: View {
                             readerVal.scrollTo(currentTrack, anchor: .center)
                         }
                     })
+            } else {
+                Image(systemName: "play.fill")
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.white)
+                    .opacity(0) 
             }
             VStack(alignment: .leading){
                 Text(item.song.name)
@@ -75,6 +80,11 @@ struct PlayerPlaylistView: View {
                 .padding(.horizontal, 5.0)
             }
             .listStyle(PlainListStyle())
+            .onAppear(perform: {
+                withAnimation{
+                    value.scrollTo(ppplayer.currentTrack, anchor: .center)
+                }
+            })
         }
     }
 }

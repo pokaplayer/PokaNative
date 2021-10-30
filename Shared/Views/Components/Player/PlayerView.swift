@@ -27,13 +27,6 @@ struct PlayerTimeView: View {
                     slider.setThumbImage(UIImage(systemName: "circle.fill"), for: .normal)
                 }
                 .accentColor(.white)
-            /*ValueSlider(value:  Binding(get: {
-             Double(self.currentTime)
-             }, set: { (newVal) in
-             ppplayer.seek(to: newVal)
-             }),
-             in: 0.0...duration
-             )*/
             HStack{
                 Text(formatTime(seconds: currentTime))
                     .foregroundColor(Color.white)
