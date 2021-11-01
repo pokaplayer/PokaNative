@@ -11,5 +11,6 @@ struct defaultsKeys {
     static let baseURL = ""
     static let username = ""
     static let password = ""
-    static let audioQuality = "high" 
+    static let audioQuality = "high"
+    static let dataRecording = false
 }

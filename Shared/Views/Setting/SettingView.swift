@@ -21,8 +21,11 @@ struct SettingView: View {
                     NavigationLink(destination: SettingAudioQualityView()) {
                         Label("Audio quality", systemImage: "headphones")
                     }
+                    NavigationLink(destination: SettingDataRecording()) {
+                        Label("Data record", systemImage: "arrow.up.doc")
+                    }
                     
-                } 
+                }
             }.navigationTitle("Settings")
        
     }

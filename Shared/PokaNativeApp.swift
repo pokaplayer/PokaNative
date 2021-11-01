@@ -22,8 +22,8 @@ let player = PPPlayer.shared
 @main
 struct PokaNativeApp: App {
     @State var showLogin = true
-     var body: some Scene {
-         WindowGroup {
+    var body: some Scene {
+        WindowGroup {
             if showLogin {
                 Login(showLogin: self.$showLogin)
             } else {
@@ -32,7 +32,7 @@ struct PokaNativeApp: App {
                 } else {
                     ContentView()
                 }
-            } 
+            }
         }
     }
 }

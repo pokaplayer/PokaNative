@@ -12,11 +12,14 @@ struct CreatePlaylistView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack{
+            HStack{
             TextField("Playlist name", text: $playlistName)
                 .textFieldStyle(LoginTextFieldStyle())
+                
+            }
+            .padding(.horizontal, 10.0)
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width - 40)
         .navigationTitle("Create playlist")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

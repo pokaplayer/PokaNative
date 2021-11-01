@@ -13,7 +13,10 @@ struct ContentViewiOS: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
             TabView{
-                NavigationView { Home() }
+                NavigationView {
+                        Home()
+                        .padding(.bottom, 100.0)
+                }
                 .tabItem{
                     Label("Home", systemImage: "house")
                 }
@@ -35,7 +38,7 @@ struct ContentViewiOS: View {
                 PlayerControllerView()
             }
             
-                .preferredColorScheme(.light)
+            .preferredColorScheme(.light)
             MiniPlayerView()
                 .onTapGesture {
                     self.showPlayerOverlay = true
