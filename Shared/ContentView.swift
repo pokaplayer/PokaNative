@@ -87,7 +87,13 @@ struct ContentView: View {
                 titlebar.titleVisibility = .hidden
                 titlebar.toolbar = nil
             }
-#endif
+            
+            UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
+                windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1000, height: 800)
+            }
+#endif 
+            
+            
         }
         
         
