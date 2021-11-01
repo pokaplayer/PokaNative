@@ -256,6 +256,63 @@ class PokaAPI {
             }
         }.resume()
     }
+    func getIsSongExists(song: Song, completion: @escaping (ExistsInPlaylist) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/playlist/song/exist"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(song)
+        request.httpBody = data
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(ExistsInPlaylist.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+    func addSongToPlaylist(song: Song, playlistId: String, completion: @escaping () -> ()){
+        let stringUrl = baseURLString + "/pokaapi/playlist/song"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = AddToPlaylistRequest(song: song, playlistId: playlistId)
+        
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(body)
+        request.httpBody = data
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            completion()
+        }.resume()
+    }
+    func createPlaylist(name: String, completion: @escaping () -> ()){
+        let stringUrl = baseURLString + "/pokaapi/playlist/create"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = ["name": name] as [String: String]
+        
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(body)
+        request.httpBody = data
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            completion()
+        }.resume()
+    }
 }
 func PokaURLParser(_ u: String) -> String{
     return u.hasPrefix("http") ? u : (baseURL + u)

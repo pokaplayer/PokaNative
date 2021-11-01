@@ -45,7 +45,7 @@ struct SongDetailView: View {
                             Text("Add this song to player")
                         }
                     }
-                    Button(action: {}){
+                    NavigationLink(destination: SongPlaylistView(item: item)) {
                         HStack{
                             Image(systemName: "plus")
                                 .frame(width: 32, height: 32)
@@ -114,7 +114,8 @@ struct SongDetailView: View {
                         }
                     }
                 }
-            }.navigationTitle("Details") 
+            }
+            .navigationTitle("Details")
                 .toolbar {
                     Button(NSLocalizedString("Close", comment: "")) {
                         presentationMode.wrappedValue.dismiss()

@@ -102,7 +102,7 @@ struct Folder: Decodable, Hashable {
 }
 
 // MARK: - Song
-struct Song: Decodable, Identifiable, Hashable { 
+struct Song: Codable, Identifiable, Hashable {
     let name, artist, album, source, id, url, cover: String
     let codec, lrc, artistID, albumID: String?
     let track, year, bitrate: Int?
@@ -125,3 +125,13 @@ struct SearchReponse: Decodable {
     let playlists: [Playlist]
 }
 
+// MARK: - Playlist Actions
+struct ExistsInPlaylist: Decodable {
+    let playlists: [Playlist]
+    let existsPlaylists: [Playlist]
+}
+
+struct AddToPlaylistRequest: Encodable {
+    let song: Song
+    let playlistId: String
+}

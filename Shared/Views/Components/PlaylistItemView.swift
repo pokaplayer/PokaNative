@@ -56,8 +56,7 @@ struct VPlaylistItemView: View {
                 imgLink = PokaURLParser(imgLink!)
             }
         }
-        return
-        NavigationLink(destination: PlaylistView(playlist: playlist)) {
+        return NavigationLink(destination: PlaylistView(playlist: playlist)) {
             VStack(alignment: .leading){
                 if #available(iOS 15.0, *), imgLink != nil {
                     CachedAsyncImage(url: URL(string: imgLink!)){ image in

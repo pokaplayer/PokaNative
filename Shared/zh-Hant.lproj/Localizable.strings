@@ -35,6 +35,7 @@
 "Composers" = "作曲者";
 "Play" = "播放";
 "Close" = "關閉";
+"Create" = "建立";
 // MARK: - Settings
 "Settings" = "設定";
 // MARK: - About
@@ -79,3 +80,6 @@
 "Bitrate" = "位元率";
 "Year" = "年份";
 
+// MARK: - Create playlist
+"Create playlist" = "建立播放清單";
+"Playlist name" = "播放清單名稱";
