@@ -96,7 +96,6 @@ struct PlayerControllerView: View {
             }
             Spacer()
         }
-        .preferredColorScheme(.dark) 
         .background(
             ZStack{
                 if #available(iOS 15.0, *) {

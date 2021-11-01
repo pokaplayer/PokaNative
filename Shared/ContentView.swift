@@ -48,8 +48,7 @@ struct ContentView: View {
                 }
             }.navigationTitle("PokaPlayer")
             Home()
-        }
-        .preferredColorScheme(.light)
+        } 
         .padding(.bottom, player.currentPlayingItem != nil ? 72.0 : 0)
         .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
         .overlay(
@@ -91,13 +90,8 @@ struct ContentView: View {
             UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
                 windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1000, height: 800)
             }
-#endif 
-            
-            
+#endif
         }
-        
-        
-        
     }
 }
 
