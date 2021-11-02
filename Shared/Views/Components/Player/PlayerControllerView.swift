@@ -112,10 +112,10 @@ struct PlayerControllerView: View {
                     
                     .ignoresSafeArea()
                     .opacity(0.5)
-                }
-                
+                } 
             }
         )
+        .preferredColorScheme(.dark)
     }
 }
 

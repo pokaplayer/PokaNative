@@ -18,7 +18,7 @@ class PlayerTimeObserver {
     
     init() {
         // Periodically observe the player's current time, whilst playing
-        timeObservation = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(1000)), queue: nil) { [weak self] time in
+        timeObservation = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(1000)), queue: nil) { [weak self] time in
             guard let self = self else { return }
             // Publish the new player time
             self.publisher.send(time.seconds)

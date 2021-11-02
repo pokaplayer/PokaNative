@@ -31,9 +31,11 @@ class PokaLyricParser: ObservableObject{
         }
         print(self.lyricItems)
         // check lyricTranslated
-        if self.lyricItems[self.lyricItems.count - 1].time == self.lyricItems[self.lyricItems.count - 2].time {
-            self.lyricItems[self.lyricItems.count - 1].time += 100
-            self.lyricTranslated = true
+        if self.lyricItems.count > 2 {
+            if self.lyricItems[self.lyricItems.count - 1].time == self.lyricItems[self.lyricItems.count - 2].time {
+                self.lyricItems[self.lyricItems.count - 1].time += 100
+                self.lyricTranslated = true
+            }
         }
     }
     private func parseHeader(prefix: String, line: String) -> String? {

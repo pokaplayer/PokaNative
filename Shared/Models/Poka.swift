@@ -142,5 +142,7 @@ struct LyricReponse: Decodable {
 
 // MARK: - Lyric
 struct Lyric: Decodable {
-    let source, id, lyric: String
+    let id = UUID()
+    let source, lyric: String
+    let name, artist: String?
 }

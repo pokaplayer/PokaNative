@@ -329,6 +329,45 @@ class PokaAPI {
             }
         }.resume()
     }
+    func searchLyric(keyword: String, completion: @escaping (LyricReponse) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/searchLyrics/?keyword=\(keyword)"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(LyricReponse.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+    func saveLyric(title: String, artist: String, songId: String, source: String, lyric: String, completion: @escaping () -> ()){
+        let stringUrl = baseURLString + "/pokaapi/lyric"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = [
+            "title": title,
+            "artist": artist,
+            "songId": songId,
+            "source": source,
+            "lyric": lyric
+        ] as [String: String]
+        
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(body)
+        request.httpBody = data
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            completion()
+        }.resume()
+    }
 }
 func PokaURLParser(_ u: String) -> String{
     return u.hasPrefix("http") ? u : (baseURL + u)
