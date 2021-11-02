@@ -92,8 +92,8 @@ struct PlayerLyricView: View {
             NavigationView{
                 VStack{
                     if gotLyric {
-                        List{
-                            if lyricSearchResult.count > 0 {
+                        if lyricSearchResult.count > 0 {
+                            List{
                                 Button(action: {
                                     lyricParser.loadLyric(lyric: "[00:00.000] No lyric :(")
                                     saveLyric(lyric: "[00:00.000] No lyric :(")
@@ -116,11 +116,19 @@ struct PlayerLyricView: View {
                                         }
                                     }.buttonStyle(PlainButtonStyle())
                                 }
-                            } else {
-                                
-                            }
+                            } 
+                        } else {
+                            Button(action: searchLyric, label: {
+                                Text("Search")
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                            })
+                                .padding(.vertical, 10)
+                                .background(Color.purple)
+                                .foregroundColor(.white)
+                                .cornerRadius(13)
+                                .padding(.top, 20)
+                                .padding(.bottom, 20)
                         }
-                        
                     } else {
                         ProgressView()
                     }
@@ -168,6 +176,7 @@ struct PlayerLyricView: View {
     }
     func searchLyric(){
         let currentPlayingItem = ppplayer.currentPlayingItem!.song
+        self.gotLyric = false
         PokaAPI.shared.searchLyric(keyword: "\(currentPlayingItem.name) \(currentPlayingItem.artist)"){ (result) in
             if result.lyrics.count > 0 {
                 lyricParser.loadLyric(lyric: result.lyrics[0].lyric)

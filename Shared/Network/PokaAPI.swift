@@ -162,7 +162,7 @@ class PokaAPI {
         }.resume()
     }
     func getPlaylists(completion: @escaping (PlaylistReponse) -> ()){
-        let stringUrl = baseURLString + "/pokaapi/playlists/?kz"
+        let stringUrl = baseURLString + "/pokaapi/playlists/"
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -314,7 +314,7 @@ class PokaAPI {
         }.resume()
     }
     func getLyric(songID: String, source: String, completion: @escaping (LyricReponse) -> ()){
-        let stringUrl = baseURLString + "/pokaapi/lyric/?moduleName=\(source)&id=\(songID)"
+        let stringUrl = baseURLString + "/pokaapi/lyric/?moduleName=\(source)&id=\(songID)&r=\(UUID().uuidString)"
         let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in

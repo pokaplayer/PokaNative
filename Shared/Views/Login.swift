@@ -56,12 +56,12 @@ struct Login: View {
             
             Button(action: login, label: {
                 Text("Login")
-                    .padding(.vertical, 10)
-                    .frame(width: 300.0)
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(13)
             })
+                .padding(.vertical, 10)
+                .frame(width: 300.0)
+                .background(Color.purple)
+                .foregroundColor(.white)
+                .cornerRadius(13)
                 .padding(.top, 20)
                 .padding(.bottom, 20)
             

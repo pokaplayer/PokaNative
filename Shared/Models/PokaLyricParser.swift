@@ -29,7 +29,6 @@ class PokaLyricParser: ObservableObject{
         for line in lines {
             parseLyric(line: line)
         }
-        print(self.lyricItems)
         // check lyricTranslated
         if self.lyricItems.count > 2 {
             if self.lyricItems[self.lyricItems.count - 1].time == self.lyricItems[self.lyricItems.count - 2].time {
@@ -47,39 +46,43 @@ class PokaLyricParser: ObservableObject{
             return nil
         }
     }
+    
+    
+    func timeStampToTime(timeStamp: String) -> Double {
+        let str: String = timeStamp
+            .replacingOccurrences(of: "[", with: "")
+            .replacingOccurrences(of: "]", with: "")
+        let tmp: [String] = str.components(separatedBy: ":")
+        let min: Double = Double(tmp[0])! * 60
+        let sec: Double = Double(tmp[1])! 
+        let res: Double = min + sec
+        return res
+    }
+    
     private func parseLyric(line: String)  {
-        var cLine = line
-        while(cLine.hasPrefix("[")) {
-            guard let closureIndex = cLine.range(of: "]")?.lowerBound else {
-                break
-            }
+        let chomp: String = line.replacingOccurrences(of: "\r", with: "")
+        let regex = try! NSRegularExpression(pattern: "\\[[0-9]{1,}\\:[0-9]{1,2}(\\.[0-9]{1,})?\\]", options: NSRegularExpression.Options.caseInsensitive)
+        let matches = regex.matches(in: chomp, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, chomp.count))
+        
+        if matches.count > 0 {
+            // find the lyrics str first
+            let last = matches.last! as NSTextCheckingResult
             
-            let startIndex = cLine.index(cLine.startIndex, offsetBy: 1)
-            let endIndex = cLine.index(closureIndex, offsetBy: -1)
-            let amidString = String(cLine[startIndex..<endIndex])
+            let text = (chomp as NSString).substring(
+                with: NSMakeRange(last.range.location + last.range.length, chomp.count - (last.range.location + last.range.length))
+            )
             
-            let amidStrings = amidString.components(separatedBy: ":")
-            var hour:TimeInterval = 0
-            var minute: TimeInterval = 0
-            var second: TimeInterval = 0
-            if amidStrings.count >= 1 {
-                second = TimeInterval(amidStrings[amidStrings.count - 1]) ?? 0
+            for match in matches {
+                let temp = (chomp as NSString).substring(with: match.range)
+                let time = self.timeStampToTime(timeStamp: temp)
+                self.lyricItems.append(LyricItem(time: time, text: text))
             }
-            if amidStrings.count >= 2 {
-                minute = TimeInterval(amidStrings[amidStrings.count - 2]) ?? 0
-            }
-            if amidStrings.count >= 3 {
-                hour = TimeInterval(amidStrings[amidStrings.count - 3]) ?? 0
-            }
-            
-            cLine.removeSubrange(line.startIndex..<cLine.index(closureIndex, offsetBy: 1))
-            self.lyricItems.append(LyricItem(time: hour * 3600 + minute * 60 + second,text: cLine))
         }
     }
     func getCurrentLineIndex(time: Double) -> Int {
         for (index,item) in self.lyricItems.enumerated()   {
-            if item.time >= time {
-                return index - 1 >= 0 ? index - 1 : 0
+            if item.time >= (time - 0.4) { // .4s: animation time
+                return self.lyricTranslated ? index - 1 : index
             }
         }
         return 0
