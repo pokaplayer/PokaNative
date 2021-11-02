@@ -80,11 +80,12 @@ class PokaLyricParser: ObservableObject{
         }
     }
     func getCurrentLineIndex(time: Double) -> Int {
+        var res = 0
         for (index,item) in self.lyricItems.enumerated()   {
-            if item.time >= (time - 0.4) { // .4s: animation time
-                return self.lyricTranslated ? index - 1 : index
+            if item.time < (time - 0.4) { // .4s: animation time
+                res = index
             }
         }
-        return 0
+        return res
     }
 }
