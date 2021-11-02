@@ -40,7 +40,7 @@
 		15BB9DC72712026000CF911C /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9DC62712026000CF911C /* MiniPlayerView.swift */; };
 		15BC3CF02717CFB300491B38 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC3CEF2717CFB300491B38 /* HomeItem.swift */; };
 		15BC3CF32717D10700491B38 /* AlbumItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC3CF22717D10700491B38 /* AlbumItemView.swift */; };
-		15C4640C272EA7710051ACA0 /* LyricParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C4640B272EA7710051ACA0 /* LyricParser.swift */; };
+		15C4640C272EA7710051ACA0 /* PokaLyricParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C4640B272EA7710051ACA0 /* PokaLyricParser.swift */; };
 		15C4640E272EB4E70051ACA0 /* SongPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C4640D272EB4E70051ACA0 /* SongPlaylistView.swift */; };
 		15C59C4F271EED57008D1570 /* PlayerPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C59C4E271EED57008D1570 /* PlayerPlaylistView.swift */; };
 		15C59C52271EED6C008D1570 /* PlayerLyricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C59C51271EED6C008D1570 /* PlayerLyricView.swift */; };
@@ -87,7 +87,7 @@
 		15BB9DC62712026000CF911C /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		15BC3CEF2717CFB300491B38 /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
 		15BC3CF22717D10700491B38 /* AlbumItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumItemView.swift; sourceTree = "<group>"; };
-		15C4640B272EA7710051ACA0 /* LyricParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricParser.swift; sourceTree = "<group>"; };
+		15C4640B272EA7710051ACA0 /* PokaLyricParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaLyricParser.swift; sourceTree = "<group>"; };
 		15C4640D272EB4E70051ACA0 /* SongPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlaylistView.swift; sourceTree = "<group>"; };
 		15C59C4E271EED57008D1570 /* PlayerPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPlaylistView.swift; sourceTree = "<group>"; };
 		15C59C51271EED6C008D1570 /* PlayerLyricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLyricView.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 			children = (
 				15E0B7B8270DF96800C8DED3 /* Poka.swift */,
 				1553B88C271422E2002CFB8F /* PPPlayer.swift */,
-				15C4640B272EA7710051ACA0 /* LyricParser.swift */,
+				15C4640B272EA7710051ACA0 /* PokaLyricParser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 				159673E626DB223D00621279 /* Home.swift in Sources */,
 				15BB9DBB2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */,
-				15C4640C272EA7710051ACA0 /* LyricParser.swift in Sources */,
+				15C4640C272EA7710051ACA0 /* PokaLyricParser.swift in Sources */,
 				15BB9DC72712026000CF911C /* MiniPlayerView.swift in Sources */,
 				15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */,
 				15BB9DC42711DC9500CF911C /* PlaylistView.swift in Sources */,

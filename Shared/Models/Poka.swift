@@ -135,3 +135,12 @@ struct AddToPlaylistRequest: Encodable {
     let song: Song
     let playlistId: String
 }
+// MARK: - LyricReponse
+struct LyricReponse: Decodable {
+    let lyrics: [Lyric]
+}
+
+// MARK: - Lyric
+struct Lyric: Decodable {
+    let source, id, lyric: String
+}

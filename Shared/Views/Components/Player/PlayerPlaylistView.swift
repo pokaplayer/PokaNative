@@ -11,7 +11,7 @@ struct PlayingItemView: View {
     var currentTrack: Int
     var songIndex: Int
     var readerVal: ScrollViewProxy
-    
+    @State var showPlaylistSheet = false
     var body: some View {
         HStack{
             if songIndex == currentTrack {
@@ -27,7 +27,7 @@ struct PlayingItemView: View {
                 Image(systemName: "play.fill")
                     .font(.system(size: 12))
                     .foregroundColor(Color.white)
-                    .opacity(0) 
+                    .opacity(0)
             }
             VStack(alignment: .leading){
                 Text(item.song.name)
@@ -39,9 +39,36 @@ struct PlayingItemView: View {
             }
             Spacer()
         }
-        .padding(.all, 10)
+        .contentShape(Rectangle())
+        .padding(.all, 7)
         .background(songIndex == currentTrack ? .black.opacity(0.1) : .clear)
         .cornerRadius(10)
+        .sheet(isPresented: $showPlaylistSheet) {
+            SongDetailView(item: item.song)
+        }
+        .contextMenu {
+            Group {
+                Button(action: { player.setTrack(index: songIndex) }){
+                    HStack {
+                        Image(systemName: "play")
+                        Text("Play")
+                    }
+                }
+                Button(action: { showPlaylistSheet = true }){
+                    HStack {
+                        Image(systemName: "info.circle")
+                        Text("Info")
+                    }
+                }
+                Divider()
+                Button(role: .destructive, action: { player.playerItems.remove(at: songIndex) }){
+                    HStack {
+                        Image(systemName: "trash")
+                        Text("Delete")
+                    }
+                }
+            }
+        }
         
     }
 }
@@ -49,7 +76,7 @@ struct PlayerPlaylistView: View {
     @StateObject private var ppplayer = player
     var body: some View {
         ScrollViewReader { value in
-            List {
+            ScrollView{
                 ForEach(Array(ppplayer.playerItems.enumerated()), id: \.element.id) { index, item in
                     Button(action: {
                         player.setTrack(index: index)
@@ -64,31 +91,17 @@ struct PlayerPlaylistView: View {
                     }
                     .id(index)
                     .buttonStyle(PlainButtonStyle())
-                    .swipeActions {
-                        Button("Delete") {
-                            print("Right on!")
-                            ppplayer.playerItems.remove(at: index)
-                        }
-                        .tint(.red)
+                    .padding(.horizontal, 5.0)
+                }
+                .onAppear(perform: {
+                    withAnimation{
+                        value.scrollTo(ppplayer.currentTrack, anchor: .center)
                     }
-                    .listRowBackground(Color.clear)
-                    .listSectionSeparatorTint(Color.clear)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(.init())
-                    
-                }
-                .padding(.horizontal, 5.0)
+                })
             }
-            .listStyle(PlainListStyle())
-            .onAppear(perform: {
-                withAnimation{
-                    value.scrollTo(ppplayer.currentTrack, anchor: .center)
-                }
-            })
         }
     }
 }
-
 struct PlayerPlaylistView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerPlaylistView()

@@ -19,6 +19,7 @@ extension UIDevice {
 } 
 let defaults = UserDefaults.standard
 let player = PPPlayer.shared
+let LyricParser = PokaLyricParser.shared
 @main
 struct PokaNativeApp: App {
     @State var showLogin = true

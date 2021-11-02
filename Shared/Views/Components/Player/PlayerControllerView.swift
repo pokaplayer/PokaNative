@@ -80,7 +80,6 @@ struct PlayerControllerView: View {
                         active: activeView == "player",
                         icon: "play"
                     )
-                    
                 }
                 PlayerControllerIconButtonView(
                     action: {activeView = "list"},

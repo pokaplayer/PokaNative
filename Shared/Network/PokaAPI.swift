@@ -313,6 +313,22 @@ class PokaAPI {
             completion()
         }.resume()
     }
+    func getLyric(songID: String, source: String, completion: @escaping (LyricReponse) -> ()){
+        let stringUrl = baseURLString + "/pokaapi/lyric/?moduleName=\(source)&id=\(songID)"
+        let url =  URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let res = try decoder.decode(LyricReponse.self, from: data)
+                    completion(res)
+                } catch  {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
 }
 func PokaURLParser(_ u: String) -> String{
     return u.hasPrefix("http") ? u : (baseURL + u)
