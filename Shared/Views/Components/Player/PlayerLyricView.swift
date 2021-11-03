@@ -84,6 +84,7 @@ struct PlayerLyricView: View {
                 Spacer()
             }
         }
+        .contentShape(Rectangle())
         .onTapGesture(count: 2) {
             showLyricSheet = true
         }

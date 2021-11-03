@@ -6,10 +6,19 @@
 //
 
 import SwiftUI
+
+let blurEffect =  UIBlurEffect(style: .systemMaterial)
 struct ContentViewiOS: View {
     @State private var tabBarHeight: CGFloat = .zero
     @State private var showPlayerOverlay = false
     
+    init() { 
+        let barAppearance = UITabBarAppearance()
+        barAppearance.configureWithDefaultBackground()
+        barAppearance.backgroundEffect = blurEffect
+        UITabBar.appearance().scrollEdgeAppearance = barAppearance
+        UITabBar.appearance().standardAppearance = barAppearance
+    }
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
             TabView{
@@ -30,10 +39,10 @@ struct ContentViewiOS: View {
                 .tabItem{
                     Label("Settings", systemImage: "gearshape")
                 }
-            }  
+            }
             .sheet(isPresented: $showPlayerOverlay) {
                 PlayerControllerView()
-            } 
+            }
             MiniPlayerView()
                 .onTapGesture {
                     self.showPlayerOverlay = true
