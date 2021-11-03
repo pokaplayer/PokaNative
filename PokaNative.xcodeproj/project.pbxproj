@@ -249,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		159673CA26DB1FBE00621279 /* PokaNative (iOS) */ = {
+		159673CA26DB1FBE00621279 /* PokaNative */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative (iOS)" */;
+			buildConfigurationList = 159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative" */;
 			buildPhases = (
 				159673C726DB1FBE00621279 /* Sources */,
 				159673C826DB1FBE00621279 /* Frameworks */,
@@ -261,7 +261,7 @@
 			);
 			dependencies = (
 			);
-			name = "PokaNative (iOS)";
+			name = PokaNative;
 			packageProductDependencies = (
 				158F7346272990A800E39865 /* CachedAsyncImage */,
 				158F734E2729B3A500E39865 /* SwiftUIX */,
@@ -305,7 +305,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				159673CA26DB1FBE00621279 /* PokaNative (iOS) */,
+				159673CA26DB1FBE00621279 /* PokaNative */,
 			);
 		};
 /* End PBXProject section */
@@ -575,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative (iOS)" */ = {
+		159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				159673E026DB1FBE00621279 /* Debug */,

@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "159673CA26DB1FBE00621279"
                BuildableName = "PokaNative.app"
-               BlueprintName = "PokaNative (iOS)"
+               BlueprintName = "PokaNative"
                ReferencedContainer = "container:PokaNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "159673CA26DB1FBE00621279"
             BuildableName = "PokaNative.app"
-            BlueprintName = "PokaNative (iOS)"
+            BlueprintName = "PokaNative"
             ReferencedContainer = "container:PokaNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "159673CA26DB1FBE00621279"
             BuildableName = "PokaNative.app"
-            BlueprintName = "PokaNative (iOS)"
+            BlueprintName = "PokaNative"
             ReferencedContainer = "container:PokaNative.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
