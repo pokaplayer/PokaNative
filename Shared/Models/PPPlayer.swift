@@ -206,6 +206,15 @@ class PPPlayer: AVPlayer, ObservableObject {
     }
 
     @objc func nextTrack() {
+        dispatchQueue.async { [weak self] in
+            let currentItem = self!.currentPlayingItem!
+            do {
+                if currentItem.item!.duration.seconds - 10 < currentItem.item!.currentTime().seconds {
+                    PokaAPI.shared.recordSong(song: currentItem.song) { () in
+                    }
+                }
+            }
+        }
         if currentTrack + 1 > playerItems.count - 1 {
             setTrack(index: 0)
         } else {

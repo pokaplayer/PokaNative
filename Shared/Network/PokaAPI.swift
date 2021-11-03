@@ -317,7 +317,7 @@ class PokaAPI {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let body = ["name": name] as [String: String]
+        let body = ["name": name]
 
         let encoder = JSONEncoder()
         let data = try? encoder.encode(body)
@@ -375,7 +375,33 @@ class PokaAPI {
             "songId": songId,
             "source": source,
             "lyric": lyric,
-        ] as [String: String]
+        ]
+
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(body)
+        request.httpBody = data
+
+        URLSession.shared.dataTask(with: request) { _, _, _ in
+            completion()
+        }.resume()
+    }
+
+    func recordSong(song: Song, completion: @escaping () -> Void) {
+        let stringUrl = baseURLString + "/pokaapi/v2/record/add"
+        let url = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body = [
+            "name": song.name,
+            "artist": song.artist,
+            "artistId": song.artistID,
+            "album": song.album,
+            "albumId": song.albumID,
+            "source": song.source,
+            "originalCover": song.cover,
+            "id": song.id,
+        ]
 
         let encoder = JSONEncoder()
         let data = try? encoder.encode(body)
