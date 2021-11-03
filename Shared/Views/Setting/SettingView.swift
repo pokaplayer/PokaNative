@@ -8,26 +8,22 @@
 import SwiftUI
 
 struct SettingView: View {
-    
     var body: some View {
-            List {
-                Section(header: Text("About")){
-                    NavigationLink(destination: SettingAboutView()) {
-                        Label("About", systemImage: "info.circle")
-                    }
-                    
+        List {
+            Section(header: Text("About")) {
+                NavigationLink(destination: SettingAboutView()) {
+                    Label("About", systemImage: "info.circle")
                 }
-                Section(header: Text("Settings")){
-                    NavigationLink(destination: SettingAudioQualityView()) {
-                        Label("Audio quality", systemImage: "headphones")
-                    }
-                    NavigationLink(destination: SettingDataRecording()) {
-                        Label("Data record", systemImage: "arrow.up.doc")
-                    }
-                    
+            }
+            Section(header: Text("Settings")) {
+                NavigationLink(destination: SettingAudioQualityView()) {
+                    Label("Audio quality", systemImage: "headphones")
                 }
-            }.navigationTitle("Settings")
-       
+                NavigationLink(destination: SettingDataRecording()) {
+                    Label("Data record", systemImage: "arrow.up.doc")
+                }
+            }
+        }.navigationTitle("Settings")
     }
 }
 

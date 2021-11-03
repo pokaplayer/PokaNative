@@ -5,13 +5,13 @@
 //  Created by 勝勝寶寶 on 2021/10/20.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 struct PlayerControllerIconButtonView: View {
     var action: () -> Void
     var active: Bool = false
     var icon: String
-    var body: some View{
+    var body: some View {
         Button(action: action) {
             Image(systemName: icon + (active ? ".fill" : ""))
                 .font(.system(size: 24))
@@ -23,12 +23,13 @@ struct PlayerControllerIconButtonView: View {
             .cornerRadius(12)
     }
 }
+
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
     @State var activeView = UIDevice.isIPhone ? "player" : "list"
     @Environment(\.presentationMode) var presentationMode
-    var body: some View{
-        VStack{
+    var body: some View {
+        VStack {
             if UIDevice.isIPhone {
                 Rectangle()
                     .fill(Color.white)
@@ -37,25 +38,25 @@ struct PlayerControllerView: View {
                     .opacity(0.75)
                     .padding(5.0)
             } else {
-                HStack{
+                HStack {
                     Spacer()
                     PlayerControllerIconButtonView(
                         action: { presentationMode.wrappedValue.dismiss() },
                         active: false,
-                        icon:  "chevron.down"
+                        icon: "chevron.down"
                     )
                 }
                 .contentShape(Rectangle())
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                        .onEnded({ value in
+                        .onEnded { value in
                             if value.translation.height > 0 {
                                 presentationMode.wrappedValue.dismiss()
                             }
-                        })
+                        }
                 )
             }
-            HStack{
+            HStack {
                 if !UIDevice.isIPhone {
                     PlayerView()
                         .frame(width: 500.0)
@@ -76,32 +77,32 @@ struct PlayerControllerView: View {
                 Spacer()
                 if UIDevice.isIPhone {
                     PlayerControllerIconButtonView(
-                        action: {activeView = "player" },
+                        action: { activeView = "player" },
                         active: activeView == "player",
                         icon: "play"
                     )
                 }
                 PlayerControllerIconButtonView(
-                    action: {activeView = "list"},
+                    action: { activeView = "list" },
                     active: activeView == "list",
                     icon: "list.bullet.circle"
                 )
                 PlayerControllerIconButtonView(
-                    action: {activeView = "lyric"},
+                    action: { activeView = "lyric" },
                     active: activeView == "lyric",
-                    icon:  "captions.bubble"
+                    icon: "captions.bubble"
                 )
                 Spacer()
             }
             Spacer()
         }
         .background(
-            ZStack{
+            ZStack {
                 if #available(iOS 15.0, *) {
                     Rectangle()
                         .fill(Color.black)
                         .ignoresSafeArea()
-                    CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
                         image
                             .resizable()
                             .blur(radius: 50, opaque: true)
@@ -109,10 +110,10 @@ struct PlayerControllerView: View {
                         ProgressView()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
+
                     .ignoresSafeArea()
                     .opacity(0.5)
-                } 
+                }
             }
         )
         .preferredColorScheme(.dark)

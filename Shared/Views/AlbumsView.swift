@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct AlbumsView: View { 
+struct AlbumsView: View {
     var itemID, source, name, itemType: String?
     init(itemID: String, source: String, name: String, itemType: String) {
         self.itemID = itemID
@@ -14,13 +14,14 @@ struct AlbumsView: View {
         self.name = name
         self.itemType = itemType
     }
-    init() {
-    }
+
+    init() {}
+
     @State var resData = [Album]()
     private var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
     private var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        HStack{
+        HStack {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 10) {
                     ForEach(resData, id: \.self) { item in
@@ -29,11 +30,10 @@ struct AlbumsView: View {
                 }
                 .padding(.horizontal, 10)
             }
-            
         }
         .frame(width: .infinity)
-        .onAppear() {
-            PokaAPI.shared.getAlbums(itemID: itemID, source: source, itemType: itemType) { (result) in
+        .onAppear {
+            PokaAPI.shared.getAlbums(itemID: itemID, source: source, itemType: itemType) { result in
                 self.resData = result.albums
             }
         }
@@ -41,10 +41,8 @@ struct AlbumsView: View {
     }
 }
 
-
-
-/*struct AlbumsView_Previews: PreviewProvider {
+/* struct AlbumsView_Previews: PreviewProvider {
  static var previews: some View {
  AlbumsView()
  }
- }*/
+ } */

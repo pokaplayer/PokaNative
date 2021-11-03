@@ -10,8 +10,8 @@ import SwiftUI
 struct HomeItem: View {
     let item: HomeResponse
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
+        VStack(alignment: .leading) {
+            HStack {
                 Text(NSLocalizedString(item.title, comment: ""))
                     .font(.body)
                     .fontWeight(.bold)
@@ -26,24 +26,24 @@ struct HomeItem: View {
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
                     .font(.caption)
-                ScrollView(.horizontal){
-                    HStack(spacing: 10){
-                        ForEach(item.albums!){ item in
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(item.albums!) { item in
                             AlbumItemView(item: item)
                                 .frame(width: 150)
                         }
                     }
                     .padding(.horizontal, 10.0)
                 }
-            } 
+            }
             if item.playlists != nil && item.playlists?.count ?? 0 > 0 {
                 Text("Playlists")
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
                     .font(.caption)
-                ScrollView(.horizontal){
-                    HStack(spacing: 10){
-                        ForEach(item.playlists!){ item in
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(item.playlists!) { item in
                             VPlaylistItemView(playlist: item)
                                 .frame(width: 150)
                         }
@@ -53,9 +53,9 @@ struct HomeItem: View {
             }
         }
         .padding(.vertical, 5.0)
-        
     }
 }
+
 /*
  struct HomeItem_Previews: PreviewProvider {
  static var previews: some View {

@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct CreatePlaylistView: View {
-    @State var playlistName: String =  ""
+    @State var playlistName: String = ""
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        VStack{
-            HStack{
-            TextField("Playlist name", text: $playlistName)
-                .textFieldStyle(LoginTextFieldStyle())
-                
+        VStack {
+            HStack {
+                TextField("Playlist name", text: $playlistName)
+                    .textFieldStyle(LoginTextFieldStyle())
             }
             .padding(.horizontal, 10.0)
             Spacer()
@@ -26,25 +25,25 @@ struct CreatePlaylistView: View {
             ToolbarItemGroup(placement: .navigation) {
                 Button(action: {
                     self.dismiss()
-                }){
+                }) {
                     Text("Cancel")
                 }
             }
             ToolbarItemGroup(placement: .primaryAction) {
-            Button(action: {
-                createPlaylist()
-            }){
-                Text("Create")
-            }
+                Button(action: {
+                    createPlaylist()
+                }) {
+                    Text("Create")
+                }
             }
         }
     }
-    func createPlaylist(){
-        if self.playlistName != "" {
-            PokaAPI.shared.createPlaylist(name: self.playlistName) { () in
+
+    func createPlaylist() {
+        if playlistName != "" {
+            PokaAPI.shared.createPlaylist(name: playlistName) { () in
                 self.dismiss()
             }
         }
     }
 }
-

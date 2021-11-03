@@ -23,70 +23,70 @@ struct CheckMarkView: View {
         }
     }
 }
+
 struct SettingAudioQualityView: View {
-    
     @State var audioQuality: String = defaults.string(forKey: "audioQuality") ?? "high"
     var body: some View {
         List {
             Section(footer: Text("The audio quality setting will not work for songs that are currently in the queue")) {
                 Button(action: {
                     setAudioQuality("low")
-                }){
-                    HStack{
+                }) {
+                    HStack {
                         CheckMarkView(isChecked: audioQuality == "low")
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("Low")
                             Text("Only use when the internet is slow")
                                 .font(.caption)
                         }
                     }
                 }.buttonStyle(PlainButtonStyle())
-                
+
                 Button(action: {
                     setAudioQuality("medium")
-                }){
-                    HStack{
+                }) {
+                    HStack {
                         CheckMarkView(isChecked: audioQuality == "medium")
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("Medium")
                             Text("Able to stream smoothly under 3G network")
                                 .font(.caption)
                         }
                     }
                 }.buttonStyle(PlainButtonStyle())
-                
+
                 Button(action: {
                     setAudioQuality("high")
-                }){
-                    HStack{
+                }) {
+                    HStack {
                         CheckMarkView(isChecked: audioQuality == "high")
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("High")
                             Text("Able to stream smoothly under 4G/LTE network")
                                 .font(.caption)
                         }
                     }
-                    
+
                 }.buttonStyle(PlainButtonStyle())
-                
+
                 Button(action: {
                     setAudioQuality("original")
-                }){
-                    HStack{
+                }) {
+                    HStack {
                         CheckMarkView(isChecked: audioQuality == "original")
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("Original")
                             Text("Uncompressed audio, only use when the internet is fast")
                                 .font(.caption)
                         }
                     }
                 }.buttonStyle(PlainButtonStyle())
-                     
             }
         }.navigationTitle("Audio quality")
     }
-    func setAudioQuality(_ q: String){
-        self.audioQuality = q
+
+    func setAudioQuality(_ q: String) {
+        audioQuality = q
         defaults.set(q, forKey: "audioQuality")
     }
 }

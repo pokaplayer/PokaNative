@@ -14,7 +14,7 @@ struct PlayerLyricTextView: View {
     var isTranslatedlyric: Bool
     var body: some View {
         if item.text != "" {
-            HStack{
+            HStack {
                 Text(item.text)
                     .font(isTranslatedlyric ? .title2 : .title)
                     .fontWeight(.bold)
@@ -28,6 +28,7 @@ struct PlayerLyricTextView: View {
         }
     }
 }
+
 struct PlayerLyricView: View {
     @StateObject private var ppplayer = player
     @StateObject private var lyricParser = LyricParser
@@ -36,39 +37,39 @@ struct PlayerLyricView: View {
     @State var currentLyricSongID = UUID()
     @State var currentLyricIndex = 0
     @State var lyricSearchResult: [Lyric] = []
-    
+
     let timeObserver = PlayerTimeObserver()
     var body: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Spacer()
             }
             if gotLyric {
                 ScrollViewReader { value in
-                    ScrollView{
+                    ScrollView {
                         ForEach(Array(lyricParser.lyricItems.enumerated()), id: \.element.id) { index, item in
-                            if index == currentLyricIndex || ( lyricParser.lyricTranslated && index == currentLyricIndex + 1){
+                            if index == currentLyricIndex || (lyricParser.lyricTranslated && index == currentLyricIndex + 1) {
                                 PlayerLyricTextView(
                                     currentLyricIndex: currentLyricIndex,
                                     index: index,
                                     item: item,
                                     isTranslatedlyric: lyricParser.lyricTranslated && currentLyricIndex % 2 != index % 2
                                 )
-                                    .id(index)
-                            }  else {
+                                .id(index)
+                            } else {
                                 PlayerLyricTextView(
                                     currentLyricIndex: currentLyricIndex,
                                     index: index,
                                     item: item,
                                     isTranslatedlyric: lyricParser.lyricTranslated && currentLyricIndex % 2 != index % 2
                                 )
-                                    .id(index)
-                                    .opacity(0.5)
+                                .id(index)
+                                .opacity(0.5)
                             }
                         }
                     }
                     .onReceive(timeObserver.publisher) { time in
-                        withAnimation(.easeInOut(duration: 0.2)){
+                        withAnimation(.easeInOut(duration: 0.2)) {
                             let temp = self.currentLyricIndex
                             self.currentLyricIndex = lyricParser.getCurrentLineIndex(time: time)
                             if temp != self.currentLyricIndex {
@@ -88,19 +89,19 @@ struct PlayerLyricView: View {
         .onTapGesture(count: 2) {
             showLyricSheet = true
         }
-        
+
         .sheet(isPresented: $showLyricSheet) {
-            NavigationView{
-                VStack{
+            NavigationView {
+                VStack {
                     if gotLyric {
                         if lyricSearchResult.count > 0 {
-                            List{
+                            List {
                                 Button(action: {
                                     lyricParser.loadLyric(lyric: "[00:00.000] No lyric :(")
                                     saveLyric(lyric: "[00:00.000] No lyric :(")
                                     self.showLyricSheet = false
-                                }){
-                                    VStack(alignment: .leading){
+                                }) {
+                                    VStack(alignment: .leading) {
                                         Text("Don't load lyrics")
                                         Text("This will remove lyrics of the song now playing.")
                                     }
@@ -110,25 +111,25 @@ struct PlayerLyricView: View {
                                         lyricParser.loadLyric(lyric: item.lyric)
                                         saveLyric(lyric: item.lyric)
                                         self.showLyricSheet = false
-                                    }){
-                                        VStack(alignment: .leading){
+                                    }) {
+                                        VStack(alignment: .leading) {
                                             Text(item.name ?? "")
                                             Text(item.artist ?? "") + Text("(\(NSLocalizedString(item.source, comment: "")))")
                                         }
                                     }.buttonStyle(PlainButtonStyle())
                                 }
-                            } 
+                            }
                         } else {
                             Button(action: searchLyric, label: {
                                 Text("Search")
                                     .frame(minWidth: 0, maxWidth: .infinity)
                             })
-                                .padding(.vertical, 10)
-                                .background(Color.purple)
-                                .foregroundColor(.white)
-                                .cornerRadius(13)
-                                .padding(.top, 20)
-                                .padding(.bottom, 20)
+                            .padding(.vertical, 10)
+                            .background(Color.purple)
+                            .foregroundColor(.white)
+                            .cornerRadius(13)
+                            .padding(.top, 20)
+                            .padding(.bottom, 20)
                         }
                     } else {
                         ProgressView()
@@ -138,7 +139,7 @@ struct PlayerLyricView: View {
                 .toolbar {
                     Button(action: {
                         self.showLyricSheet = false
-                    }){
+                    }) {
                         Text("Cancel")
                     }
                 }
@@ -147,26 +148,28 @@ struct PlayerLyricView: View {
         .onAppear(perform: {
             updateLyric()
         })
-        .onReceive(timeObserver.publisher) { time in
+        .onReceive(timeObserver.publisher) { _ in
             updateLyric()
         }
     }
-    func updateLyric(){
-        if self.currentLyricSongID != ppplayer.currentPlayingItem!.id {
+
+    func updateLyric() {
+        if currentLyricSongID != ppplayer.currentPlayingItem!.id {
             // get new lyric
-            self.gotLyric = false
-            self.currentLyricIndex = 0
-            self.currentLyricSongID = ppplayer.currentPlayingItem!.id
-            
+            gotLyric = false
+            currentLyricIndex = 0
+            currentLyricSongID = ppplayer.currentPlayingItem!.id
+
             if !gotLyric {
                 print("getLyric")
                 getLyric()
             }
         }
     }
-    func getLyric(){
+
+    func getLyric() {
         let currentPlayingItem = ppplayer.currentPlayingItem!.song
-        PokaAPI.shared.getLyric(songID: currentPlayingItem.id, source: currentPlayingItem.source){ (result) in
+        PokaAPI.shared.getLyric(songID: currentPlayingItem.id, source: currentPlayingItem.source) { result in
             if result.lyrics.count > 0 {
                 lyricParser.loadLyric(lyric: result.lyrics[0].lyric)
                 self.gotLyric = true
@@ -175,10 +178,11 @@ struct PlayerLyricView: View {
             }
         }
     }
-    func searchLyric(){
+
+    func searchLyric() {
         let currentPlayingItem = ppplayer.currentPlayingItem!.song
-        self.gotLyric = false
-        PokaAPI.shared.searchLyric(keyword: "\(currentPlayingItem.name) \(currentPlayingItem.artist)"){ (result) in
+        gotLyric = false
+        PokaAPI.shared.searchLyric(keyword: "\(currentPlayingItem.name) \(currentPlayingItem.artist)") { result in
             if result.lyrics.count > 0 {
                 lyricParser.loadLyric(lyric: result.lyrics[0].lyric)
                 lyricSearchResult = result.lyrics
@@ -188,7 +192,8 @@ struct PlayerLyricView: View {
             self.gotLyric = true
         }
     }
-    func saveLyric(lyric: String){
+
+    func saveLyric(lyric: String) {
         let currentPlayingItem = ppplayer.currentPlayingItem!.song
         PokaAPI.shared.saveLyric(
             title: currentPlayingItem.name,
@@ -196,7 +201,7 @@ struct PlayerLyricView: View {
             songId: currentPlayingItem.id,
             source: currentPlayingItem.source,
             lyric: lyric
-        ){ () in
+        ) { () in
             print("Lyric saved.")
         }
     }

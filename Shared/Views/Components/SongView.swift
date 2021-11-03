@@ -13,13 +13,13 @@ struct SongView: View {
     @State private var sheetSongIndex = 0
     var body: some View {
         ForEach(Array(songs.enumerated()), id: \.offset) { index, item in
-            HStack{
+            HStack {
                 Button(action: {
                     player.setSongs(songs: songs)
                     player.setTrack(index: index)
                 }) {
-                    HStack{
-                        VStack(alignment: .leading){
+                    HStack {
+                        VStack(alignment: .leading) {
                             Text(item.name)
                             Text(item.artist)
                                 .font(.caption)
@@ -40,9 +40,9 @@ struct SongView: View {
             SongDetailView(item: songs[sheetSongIndex])
         }
     }
-    func showSongDetail(index: Int){
-        self.sheetSongIndex = index
-        self.showSheet = true
+
+    func showSongDetail(index: Int) {
+        sheetSongIndex = index
+        showSheet = true
     }
 }
-

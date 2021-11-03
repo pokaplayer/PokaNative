@@ -7,15 +7,13 @@
 
 import SwiftUI
 struct PlaylistsView: View {
-    
     var title: String?
     var playlist: [Playlist]?
     @State var resData: PlaylistReponse?
     var body: some View {
-        
-        VStack{
+        VStack {
             if resData != nil || playlist != nil {
-                List{
+                List {
                     if resData != nil {
                         Section(header: Text("Playlists")) {
                             ForEach(resData?.playlists ?? [Playlist](), id: \.self) { item in
@@ -25,7 +23,7 @@ struct PlaylistsView: View {
                         Section(header: Text("Folders")) {
                             ForEach(resData?.playlistFolders ?? [PlaylistFolder](), id: \.self) { item in
                                 NavigationLink(destination: PlaylistsView(title: item.name, playlist: item.playlists)) {
-                                    HStack{
+                                    HStack {
                                         if item.image != nil {
                                             PlaylistCoverView(coverURL: item.image ?? "/img/icons/apple-touch-icon.png")
                                         } else {
@@ -41,7 +39,7 @@ struct PlaylistsView: View {
                                 }
                             }
                         }
-                    } else if playlist != nil{
+                    } else if playlist != nil {
                         ForEach(playlist ?? [Playlist](), id: \.self) { item in
                             PlaylistItemView(playlist: item)
                         }
@@ -50,9 +48,9 @@ struct PlaylistsView: View {
             } else {
                 ProgressView()
             }
-        }.onAppear() {
+        }.onAppear {
             if playlist == nil {
-                PokaAPI.shared.getPlaylists() { (result) in
+                PokaAPI.shared.getPlaylists { result in
                     self.resData = result
                 }
             }
@@ -60,6 +58,7 @@ struct PlaylistsView: View {
         .navigationTitle(title ?? NSLocalizedString("Playlists", comment: ""))
     }
 }
+
 /*
  struct PlaylistsView_Previews: PreviewProvider {
  static var previews: some View {

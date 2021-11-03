@@ -5,17 +5,17 @@
 //  Created by 勝勝寶寶 on 2021/10/8.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 
 var baseURL = defaults.string(forKey: "baseURL") ?? ""
 struct ArtistView: View {
     @State var resData: Artists?
     var body: some View {
-        List(resData?.artists ?? [Artist]()){ item in 
+        List(resData?.artists ?? [Artist]()) { item in
             NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "artist")) {
-                HStack{
-                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))){ image in
+                HStack {
+                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))) { image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()
@@ -26,10 +26,9 @@ struct ArtistView: View {
                     Text(item.name)
                 }
             }
-            
         }
-        .onAppear() {
-            PokaAPI.shared.getArtist() { (result) in
+        .onAppear {
+            PokaAPI.shared.getArtist { result in
                 self.resData = result
             }
         }

@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeRandomPlay: View {
     @State private var items: [Song]?
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text("Shuffle")
                 .font(.body)
                 .fontWeight(.bold)
@@ -22,15 +22,14 @@ struct HomeRandomPlay: View {
                     player.setSongs(songs: items!)
                     player.setTrack(index: 0)
                 }
-            }){
-                HStack{
+            }) {
+                HStack {
                     Image(systemName: "play.fill")
                     Text("Play")
                         .font(.caption)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 7)
-                
             }
             .background(Color.purple)
             .foregroundColor(.white)
@@ -38,19 +37,20 @@ struct HomeRandomPlay: View {
             .padding(.top, 5)
             .opacity(items == nil ? 0.25 : 1)
             .disabled(items == nil)
-            HStack{
+            HStack {
                 Spacer()
             }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
         .onAppear(perform: {
-            PokaAPI.shared.getRandomSongs() { result in
+            PokaAPI.shared.getRandomSongs { result in
                 self.items = result
             }
         })
     }
 }
+
 struct HomeRandomPlay_Previews: PreviewProvider {
     static var previews: some View {
         HomeRandomPlay()

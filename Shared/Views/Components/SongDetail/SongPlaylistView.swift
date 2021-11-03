@@ -12,14 +12,14 @@ struct SongPlaylistView: View {
     @State var resData: ExistsInPlaylist?
     @State var showCreatePlaylistSheet = false
     var body: some View {
-        VStack{
+        VStack {
             if resData != nil {
-                List{
+                List {
                     ForEach(resData!.playlists, id: \.self) { item in
                         Button(action: {
                             addSongToPlaylist(id: item.id)
-                        }){
-                            HStack{
+                        }) {
+                            HStack {
                                 if resData!.existsPlaylists.contains(item) {
                                     Image(systemName: "checkmark.circle.fill")
                                         .padding()
@@ -33,7 +33,6 @@ struct SongPlaylistView: View {
                                         .opacity(0.5)
                                 }
                                 Text(item.name)
-                                
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -48,7 +47,7 @@ struct SongPlaylistView: View {
                 CreatePlaylistView()
             }
         }
-        .onAppear() {
+        .onAppear {
             fetchSongExistsData()
         }
         .navigationTitle("Add to playlist")
@@ -58,15 +57,16 @@ struct SongPlaylistView: View {
             }
         }
     }
-    func addSongToPlaylist(id: String){
-        PokaAPI.shared.addSongToPlaylist(song: item, playlistId:  id ){ () in
+
+    func addSongToPlaylist(id: String) {
+        PokaAPI.shared.addSongToPlaylist(song: item, playlistId: id) { () in
             fetchSongExistsData()
         }
     }
-    func fetchSongExistsData(){
-        PokaAPI.shared.getIsSongExists(song: item) { (result) in
+
+    func fetchSongExistsData() {
+        PokaAPI.shared.getIsSongExists(song: item) { result in
             self.resData = result
         }
     }
 }
-

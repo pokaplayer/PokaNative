@@ -16,18 +16,19 @@ struct LoginTextFieldStyle: TextFieldStyle {
             .cornerRadius(13)
     }
 }
+
 struct Login: View {
     @State var server: String = defaults.string(forKey: "baseURL") ?? ""
     @State var username: String = defaults.string(forKey: "username") ?? ""
     @State var password: String = defaults.string(forKey: "password") ?? ""
-    
+
     @State var showErrorAlert: Bool = false
     @State var showBundleVersion: Bool = false
     @State var loginErrorString: String = ""
-    
+
     var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     var bundleVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-    
+
     @Binding var showLogin: Bool
     var body: some View {
         VStack {
@@ -53,20 +54,20 @@ struct Login: View {
                 .onSubmit(login)
                 .submitLabel(.go)
                 .textFieldStyle(LoginTextFieldStyle())
-            
+
             Button(action: login, label: {
                 Text("Login")
             })
-                .padding(.vertical, 10)
-                .frame(width: 300.0)
-                .background(Color.purple)
-                .foregroundColor(.white)
-                .cornerRadius(13)
-                .padding(.top, 20)
-                .padding(.bottom, 20)
-            
+            .padding(.vertical, 10)
+            .frame(width: 300.0)
+            .background(Color.purple)
+            .foregroundColor(.white)
+            .cornerRadius(13)
+            .padding(.top, 20)
+            .padding(.bottom, 20)
+
             Spacer()
-            Button(action: { showBundleVersion = true }){
+            Button(action: { showBundleVersion = true }) {
                 Text("PokaNative \(version)")
                     .foregroundColor(Color.gray)
                     .font(.system(size: 10, weight: .regular, design: .monospaced))
@@ -74,22 +75,23 @@ struct Login: View {
         }
         .frame(width: 300.0)
         .padding(20.0)
-        .alert(Text(loginErrorString), isPresented: $showErrorAlert){
+        .alert(Text(loginErrorString), isPresented: $showErrorAlert) {
             Button(action: {
                 self.showErrorAlert = false
-            }){
+            }) {
                 Text("OK")
             }
         }
-        .alert(Text("Bundle version: " + bundleVersion), isPresented: $showBundleVersion){
+        .alert(Text("Bundle version: " + bundleVersion), isPresented: $showBundleVersion) {
             Button(action: {
                 self.showBundleVersion = false
-            }){
+            }) {
                 Text("OK")
             }
         }
     }
-    func login(){
+
+    func login() {
         // set defaults
         let defaults = UserDefaults.standard
         if server.hasSuffix("/") {
@@ -98,10 +100,10 @@ struct Login: View {
         defaults.set(server, forKey: "baseURL")
         defaults.set(username, forKey: "username")
         defaults.set(password, forKey: "password")
-        
-        PokaAPI.shared.baseURL =  URL(string: defaults.string(forKey: "baseURL") ?? "")!
-        PokaAPI.shared.baseURLString =  server
-        
+
+        PokaAPI.shared.baseURL = URL(string: defaults.string(forKey: "baseURL") ?? "")!
+        PokaAPI.shared.baseURLString = server
+
         // login
         PokaAPI.shared.login(username: username, password: password) { result in
             if result.success {
@@ -111,7 +113,6 @@ struct Login: View {
                 showErrorAlert = true
             }
         }
-        
     }
 }
 

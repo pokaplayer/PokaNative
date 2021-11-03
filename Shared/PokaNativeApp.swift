@@ -12,11 +12,12 @@ extension UIDevice {
     static var isIPad: Bool {
         UIDevice.current.userInterfaceIdiom == .pad
     }
-    
+
     static var isIPhone: Bool {
         UIDevice.current.userInterfaceIdiom == .phone
     }
-} 
+}
+
 let defaults = UserDefaults.standard
 let player = PPPlayer.shared
 let LyricParser = PokaLyricParser.shared

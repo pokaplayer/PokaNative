@@ -10,15 +10,15 @@ import SwiftUI
 struct SearchResultView: View {
     var items: SearchReponse
     var body: some View {
-        VStack(alignment: .leading){
-            if items.albums.count > 0  {
+        VStack(alignment: .leading) {
+            if items.albums.count > 0 {
                 Text("Albums")
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
                     .font(.caption)
-                ScrollView(.horizontal){
-                    HStack(spacing: 10){
-                        ForEach(items.albums){ item in
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(items.albums) { item in
                             AlbumItemView(item: item)
                                 .frame(width: 150)
                         }
@@ -31,9 +31,9 @@ struct SearchResultView: View {
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
                     .font(.caption)
-                ScrollView(.horizontal){
-                    HStack(spacing: 10){
-                        ForEach(items.playlists){ item in
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(items.playlists) { item in
                             VPlaylistItemView(playlist: item)
                                 .frame(width: 150)
                         }
@@ -44,10 +44,11 @@ struct SearchResultView: View {
         }
     }
 }
+
 /*
-struct SearchResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        //SearchResultView()
-    }
-}
-*/
+ struct SearchResultView_Previews: PreviewProvider {
+     static var previews: some View {
+         //SearchResultView()
+     }
+ }
+ */

@@ -14,10 +14,10 @@ extension UIApplication {
 
 struct SearchView: View {
     @State var searchText: String = ""
-    @State var searching = false 
+    @State var searching = false
     @State var resData: SearchReponse?
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             HStack {
                 ZStack {
                     Rectangle()
@@ -25,21 +25,21 @@ struct SearchView: View {
                     HStack {
                         Image(systemName: "magnifyingglass")
                         TextField(NSLocalizedString("Search ...", comment: ""), text: $searchText)
-                        { startedEditing in
-                            if startedEditing {
+                            { startedEditing in
+                                if startedEditing {
+                                    withAnimation {
+                                        searching = true
+                                    }
+                                }
+                            } onCommit: {
                                 withAnimation {
-                                    searching = true
+                                    searching = false
+                                    UIApplication.shared.dismissKeyboard()
+                                    getSearchResult()
                                 }
                             }
-                        } onCommit: {
-                            withAnimation {
-                                searching = false 
-                                UIApplication.shared.dismissKeyboard()
-                                getSearchResult()
-                            }
-                        }
-                        .foregroundColor(.label)
-                        .submitLabel(.go)
+                            .foregroundColor(.label)
+                            .submitLabel(.go)
                     }
                     .foregroundColor(.gray)
                     .padding(.leading, 13)
@@ -49,16 +49,16 @@ struct SearchView: View {
                 .padding()
                 if searching {
                     Button(action: {
-                        UIApplication.shared.dismissKeyboard() 
+                        UIApplication.shared.dismissKeyboard()
                         getSearchResult()
-                    }){
+                    }) {
                         Text("Search")
                     }
                     .padding(.trailing, 10.0)
                 }
             }
             if resData != nil {
-                ScrollView{
+                ScrollView {
                     SearchResultView(items: resData!)
                 }
             }
@@ -78,7 +78,7 @@ struct SearchView: View {
         }
         .gesture(
             DragGesture()
-                .onChanged({ value in
+                .onChanged { value in
                     if value.translation.width < 0 {
                         // left
                     }
@@ -93,12 +93,12 @@ struct SearchView: View {
                         searching = false
                         UIApplication.shared.dismissKeyboard()
                     }
-                })
+                }
         )
-        
     }
-    func getSearchResult(){
-        PokaAPI.shared.getSearchResult(keyword: self.searchText){ (result) in
+
+    func getSearchResult() {
+        PokaAPI.shared.getSearchResult(keyword: searchText) { result in
             self.resData = result
         }
     }

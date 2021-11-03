@@ -5,15 +5,15 @@
 //  Created by 勝勝寶寶 on 2021/10/15.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 
 struct PlaylistCoverView: View {
     var coverURL: String
     var size: CGFloat = 40
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        CachedAsyncImage(url: URL(string: PokaURLParser(coverURL))){ image in
+        CachedAsyncImage(url: URL(string: PokaURLParser(coverURL))) { image in
             image
                 .resizable()
                 .scaledToFill()
@@ -25,13 +25,12 @@ struct PlaylistCoverView: View {
     }
 }
 
-
 struct PlaylistItemView: View {
     var playlist: Playlist
-    
+
     var body: some View {
         NavigationLink(destination: PlaylistView(playlist: playlist)) {
-            HStack{
+            HStack {
                 if playlist.image != nil {
                     PlaylistCoverView(coverURL: playlist.image ?? playlist.cover ?? "/img/icons/apple-touch-icon.png")
                 } else {
@@ -47,6 +46,7 @@ struct PlaylistItemView: View {
         }
     }
 }
+
 struct VPlaylistItemView: View {
     var playlist: Playlist
     var body: some View {
@@ -57,9 +57,9 @@ struct VPlaylistItemView: View {
             }
         }
         return NavigationLink(destination: PlaylistView(playlist: playlist)) {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 if #available(iOS 15.0, *), imgLink != nil {
-                    CachedAsyncImage(url: URL(string: imgLink!)){ image in
+                    CachedAsyncImage(url: URL(string: imgLink!)) { image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()
@@ -84,8 +84,5 @@ struct VPlaylistItemView: View {
             }
             .padding(.horizontal, 5.0)
         }.buttonStyle(PlainButtonStyle())
-        
-        
     }
 }
-

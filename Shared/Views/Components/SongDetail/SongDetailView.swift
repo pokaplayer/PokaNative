@@ -5,20 +5,20 @@
 //  Created by 勝勝寶寶 on 2021/10/21.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 
-struct SongDetailView: View { 
+struct SongDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     var item: Song
     var body: some View {
         NavigationView {
             List {
-                HStack{
-                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))){ image in
+                HStack {
+                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))) { image in
                         image.resizable()
                     } placeholder: {
-                        ZStack{
+                        ZStack {
                             Rectangle().opacity(0)
                             ProgressView()
                         }
@@ -27,26 +27,26 @@ struct SongDetailView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .cornerRadius(5)
                     .shadow(color: Color.black.opacity(0.05), radius: 6.0, y: 6.0)
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         Text(item.name)
                         Text(item.artist)
                             .font(.caption)
                             .opacity(0.75)
                     }
                 }
-                
+
                 Section(header: Text("Actions")) {
                     Button(action: {
                         PPPlayer.shared.addSong(song: item)
-                    }){
-                        HStack{
+                    }) {
+                        HStack {
                             Image(systemName: "plus")
                                 .frame(width: 32, height: 32)
                             Text("Add this song to player")
                         }
                     }
                     NavigationLink(destination: SongPlaylistView(item: item)) {
-                        HStack{
+                        HStack {
                             Image(systemName: "plus")
                                 .frame(width: 32, height: 32)
                             Text("Add to playlist")
@@ -55,7 +55,7 @@ struct SongDetailView: View {
                 }
                 Section(header: Text("Info")) {
                     NavigationLink(destination: AlbumsView(itemID: item.artistID ?? item.artist, source: item.source, name: item.artist, itemType: "artist")) {
-                        HStack{
+                        HStack {
                             Image(systemName: "person")
                                 .frame(width: 32, height: 32)
                             Text("Artist")
@@ -64,7 +64,7 @@ struct SongDetailView: View {
                         }
                     }
                     if item.track != nil {
-                        HStack{
+                        HStack {
                             Image(systemName: "list.number")
                                 .frame(width: 32, height: 32)
                             Text("Track")
@@ -72,14 +72,14 @@ struct SongDetailView: View {
                             Text(String(item.track!)).opacity(0.5)
                         }
                     }
-                    HStack{
+                    HStack {
                         Image(systemName: "opticaldisc")
                             .frame(width: 32, height: 32)
                         Text("Album")
                         Spacer()
                         Text(item.album).opacity(0.5)
                     }
-                    HStack{
+                    HStack {
                         Image(systemName: "globe")
                             .frame(width: 32, height: 32)
                         Text("Source")
@@ -87,7 +87,7 @@ struct SongDetailView: View {
                         Text(item.source).opacity(0.5)
                     }
                     if item.codec != nil {
-                        HStack{
+                        HStack {
                             Image(systemName: "doc")
                                 .frame(width: 32, height: 32)
                             Text("Codec")
@@ -96,7 +96,7 @@ struct SongDetailView: View {
                         }
                     }
                     if item.bitrate != nil {
-                        HStack{
+                        HStack {
                             Image(systemName: "radio")
                                 .frame(width: 32, height: 32)
                             Text("Bitrate")
@@ -105,7 +105,7 @@ struct SongDetailView: View {
                         }
                     }
                     if item.year != nil {
-                        HStack{
+                        HStack {
                             Image(systemName: "clock")
                                 .frame(width: 32, height: 32)
                             Text("Year")
@@ -116,11 +116,11 @@ struct SongDetailView: View {
                 }
             }
             .navigationTitle("Details")
-                .toolbar {
-                    Button(NSLocalizedString("Close", comment: "")) {
-                        presentationMode.wrappedValue.dismiss()
-                    }
+            .toolbar {
+                Button(NSLocalizedString("Close", comment: "")) {
+                    presentationMode.wrappedValue.dismiss()
                 }
+            }
         }
     }
 }

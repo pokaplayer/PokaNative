@@ -10,7 +10,7 @@ import SwiftUI
 struct Home: View {
     @State var resData = [HomeResponse]()
     var body: some View {
-        ScrollView{
+        ScrollView {
             HomeRandomPlay()
                 .background(.ultraThinMaterial)
                 .cornerRadius(5)
@@ -24,11 +24,11 @@ struct Home: View {
             Spacer()
         }
         .navigationTitle("Home")
-        .onAppear() {
-            PokaAPI.shared.getHome() { (result) in
+        .onAppear {
+            PokaAPI.shared.getHome { result in
                 self.resData = result
             }
-        } 
+        }
     }
 }
 

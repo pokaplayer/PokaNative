@@ -12,30 +12,29 @@ struct PlaylistView: View {
     @State private var resData = [Song]()
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
     var body: some View {
-        List{
-            VStack{
+        List {
+            VStack {
                 PlaylistCoverView(coverURL: playlist.image ?? playlist.cover ?? "/img/icons/apple-touch-icon.png", size: 200)
                     .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 Text(playlist.name)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-                HStack  {
+                HStack {
                     Spacer()
                 }
             }
             .padding(.top, 10.0)
-            
+
             SongView(songs: resData)
-            
-        }.onAppear() {
-            PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { (result) in
+
+        }.onAppear {
+            PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { result in
                 self.resData = result
             }
         }.listStyle(GroupedListStyle())
-        
-        .frame(maxWidth: .infinity)
-        .navigationTitle("Playlist")
+
+            .frame(maxWidth: .infinity)
+            .navigationTitle("Playlist")
     }
 }
-

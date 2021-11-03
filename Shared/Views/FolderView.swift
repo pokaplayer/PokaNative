@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct FolderView: View { 
+struct FolderView: View {
     var folderID, source, title: String?
     @State var resData: Folders?
     var body: some View {
-        VStack{
-            List{
+        VStack {
+            List {
                 if resData?.folders != nil && !(resData?.folders.isEmpty ?? false) {
                     Section(header: Text("Folders")) {
                         ForEach(resData?.folders ?? [Folder](), id: \.self) { item in
@@ -24,13 +24,12 @@ struct FolderView: View {
                 }
                 if resData?.songs != nil && !(resData?.songs.isEmpty ?? false) {
                     Section(header: Text("Songs")) {
-                        SongView(songs: resData?.songs ?? [Song]()) 
+                        SongView(songs: resData?.songs ?? [Song]())
                     }
                 }
-                
             }
-        }.onAppear() {
-            PokaAPI.shared.getFolder(folderID: folderID, source: source) { (result) in
+        }.onAppear {
+            PokaAPI.shared.getFolder(folderID: folderID, source: source) { result in
                 self.resData = result
             }
         }

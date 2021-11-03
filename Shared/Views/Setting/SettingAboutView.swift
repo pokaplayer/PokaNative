@@ -13,8 +13,8 @@ struct SettingAboutView: View {
     @State private var showAlert: Bool = false
     @State private var versionClickTimes: Int = 0
     var body: some View {
-        List{
-            VStack{
+        List {
+            VStack {
                 Image("Logo")
                     .resizable()
                     .scaledToFit()
@@ -28,7 +28,7 @@ struct SettingAboutView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .opacity(0.75)
-                HStack{
+                HStack {
                     Spacer()
                 }
             }
@@ -39,19 +39,18 @@ struct SettingAboutView: View {
                         versionClickTimes = 0
                         showAlert = true
                     }
-                }){
-                    HStack{
+                }) {
+                    HStack {
                         Text("App version")
                         Spacer()
                         Text(version).opacity(0.5)
                     }
                 }.buttonStyle(PlainButtonStyle())
-                
             }
             if serverStatus != nil {
                 Section(header: Text("Server Status")) {
-                    VStack(alignment: .leading){
-                        HStack{
+                    VStack(alignment: .leading) {
+                        HStack {
                             Text("User ID")
                             Spacer()
                         }
@@ -59,46 +58,44 @@ struct SettingAboutView: View {
                             .opacity(0.5)
                             .font(.system(size: 16, weight: .regular, design: .monospaced))
                     }
-                    HStack{
+                    HStack {
                         Text("Server version")
                         Spacer()
                         Text(serverStatus!.version).opacity(0.5)
-                    } 
+                    }
                     if serverStatus!.debug {
-                        HStack{
+                        HStack {
                             Text("Commit")
                             Spacer()
                             Text(serverStatus!.debugString ?? "None").opacity(0.5)
                         }
                     }
                 }
-                
             }
             Section(header: Text("Links")) {
-                Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative")!){
-                    HStack{
+                Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative")!) {
+                    HStack {
                         Text("GitHub")
                         Spacer()
                         Image(systemName: "arrow.up.right.square.fill")
                     }
                 }
-                
-                Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative/graphs/contributors")!){
-                    HStack{
+
+                Link(destination: URL(string: "https://github.com/pokaplayer/PokaNative/graphs/contributors")!) {
+                    HStack {
                         Text("Contributors")
                         Spacer()
                         Image(systemName: "arrow.up.right.square.fill")
                     }
                 }
-                
             }
         }
         .navigationTitle("About")
-        .alert("點那麼多次是要命ㄛ",isPresented: $showAlert)  {
-            Button("：（", role: .cancel) { }
+        .alert("點那麼多次是要命ㄛ", isPresented: $showAlert) {
+            Button("：（", role: .cancel) {}
         }
-        .onAppear() {
-            PokaAPI.shared.getStatus() { (result) in
+        .onAppear {
+            PokaAPI.shared.getStatus { result in
                 self.serverStatus = result
             }
         }

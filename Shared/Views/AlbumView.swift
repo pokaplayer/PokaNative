@@ -5,23 +5,22 @@
 //  Created by 勝勝寶寶 on 2021/10/7.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 
 struct AlbumView: View {
     var album: Album
     @State var resData = [Song]()
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
-    
+
     var body: some View {
-        
-        List{
-            VStack{
+        List {
+            VStack {
                 if #available(iOS 15.0, *) {
-                    CachedAsyncImage(url: URL(string: PokaURLParser(album.cover))){ image in
+                    CachedAsyncImage(url: URL(string: PokaURLParser(album.cover))) { image in
                         image.resizable()
                     } placeholder: {
-                        ZStack{
+                        ZStack {
                             VStack {
                                 Rectangle()
                                     .fill(Color.black.opacity(0.2))
@@ -37,21 +36,21 @@ struct AlbumView: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 }
                 Text(album.name)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                 Text(album.artist)
                     .font(.caption)
                     .opacity(0.75)
                     .multilineTextAlignment(.center)
-                HStack  {
+                HStack {
                     Spacer()
                 }
             }
-            .padding(.top, 10.0) 
+            .padding(.top, 10.0)
             SongView(songs: resData)
         }
-        /*.toolbar {
+        /* .toolbar {
          ToolbarItem(placement: .principal) {
          VStack {
          Text(album.name)
@@ -60,19 +59,20 @@ struct AlbumView: View {
          .foregroundColor(Color.black.opacity(0.75))
          }
          }
-         }*/.onAppear() {
-             PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { (result) in
-                 self.resData = result.songs 
-             }
-         }
-         .listStyle(GroupedListStyle())
-         .frame(maxWidth: .infinity)
-         .navigationTitle("Album")
+         } */ .onAppear {
+            PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { result in
+                self.resData = result.songs
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .frame(maxWidth: .infinity)
+        .navigationTitle("Album")
     }
 }
+
 /*
  struct AlbumView_Previews: PreviewProvider {
  static var previews: some View {
- 
+
  }
  }*/
