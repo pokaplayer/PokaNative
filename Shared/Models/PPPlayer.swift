@@ -54,7 +54,6 @@ class PPPlayer: AVPlayer, ObservableObject {
             name: .AVPlayerItemDidPlayToEndTime,
             object: nil
         )
-
         let center = MPRemoteCommandCenter.shared()
 
         center.previousTrackCommand.isEnabled = true
@@ -206,15 +205,16 @@ class PPPlayer: AVPlayer, ObservableObject {
     }
 
     @objc func nextTrack() {
-        dispatchQueue.async { [weak self] in
-            let currentItem = self!.currentPlayingItem!
-            do {
+        // log
+        let currentItem = currentPlayingItem!
+        do {
+            if currentItem.item != nil {
                 if currentItem.item!.duration.seconds - 10 < currentItem.item!.currentTime().seconds {
-                    PokaAPI.shared.recordSong(song: currentItem.song) { () in
-                    }
+                    PokaAPI.shared.recordSong(song: currentItem.song) { () in }
                 }
             }
         }
+        // next track
         if currentTrack + 1 > playerItems.count - 1 {
             setTrack(index: 0)
         } else {
