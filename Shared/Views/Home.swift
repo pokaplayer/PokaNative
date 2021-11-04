@@ -12,13 +12,10 @@ struct Home: View {
     var body: some View {
         ScrollView {
             HomeRandomPlay()
-                .background(.ultraThinMaterial)
-                .cornerRadius(5)
                 .padding(5)
             ForEach(resData) { item in
+                Divider()
                 HomeItem(item: item)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(5)
                     .padding(5)
             }
             Spacer()
