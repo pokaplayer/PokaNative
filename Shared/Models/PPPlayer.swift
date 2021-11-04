@@ -208,8 +208,7 @@ class PPPlayer: AVPlayer, ObservableObject {
         // log
         @AppStorage("dataRecording") var dataRecordingEnadled = false
         let currentItem = currentPlayingItem!
-        do {
-            print(dataRecordingEnadled)
+        do { 
             if currentItem.item != nil, dataRecordingEnadled {
                 PokaAPI.shared.recordSong(song: currentItem.song) { () in }
             }
