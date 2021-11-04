@@ -206,9 +206,11 @@ class PPPlayer: AVPlayer, ObservableObject {
 
     @objc func nextTrack() {
         // log
+        @AppStorage("dataRecording") var dataRecordingEnadled = false
         let currentItem = currentPlayingItem!
         do {
-            if currentItem.item != nil {
+            print(dataRecordingEnadled)
+            if currentItem.item != nil && dataRecordingEnadled {
                 if currentItem.item!.duration.seconds - 10 < currentItem.item!.currentTime().seconds {
                     PokaAPI.shared.recordSong(song: currentItem.song) { () in }
                 }
