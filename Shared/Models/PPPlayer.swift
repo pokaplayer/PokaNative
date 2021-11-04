@@ -50,7 +50,7 @@ class PPPlayer: AVPlayer, ObservableObject {
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(nextTrack),
+            selector: #selector(playerDidFinishPlaying),
             name: .AVPlayerItemDidPlayToEndTime,
             object: nil
         )
@@ -204,18 +204,20 @@ class PPPlayer: AVPlayer, ObservableObject {
         seek(to: 0)
     }
 
-    @objc func nextTrack() {
+    @objc func playerDidFinishPlaying() {
         // log
         @AppStorage("dataRecording") var dataRecordingEnadled = false
         let currentItem = currentPlayingItem!
         do {
             print(dataRecordingEnadled)
-            if currentItem.item != nil && dataRecordingEnadled {
-                if currentItem.item!.duration.seconds - 10 < currentItem.item!.currentTime().seconds {
-                    PokaAPI.shared.recordSong(song: currentItem.song) { () in }
-                }
+            if currentItem.item != nil, dataRecordingEnadled {
+                PokaAPI.shared.recordSong(song: currentItem.song) { () in }
             }
         }
+        nextTrack()
+    }
+
+    @objc func nextTrack() {
         // next track
         if currentTrack + 1 > playerItems.count - 1 {
             setTrack(index: 0)
