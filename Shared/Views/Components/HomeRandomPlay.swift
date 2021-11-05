@@ -21,7 +21,8 @@ struct HomeRandomPlay: View {
                 if items != nil {
                     player.setSongs(songs: items!)
                     player.setTrack(index: 0)
-                }
+                } 
+                loadRandomSongs()
             }) {
                 HStack {
                     Image(systemName: "play.fill")
@@ -44,13 +45,17 @@ struct HomeRandomPlay: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
         .onAppear(perform: {
-            PokaAPI.shared.getRandomSongs { result in
-                self.items = result
-            }
+            loadRandomSongs()
         })
     }
+    func loadRandomSongs(){
+        
+        PokaAPI.shared.getRandomSongs { result in
+            self.items = result
+        }
+    }
+    
 }
-
 struct HomeRandomPlay_Previews: PreviewProvider {
     static var previews: some View {
         HomeRandomPlay()
