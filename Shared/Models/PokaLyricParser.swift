@@ -84,7 +84,7 @@ class PokaLyricParser: ObservableObject {
     func getCurrentLineIndex(time: Double) -> Int {
         var res = 0
         for (index, item) in lyricItems.enumerated() {
-            if item.time < (time - 0.4) { // .4s: animation time
+            if item.time <= time + 0.2 {
                 res = index
             }
         }

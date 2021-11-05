@@ -11,6 +11,7 @@ struct Home: View {
     @State var resData = [HomeResponse]()
     var body: some View {
         ScrollView {
+            Divider()
             HomeRandomPlay()
                 .padding(5)
             ForEach(resData) { item in
