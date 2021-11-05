@@ -58,7 +58,7 @@ struct VPlaylistItemView: View {
         }
         return NavigationLink(destination: PlaylistView(playlist: playlist)) {
             VStack(alignment: .leading) {
-                if #available(iOS 15.0, *), imgLink != nil {
+                if imgLink != nil {
                     CachedAsyncImage(url: URL(string: imgLink!)) { image in
                         image.resizable()
                     } placeholder: {
@@ -81,6 +81,8 @@ struct VPlaylistItemView: View {
                     .font(.body)
                     .fontWeight(.bold)
                     .lineLimit(1)
+                Text(NSLocalizedString(playlist.source, comment: ""))
+                    .font(.caption)
             }
             .padding(.horizontal, 5.0)
         }.buttonStyle(PlainButtonStyle())

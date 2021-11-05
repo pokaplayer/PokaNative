@@ -49,6 +49,8 @@
 		15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B4270DF07300C8DED3 /* Defaults.swift */; };
 		15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B8270DF96800C8DED3 /* Poka.swift */; };
+		15FA7BEE2734E5040092E9DA /* SongItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA7BED2734E5040092E9DA /* SongItemView.swift */; };
+		15FA7BF02734E7C70092E9DA /* VArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA7BEF2734E7C70092E9DA /* VArtistsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaAPI.swift; sourceTree = "<group>"; };
 		15E0B7B4270DF07300C8DED3 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		15E0B7B8270DF96800C8DED3 /* Poka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poka.swift; sourceTree = "<group>"; };
+		15FA7BED2734E5040092E9DA /* SongItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongItemView.swift; sourceTree = "<group>"; };
+		15FA7BEF2734E7C70092E9DA /* VArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VArtistsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +183,6 @@
 				15BB9DB72710A54900CF911C /* AlbumsView.swift */,
 				159673E826DB315C00621279 /* AlbumView.swift */,
 				15872ABA27109B6800680A4A /* ArtistView.swift */,
-				15BB9DBF2711DC0400CF911C /* Components */,
 				15872ABD27109E2A00680A4A /* ComposerView.swift */,
 				15A6DF36271038350038F17E /* FolderView.swift */,
 				159673E526DB223D00621279 /* Home.swift */,
@@ -188,6 +191,7 @@
 				15BB9DBA2711656300CF911C /* PlaylistsView.swift */,
 				15BB9DC32711DC9500CF911C /* PlaylistView.swift */,
 				158F7350272A312700E39865 /* SearchView.swift */,
+				15BB9DBF2711DC0400CF911C /* Components */,
 				1512565927156E2B00704491 /* Setting */,
 			);
 			path = Views;
@@ -200,11 +204,13 @@
 				15BC3CEF2717CFB300491B38 /* HomeItem.swift */,
 				158F73422729787900E39865 /* HomeRandomPlay.swift */,
 				15BB9DC62712026000CF911C /* MiniPlayerView.swift */,
+				15C59C4A271EED26008D1570 /* Player */,
 				155C9EA82719B49E0051F8A8 /* PlaylistItemView.swift */,
 				158F7352272A437B00E39865 /* SearchResultView.swift */,
-				15BB9DC02711DC2100CF911C /* SongView.swift */,
-				15C59C4A271EED26008D1570 /* Player */,
+				15FA7BEF2734E7C70092E9DA /* VArtistsView.swift */,
 				157AC196272F87F000C0F932 /* SongDetail */,
+				15BB9DC02711DC2100CF911C /* SongView.swift */,
+				15FA7BED2734E5040092E9DA /* SongItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FA7BF02734E7C70092E9DA /* VArtistsView.swift in Sources */,
 				15872ABE27109E2A00680A4A /* ComposerView.swift in Sources */,
 				155C9EA92719B49E0051F8A8 /* PlaylistItemView.swift in Sources */,
 				159673D926DB1FBE00621279 /* ContentView.swift in Sources */,
@@ -339,6 +346,7 @@
 				159673E626DB223D00621279 /* Home.swift in Sources */,
 				15BB9DBB2711656300CF911C /* PlaylistsView.swift in Sources */,
 				15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */,
+				15FA7BEE2734E5040092E9DA /* SongItemView.swift in Sources */,
 				15C4640C272EA7710051ACA0 /* PokaLyricParser.swift in Sources */,
 				15BB9DC72712026000CF911C /* MiniPlayerView.swift in Sources */,
 				15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */,
