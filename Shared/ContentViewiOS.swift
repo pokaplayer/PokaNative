@@ -13,11 +13,12 @@ struct ContentViewiOS: View {
     @State private var showPlayerOverlay = false
 
     init() {
-        let barAppearance = UITabBarAppearance()
-        barAppearance.configureWithDefaultBackground()
-        barAppearance.backgroundEffect = blurEffect
-        UITabBar.appearance().scrollEdgeAppearance = barAppearance
-        UITabBar.appearance().standardAppearance = barAppearance
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemGray6
+        
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
     }
 
     var body: some View {

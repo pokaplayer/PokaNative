@@ -54,7 +54,7 @@ struct PokaMiniplayer: View {
             .padding(.horizontal)
             Spacer()
         }
-        .background(.regularMaterial)
+        .background(.systemGray6)
     }
 }
 

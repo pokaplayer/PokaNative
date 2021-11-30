@@ -71,7 +71,7 @@
 "Record playback data" = "記錄播放資料";
 "Clear the recorded data" = "清除已記錄的資料";
 "%lld records have been recorded" = "目前已記錄 %lld 筆資料";
-"The data will only be calculated on your server and will not be uploaded to the Internet. The feature can provide you with a better experience (like: annual review, recent play). You can turn off this feature below and clear the recorded data if you want." = "資料僅會於您的伺服器進行運算，不會被上傳至網路進行分析。 該功能可提供您更優質的使用體驗（如：年度回顧、最近播放）。 若您有疑慮可於下方關閉此功能，並將已記錄的資料清除。";
+"The data will only be calculated on your server and will not be uploaded to the Internet. The feature can provide you with a better experience (like: annual review, recent play). You can turn off this feature and clear the recorded data if you want." = "資料僅會於您的伺服器進行運算，不會被上傳至網路進行分析。 該功能可提供您更優質的使用體驗（如：年度回顧、最近播放）。 若您有疑慮可關閉此功能，並將已記錄的資料清除。";
 // MARK: - Login
 "Server" = "伺服器";
 "Username" = "使用者名稱";
