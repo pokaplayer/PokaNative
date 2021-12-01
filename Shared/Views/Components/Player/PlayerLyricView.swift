@@ -37,7 +37,7 @@ struct PlayerLyricView: View {
     @State var currentLyricSongID = UUID()
     @State var currentLyricIndex = 0
     @State var lyricSearchResult: [Lyric] = []
-
+    @State private var searchText = ""
     let timeObserver = PlayerTimeObserver()
     var body: some View {
         VStack {
@@ -87,6 +87,9 @@ struct PlayerLyricView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(count: 2) {
+            let currentPlayingItem = ppplayer.currentPlayingItem!.song
+            searchText = "\(currentPlayingItem.name) \(currentPlayingItem.artist)"
+            
             showLyricSheet = true
         }
 
@@ -97,8 +100,8 @@ struct PlayerLyricView: View {
                         if lyricSearchResult.count > 0 {
                             List {
                                 Button(action: {
-                                    lyricParser.loadLyric(lyric: "[00:00.000] No lyric :(")
-                                    saveLyric(lyric: "[00:00.000] No lyric :(")
+                                    lyricParser.loadLyric(lyric: "[00:00.000]")
+                                    saveLyric(lyric: "[00:00.000]")
                                     self.showLyricSheet = false
                                 }) {
                                     VStack(alignment: .leading) {
@@ -134,6 +137,14 @@ struct PlayerLyricView: View {
                     } else {
                         ProgressView()
                     }
+                }
+                .searchable(text: $searchText) {
+                    Button(action: {
+                        searchLyricByKeyword(keyword: searchText)
+                        searchText = ""
+                    }, label: {
+                        Text("Search for \(searchText)")
+                    })
                 }
                 .navigationBarTitle("Search lyric")
                 .toolbar {
@@ -181,13 +192,17 @@ struct PlayerLyricView: View {
 
     func searchLyric() {
         let currentPlayingItem = ppplayer.currentPlayingItem!.song
+        searchText = "\(currentPlayingItem.name) \(currentPlayingItem.artist)"
+        searchLyricByKeyword(keyword: searchText)
+    }
+    func searchLyricByKeyword(keyword: String) {
         gotLyric = false
-        PokaAPI.shared.searchLyric(keyword: "\(currentPlayingItem.name) \(currentPlayingItem.artist)") { result in
+        PokaAPI.shared.searchLyric(keyword: keyword) { result in
             if result.lyrics.count > 0 {
                 lyricParser.loadLyric(lyric: result.lyrics[0].lyric)
                 lyricSearchResult = result.lyrics
             } else {
-                lyricParser.loadLyric(lyric: "[00:00.000] No lyric :(")
+                lyricParser.loadLyric(lyric: "[00:00.000] ._.")
             }
             self.gotLyric = true
         }
