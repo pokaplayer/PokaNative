@@ -40,10 +40,11 @@ struct SongItemView: View {
         }
     }
 }
+
 /*
-struct SongItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongItemView()
-    }
-}
-*/
+ struct SongItemView_Previews: PreviewProvider {
+     static var previews: some View {
+         SongItemView()
+     }
+ }
+ */

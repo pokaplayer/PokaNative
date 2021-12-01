@@ -98,7 +98,7 @@ struct SearchView: View {
     }
 
     func getSearchResult() {
-        self.resData = nil
+        resData = nil
         PokaAPI.shared.getSearchResult(keyword: searchText) { result in
             self.resData = result
         }

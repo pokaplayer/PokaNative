@@ -89,7 +89,7 @@ struct PlayerLyricView: View {
         .onTapGesture(count: 2) {
             let currentPlayingItem = ppplayer.currentPlayingItem!.song
             searchText = "\(currentPlayingItem.name) \(currentPlayingItem.artist)"
-            
+
             showLyricSheet = true
         }
 
@@ -141,7 +141,6 @@ struct PlayerLyricView: View {
                 .searchable(text: $searchText) {
                     Button(action: {
                         searchLyricByKeyword(keyword: searchText)
-                        searchText = ""
                     }, label: {
                         Text("Search for \(searchText)")
                     })
@@ -195,6 +194,7 @@ struct PlayerLyricView: View {
         searchText = "\(currentPlayingItem.name) \(currentPlayingItem.artist)"
         searchLyricByKeyword(keyword: searchText)
     }
+
     func searchLyricByKeyword(keyword: String) {
         gotLyric = false
         PokaAPI.shared.searchLyric(keyword: keyword) { result in

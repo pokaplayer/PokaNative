@@ -13,5 +13,5 @@ struct SongView: View {
         ForEach(Array(songs.enumerated()), id: \.offset) { index, item in
             SongItemView(item: item, items: songs, index: index)
         }
-    } 
+    }
 }

@@ -16,7 +16,7 @@ struct SearchResultView: View {
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
                     .font(.caption)
-                ScrollView  {
+                ScrollView {
                     ForEach(Array(items.songs.enumerated()), id: \.offset) { index, item in
                         SongItemView(item: item, items: items.songs, index: index)
                             .padding(.horizontal, 10.0)
@@ -70,7 +70,6 @@ struct SearchResultView: View {
                     .padding(.horizontal, 10.0)
                 }
             }
-            
         }
     }
 }

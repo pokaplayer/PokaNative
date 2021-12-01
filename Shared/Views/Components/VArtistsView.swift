@@ -5,12 +5,11 @@
 //  Created by 勝勝寶寶 on 2021/11/5.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 struct VArtistsView: View {
     var item: Artist
     var body: some View {
-        
         var imgLink: String? = item.cover
         if imgLink != nil {
             if !imgLink!.hasPrefix("http") {
@@ -49,10 +48,11 @@ struct VArtistsView: View {
         }.buttonStyle(PlainButtonStyle())
     }
 }
+
 /*
-struct VArtistsView_Previews: PreviewProvider {
-    static var previews: some View {
-        VArtistsView()
-    }
-}
-*/
+ struct VArtistsView_Previews: PreviewProvider {
+     static var previews: some View {
+         VArtistsView()
+     }
+ }
+ */
