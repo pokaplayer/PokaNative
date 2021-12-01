@@ -123,27 +123,35 @@ struct PlayerLyricView: View {
                                 }
                             }
                         } else {
-                            Button(action: searchLyric, label: {
-                                Text("Search")
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                            })
-                            .padding(.vertical, 10)
-                            .background(Color.purple)
-                            .foregroundColor(.white)
-                            .cornerRadius(13)
-                            .padding(.top, 20)
-                            .padding(.bottom, 20)
+                            VStack {
+                                Button(action: searchLyric, label: {
+                                    Text("Search")
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                })
+                                .padding(.vertical, 10)
+                                .background(Color.purple)
+                                .foregroundColor(.white)
+                                .cornerRadius(13)
+                                .padding(.all, 20)
+                                Spacer()
+                            }
                         }
                     } else {
                         ProgressView()
                     }
                 }
                 .searchable(text: $searchText) {
-                    Button(action: {
-                        searchLyricByKeyword(keyword: searchText)
-                    }, label: {
-                        Text("Search for \(searchText)")
-                    })
+                    VStack {
+                        Button(action: { searchLyricByKeyword(keyword: searchText) }, label: {
+                            Text("Search")
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                        })
+                        .padding(.vertical, 10)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(13)
+                        Spacer()
+                    }
                 }
                 .navigationBarTitle("Search lyric")
                 .toolbar {
