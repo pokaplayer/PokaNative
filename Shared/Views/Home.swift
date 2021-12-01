@@ -28,7 +28,7 @@ struct Home: View {
             if UIDevice.isIPhone {
                 Rectangle()
                     .fill(.clear)
-                    .frame(width: .infinity, height: 56)
+                    .frame(height: 56)
             }
         }
         .navigationTitle("Home")
