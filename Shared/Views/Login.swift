@@ -95,6 +95,11 @@ struct Login: View {
                 Text("OK")
             }
         }
+        .onAppear(perform: {
+            if server != "" && username != "" && password != "" {
+                login()
+            }
+        })
     }
 
     func login() {
