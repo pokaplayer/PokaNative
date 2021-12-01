@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct Home: View {
-    @State var resData = [HomeResponse]()
+    @State var resData: [HomeResponse]?
     var body: some View {
         ScrollView {
             Divider()
             HomeRandomPlay()
                 .padding(5)
-            ForEach(resData) { item in
-                Divider()
-                HomeItem(item: item)
-                    .padding(5)
+
+            if resData != nil {
+                ForEach(resData!) { item in
+                    Divider()
+                    HomeItem(item: item)
+                        .padding(5)
+                }
+            } else {
+                ProgressView()
             }
             Spacer()
             if UIDevice.isIPhone {
@@ -28,8 +33,10 @@ struct Home: View {
         }
         .navigationTitle("Home")
         .onAppear {
-            PokaAPI.shared.getHome { result in
-                self.resData = result
+            if resData == nil {
+                PokaAPI.shared.getHome { result in
+                    self.resData = result
+                }
             }
         }
     }
