@@ -27,6 +27,7 @@ struct ArtistView: View {
                 }
             }
         }
+        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getArtist { result in
                 self.resData = result

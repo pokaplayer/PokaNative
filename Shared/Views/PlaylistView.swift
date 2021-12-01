@@ -27,14 +27,15 @@ struct PlaylistView: View {
             .padding(.top, 10.0)
 
             SongView(songs: resData)
-
-        }.onAppear {
+        }
+        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+        .onAppear {
             PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { result in
                 self.resData = result
             }
         }.listStyle(GroupedListStyle())
 
-            .frame(maxWidth: .infinity)
-            .navigationTitle("Playlist")
+        .frame(maxWidth: .infinity)
+        .navigationTitle("Playlist")
     }
 }

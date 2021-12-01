@@ -33,9 +33,11 @@ struct Library: View {
                     }
                     .padding(5.0)
                 }
-                Spacer()
 
-            }.navigationTitle("Library")
+                Spacer()
+            }
+            .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+            .navigationTitle("Library")
         }
     }
 }

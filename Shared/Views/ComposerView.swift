@@ -27,6 +27,7 @@ struct ComposerView: View {
                 }
             }
         }
+        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getComposers { result in
                 self.resData = result

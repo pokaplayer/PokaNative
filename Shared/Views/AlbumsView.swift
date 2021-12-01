@@ -29,6 +29,12 @@ struct AlbumsView: View {
                     }
                 }
                 .padding(.horizontal, 10)
+
+                if player.currentPlayingItem != nil && UIDevice.isIPhone {
+                    Rectangle()
+                        .fill(.clear)
+                        .frame(width: .infinity, height: 56)
+                }
             }
         }
         .frame(width: .infinity)

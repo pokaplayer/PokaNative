@@ -20,6 +20,11 @@ struct Home: View {
                     .padding(5)
             }
             Spacer()
+            if UIDevice.isIPhone {
+                Rectangle()
+                    .fill(.clear)
+                    .frame(width: .infinity, height: 56)
+            }
         }
         .navigationTitle("Home")
         .onAppear {

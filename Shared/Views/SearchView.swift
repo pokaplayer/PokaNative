@@ -63,6 +63,12 @@ struct SearchView: View {
                 }
             }
             Spacer()
+
+            if player.currentPlayingItem != nil && UIDevice.isIPhone {
+                Rectangle()
+                    .fill(.clear)
+                    .frame(height: 72)
+            }
         }
         .navigationTitle("Search")
         .toolbar {
