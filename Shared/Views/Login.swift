@@ -30,6 +30,7 @@ struct Login: View {
     var bundleVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
     @Binding var showLogin: Bool
+    @State private var isLogining = false
     var body: some View {
         VStack {
             Spacer()
@@ -56,15 +57,20 @@ struct Login: View {
                 .textFieldStyle(LoginTextFieldStyle())
 
             Button(action: login, label: {
-                Text("Login")
+                if isLogining {
+                    ProgressView()
+                } else {
+                    Text("Login")
+                }
             })
             .padding(.vertical, 10)
             .frame(width: 300.0)
-            .background(Color.purple)
+            .background(isLogining ? .systemGray6 : .purple)
             .foregroundColor(.white)
             .cornerRadius(13)
             .padding(.top, 20)
             .padding(.bottom, 20)
+            .disabled(isLogining)
 
             Spacer()
             Button(action: { showBundleVersion = true }) {
@@ -104,13 +110,16 @@ struct Login: View {
         PokaAPI.shared.baseURL = URL(string: defaults.string(forKey: "baseURL") ?? "")!
         PokaAPI.shared.baseURLString = server
 
+        isLogining = true
         // login
         PokaAPI.shared.login(username: username, password: password) { result in
             if result.success {
                 showLogin = false
+                isLogining = false
             } else {
                 loginErrorString = result.error ?? ""
                 showErrorAlert = true
+                isLogining = false
             }
         }
     }
