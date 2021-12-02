@@ -96,7 +96,7 @@ struct Login: View {
             }
         }
         .onAppear(perform: {
-            if server != "" && username != "" && password != "" {
+            if server != "", username != "", password != "" {
                 login()
             }
         })

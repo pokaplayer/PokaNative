@@ -10,30 +10,48 @@ import SwiftUI
 
 var baseURL = defaults.string(forKey: "baseURL") ?? ""
 struct ArtistView: View {
-    @State var resData: Artists?
+    @State var resData: [Artist]?
+    @State var filteredData: [Artist]?
+    @State private var searchText = ""
     var body: some View {
-        List(resData?.artists ?? [Artist]()) { item in
-            NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "artist")) {
-                HStack {
-                    CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
+        VStack{
+            if filteredData != nil {
+                List(filteredData!) { item in
+                    NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "artist")) {
+                        HStack {
+                            CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(.infinity)
+                            .aspectRatio(1, contentMode: .fill)
+                            Text(item.name)
+                        }
                     }
-                    .frame(width: 40, height: 40)
-                    .cornerRadius(.infinity)
-                    .aspectRatio(1, contentMode: .fill)
-                    Text(item.name)
                 }
+                .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+                .navigationTitle("Artists")
+                .searchable(text: $searchText)
+                .onChange(of: searchText) { searchText in
+                    if !searchText.isEmpty {
+                        filteredData = resData!.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+                    } else {
+                        filteredData = resData
+                    }
+                }
+            } else {
+                ProgressView()
             }
         }
-        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getArtist { result in
-                self.resData = result
+                self.resData = result.artists
+                self.filteredData = result.artists
             }
         }
-        .navigationTitle("Artists")
+        
     }
 }
 
