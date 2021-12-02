@@ -19,6 +19,7 @@ struct PlayerLyricTextView: View {
                     .font(isTranslatedlyric ? .title2 : .title)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
+                    .shadow(color: .black.opacity(0.2), radius: 3, x: 0, y: 1)
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 10.0)
                     .padding(.horizontal, 20.0)
