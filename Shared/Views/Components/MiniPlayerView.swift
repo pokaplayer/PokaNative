@@ -79,6 +79,6 @@ struct MiniPlayerView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
             keyboardShowed = false
-        } 
+        }
     }
 }
