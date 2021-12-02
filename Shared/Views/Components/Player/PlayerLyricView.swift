@@ -78,8 +78,8 @@ struct PlayerLyricView: View {
                         LinearGradient(
                             stops: [
                                 Gradient.Stop(color: .clear, location: .zero),
-                                Gradient.Stop(color: .black, location: 0.25),
-                                Gradient.Stop(color: .black, location: 0.75),
+                                Gradient.Stop(color: .black, location: 0.1),
+                                Gradient.Stop(color: .black, location: 0.9),
                                 Gradient.Stop(color: .clear, location: 1),
 
                             ],
