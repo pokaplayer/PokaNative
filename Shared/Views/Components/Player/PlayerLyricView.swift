@@ -140,20 +140,12 @@ struct PlayerLyricView: View {
                         ProgressView()
                     }
                 }
-                .searchable(text: $searchText) {
-                    VStack {
-                        Button(action: { searchLyricByKeyword(keyword: searchText) }, label: {
-                            Text("Search")
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                        })
-                        .padding(.vertical, 10)
-                        .background(Color.purple)
-                        .foregroundColor(.white)
-                        .cornerRadius(13)
-                        Spacer()
-                    }
+                .searchable(text: $searchText)
+                .onSubmit(of: .search) { // 1
+                    print("submit searchLyricByKeyword")
+                    searchLyricByKeyword(keyword: searchText)
                 }
-                .navigationBarTitle("Search lyric")
+                .navigationBarTitle("Search")
                 .toolbar {
                     Button(action: {
                         self.showLyricSheet = false

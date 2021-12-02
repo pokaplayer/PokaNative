@@ -14,7 +14,7 @@ struct ArtistView: View {
     @State var filteredData: [Artist]?
     @State private var searchText = ""
     var body: some View {
-        VStack{
+        VStack {
             if filteredData != nil {
                 List(filteredData!) { item in
                     NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "artist")) {
@@ -51,7 +51,6 @@ struct ArtistView: View {
                 self.filteredData = result.artists
             }
         }
-        
     }
 }
 
