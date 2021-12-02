@@ -140,7 +140,7 @@ struct PlayerLyricView: View {
                         ProgressView()
                     }
                 }
-                .searchable(text: $searchText)
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                 .onSubmit(of: .search) { // 1
                     print("submit searchLyricByKeyword")
                     searchLyricByKeyword(keyword: searchText)
