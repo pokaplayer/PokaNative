@@ -47,6 +47,9 @@ struct PlayerLyricView: View {
             if gotLyric {
                 ScrollViewReader { value in
                     ScrollView {
+                        Rectangle()
+                            .frame(height: 300.0)
+                            .opacity(0)
                         ForEach(Array(lyricParser.lyricItems.enumerated()), id: \.element.id) { index, item in
                             if index == currentLyricIndex || (lyricParser.lyricTranslated && index == currentLyricIndex + 1) {
                                 PlayerLyricTextView(
@@ -67,7 +70,23 @@ struct PlayerLyricView: View {
                                 .opacity(0.5)
                             }
                         }
+                        Rectangle()
+                            .frame(height: 300.0)
+                            .opacity(0)
                     }
+                    .mask(
+                        LinearGradient(
+                            stops: [
+                                Gradient.Stop(color: .clear, location: .zero),
+                                Gradient.Stop(color: .black, location: 0.25),
+                                Gradient.Stop(color: .black, location: 0.75),
+                                Gradient.Stop(color: .clear, location: 1),
+
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
                     .onReceive(timeObserver.publisher) { time in
                         withAnimation(.easeInOut(duration: 0.2)) {
                             let temp = self.currentLyricIndex
