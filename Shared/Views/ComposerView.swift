@@ -10,9 +10,11 @@ import SwiftUI
 
 struct ComposerView: View {
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
-    @State var resData: Composers?
+    @State var resData: [Composer]?
+    @State var filteredData: [Composer]?
+    @State private var searchText = ""
     var body: some View {
-        List(resData?.composers ?? [Composer]()) { item in
+        List(filteredData ?? [Composer]()) { item in
             NavigationLink(destination: AlbumsView(itemID: item.id, source: item.source, name: item.name, itemType: "composer")) {
                 HStack {
                     CachedAsyncImage(url: URL(string: PokaURLParser(item.cover))) { image in
@@ -30,7 +32,16 @@ struct ComposerView: View {
         .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getComposers { result in
-                self.resData = result
+                self.resData = result.composers
+                self.filteredData = result.composers
+            }
+        }
+        .searchable(text: $searchText)
+        .onChange(of: searchText) { searchText in
+            if !searchText.isEmpty {
+                filteredData = resData!.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            } else {
+                filteredData = resData
             }
         }
         .navigationTitle("Composers")
