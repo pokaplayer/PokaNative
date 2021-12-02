@@ -60,15 +60,25 @@ struct PokaMiniplayer: View {
 
 struct MiniPlayerView: View {
     @StateObject private var ppplayer = player
+    @State private var keyboardShowed: Bool = false
+    @State private var keyboardHiding: Bool = false
     var body: some View {
-        if player.currentPlayingItem != nil {
-            if UIDevice.isIPhone {
-                PokaMiniplayer()
-                    .frame(height: 56)
-                    .offset(y: -56)
-            } else {
-                PokaMiniplayer()
+        VStack {
+            if player.currentPlayingItem != nil {
+                if UIDevice.isIPhone {
+                    PokaMiniplayer()
+                        .frame(height: 56)
+                        .offset(y: keyboardShowed ? -8 : -56)
+                } else {
+                    PokaMiniplayer()
+                }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            keyboardShowed = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+            keyboardShowed = false
+        } 
     }
 }
