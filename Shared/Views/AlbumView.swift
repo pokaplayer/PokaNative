@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AlbumView: View {
     var album: Album
+    @State var loading = false
     @State var resData = [Song]()
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
 
@@ -48,26 +49,39 @@ struct AlbumView: View {
                 }
             }
             .padding(.top, 10.0)
-            SongView(songs: resData)
+            if loading {
+                VStack{
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            } else {
+                SongView(songs: resData)
+            }
         }
-        /* .toolbar {
-         ToolbarItem(placement: .principal) {
-         VStack {
-         Text(album.name)
-         Text(album.artist)
-         .font(.caption)
-         .foregroundColor(Color.black.opacity(0.75))
-         }
-         }
-         } */ .onAppear {
-            PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { result in
+        .navigationTitle("Album")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(album.name)
+                        .fontWeight(.bold)
+                    Text(album.artist)
+                        .font(.caption)
+                        .foregroundColor(Color.black.opacity(0.75))
+                }
+            }
+        }.onAppear {
+            self.loading = true
+            PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { result in 
                 self.resData = result.songs
+                self.loading = false
             }
         }
         .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
         .listStyle(GroupedListStyle())
         .frame(maxWidth: .infinity)
-        .navigationTitle("Album")
+        // .navigationTitle("Album")
     }
 }
 
