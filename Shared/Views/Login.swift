@@ -31,6 +31,8 @@ struct Login: View {
 
     @Binding var showLogin: Bool
     @State private var isLogining = false
+
+    @AppStorage("autoLogin") var autoLogin = true
     var body: some View {
         VStack {
             Spacer()
@@ -96,7 +98,7 @@ struct Login: View {
             }
         }
         .onAppear(perform: {
-            if server != "", username != "", password != "" {
+            if server != "", username != "", password != "", autoLogin {
                 login()
             }
         })
