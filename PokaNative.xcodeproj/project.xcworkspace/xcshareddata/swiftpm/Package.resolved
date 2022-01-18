@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/lorenzofiamingo/SwiftUI-CachedAsyncImage",
         "state": {
           "branch": null,
-          "revision": "1970bafb504f3ec6c85b9c532b7b0b8b6ac7d813",
-          "version": "1.0.0"
+          "revision": "eb489a699be1f6e6c1a19fecdd6bfdc556474fd6",
+          "version": "1.4.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
         "state": {
           "branch": null,
-          "revision": "ac4959d321d2fbf6b66720426ef0716b6865ddd8",
-          "version": "0.1.0"
+          "revision": "eb6a23fc4cc79545e40a8cf5c82119684750194f",
+          "version": "0.1.1"
         }
       }
     ]

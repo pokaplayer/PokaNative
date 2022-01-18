@@ -77,18 +77,18 @@ struct PlayerControllerView: View {
                 Spacer()
                 if UIDevice.isIPhone {
                     PlayerControllerIconButtonView(
-                        action: { activeView = "player" },
+                        action: { withAnimation(.easeInOut){ activeView = "player" }},
                         active: activeView == "player",
                         icon: "play"
                     )
                 }
                 PlayerControllerIconButtonView(
-                    action: { activeView = "list" },
+                    action: { withAnimation(.easeInOut){ activeView = "list"} },
                     active: activeView == "list",
                     icon: "list.bullet.circle"
                 )
                 PlayerControllerIconButtonView(
-                    action: { activeView = "lyric" },
+                    action: { withAnimation(.easeInOut){ activeView = "lyric"} },
                     active: activeView == "lyric",
                     icon: "captions.bubble"
                 )
