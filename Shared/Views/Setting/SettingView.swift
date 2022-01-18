@@ -22,6 +22,9 @@ struct SettingView: View {
                 NavigationLink(destination: SettingDataRecording()) {
                     Label("Data record", systemImage: "arrow.up.doc")
                 }
+                NavigationLink(destination: SettingUser()) {
+                    Label("User", systemImage: "person")
+                }
             }
         }.navigationTitle("Settings")
     }
