@@ -50,7 +50,7 @@ struct AlbumView: View {
             }
             .padding(.top, 10.0)
             if loading {
-                VStack{
+                VStack {
                     Spacer()
                     ProgressView()
                     Spacer()
@@ -68,12 +68,12 @@ struct AlbumView: View {
                         .fontWeight(.bold)
                     Text(album.artist)
                         .font(.caption)
-                        .foregroundColor(Color.black.opacity(0.75))
+                        .opacity(0.75)
                 }
             }
         }.onAppear {
             self.loading = true
-            PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { result in 
+            PokaAPI.shared.getAlbumSongs(albumID: album.id, source: album.source) { result in
                 self.resData = result.songs
                 self.loading = false
             }
