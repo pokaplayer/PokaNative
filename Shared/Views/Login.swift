@@ -55,7 +55,7 @@ struct Login: View {
                 .textFieldStyle(LoginTextFieldStyle())
             SecureField("Password", text: $password)
                 .onSubmit(login)
-                .submitLabel(.go)
+                .submitLabel(.return)
                 .textFieldStyle(LoginTextFieldStyle())
 
             Button(action: login, label: {
@@ -72,7 +72,7 @@ struct Login: View {
             .cornerRadius(13)
             .padding(.top, 20)
             .padding(.bottom, 20)
-            .disabled(isLogining)
+            .disabled(isLogining) 
 
             Spacer()
             Button(action: { showBundleVersion = true }) {

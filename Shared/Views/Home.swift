@@ -10,14 +10,12 @@ import SwiftUI
 struct Home: View {
     @State var resData: [HomeResponse]?
     var body: some View {
-        ScrollView {
-            Divider()
+        ScrollView { 
             HomeRandomPlay()
                 .padding(5)
 
             if resData != nil {
-                ForEach(resData!) { item in
-                    Divider()
+                ForEach(resData!) { item in 
                     HomeItem(item: item)
                         .padding(5)
                 }

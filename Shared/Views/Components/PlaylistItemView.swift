@@ -83,6 +83,7 @@ struct VPlaylistItemView: View {
                     .lineLimit(1)
                 Text(NSLocalizedString(playlist.source, comment: ""))
                     .font(.caption)
+                    .opacity(0.5)
             }
             .padding(.horizontal, 5.0)
         }.buttonStyle(PlainButtonStyle())

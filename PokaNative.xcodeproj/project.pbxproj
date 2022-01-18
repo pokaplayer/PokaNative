@@ -50,6 +50,7 @@
 		15E0B7B1270DD87900C8DED3 /* PokaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */; };
 		15E0B7B5270DF07300C8DED3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B4270DF07300C8DED3 /* Defaults.swift */; };
 		15E0B7B9270DF96800C8DED3 /* Poka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0B7B8270DF96800C8DED3 /* Poka.swift */; };
+		15E2BD882796B47E00271A37 /* RecipeDetailTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2BD872796B47E00271A37 /* RecipeDetailTouchBar.swift */; };
 		15FA7BEE2734E5040092E9DA /* SongItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA7BED2734E5040092E9DA /* SongItemView.swift */; };
 		15FA7BF02734E7C70092E9DA /* VArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA7BEF2734E7C70092E9DA /* VArtistsView.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		15E0B7B0270DD87900C8DED3 /* PokaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaAPI.swift; sourceTree = "<group>"; };
 		15E0B7B4270DF07300C8DED3 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		15E0B7B8270DF96800C8DED3 /* Poka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poka.swift; sourceTree = "<group>"; };
+		15E2BD872796B47E00271A37 /* RecipeDetailTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeDetailTouchBar.swift; path = "../../Library/Developer/Xcode/DerivedData/PokaNative-axcorjlnhfmkwpeyfeheqouujmvb/SourcePackages/checkouts/SwiftUI-CachedAsyncImage/RecipeDetailTouchBar.swift"; sourceTree = "<group>"; };
 		15FA7BED2734E5040092E9DA /* SongItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongItemView.swift; sourceTree = "<group>"; };
 		15FA7BEF2734E7C70092E9DA /* VArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VArtistsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 		159673BE26DB1FBC00621279 = {
 			isa = PBXGroup;
 			children = (
+				15E2BD872796B47E00271A37 /* RecipeDetailTouchBar.swift */,
 				159673CD26DB1FBE00621279 /* iOS */,
 				159673CC26DB1FBE00621279 /* Products */,
 				159673C326DB1FBC00621279 /* Shared */,
@@ -360,6 +363,7 @@
 				15C4640E272EB4E70051ACA0 /* SongPlaylistView.swift in Sources */,
 				156F0EB72720FAD100E43109 /* SongDetailView.swift in Sources */,
 				15C59C4F271EED57008D1570 /* PlayerPlaylistView.swift in Sources */,
+				15E2BD882796B47E00271A37 /* RecipeDetailTouchBar.swift in Sources */,
 				159673D726DB1FBE00621279 /* PokaNativeApp.swift in Sources */,
 				15BC3CF02717CFB300491B38 /* HomeItem.swift in Sources */,
 				159673F026DB33D400621279 /* Login.swift in Sources */,

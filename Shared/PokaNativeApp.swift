@@ -35,6 +35,6 @@ struct PokaNativeApp: App {
                     ContentView()
                 }
             }
-        }
+        } 
     }
 }
