@@ -84,11 +84,12 @@ class PokaAPI {
     }
 
     func getAlbumSongs(albumID: String, source: String, completion: @escaping (AlbumSongsResponse) -> Void) {
-        let stringUrl = baseURLString + "/pokaapi/album?moduleName=\(source)&id=\(albumID)"
-        let url = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        let pokaCharacterSet = CharacterSet(charactersIn: "!*'();:@=&+$,/?%#[] ,()\"{}").inverted
+        let albumIDEncoded = albumID.addingPercentEncoding(withAllowedCharacters: pokaCharacterSet)!
+        let stringUrl = baseURLString + "/pokaapi/album?moduleName=\(source)&id=\(albumIDEncoded)"
+        let url = URL(string: stringUrl)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
         URLSession.shared.dataTask(with: request) { data, _, error in
             if let data = data {
                 do {
