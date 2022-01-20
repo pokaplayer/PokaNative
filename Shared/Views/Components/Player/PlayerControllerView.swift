@@ -70,25 +70,25 @@ struct PlayerControllerView: View {
                 if activeView == "lyric" {
                     PlayerLyricView()
                 }
-            }
+            }.frame(maxWidth: 1200.0)
             // Spacer
             Spacer()
             HStack(spacing: 20) {
                 Spacer()
                 if UIDevice.isIPhone {
                     PlayerControllerIconButtonView(
-                        action: { withAnimation(.easeInOut){ activeView = "player" }},
+                        action: { withAnimation(.easeInOut) { activeView = "player" }},
                         active: activeView == "player",
                         icon: "play"
                     )
                 }
                 PlayerControllerIconButtonView(
-                    action: { withAnimation(.easeInOut){ activeView = "list"} },
+                    action: { withAnimation(.easeInOut) { activeView = "list" } },
                     active: activeView == "list",
                     icon: "list.bullet.circle"
                 )
                 PlayerControllerIconButtonView(
-                    action: { withAnimation(.easeInOut){ activeView = "lyric"} },
+                    action: { withAnimation(.easeInOut) { activeView = "lyric" } },
                     active: activeView == "lyric",
                     icon: "captions.bubble"
                 )
@@ -96,24 +96,23 @@ struct PlayerControllerView: View {
             }
             Spacer()
         }
+
         .background(
             ZStack {
-                if #available(iOS 15.0, *) {
-                    Rectangle()
-                        .fill(Color.black)
-                        .ignoresSafeArea()
-                    CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
-                        image
-                            .resizable()
-                            .blur(radius: 50, opaque: true)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                    .ignoresSafeArea()
-                    .opacity(0.5)
+                Rectangle()
+                    .fill(Color.black)
+                    .ignoresSafeArea(.all)
+                CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
+                    image
+                        .resizable(resizingMode: .tile)
+                        .blur(radius: 50, opaque: true)
+                } placeholder: {
+                    ProgressView()
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                .ignoresSafeArea(.all)
+                .opacity(0.5)
             }
         )
         .preferredColorScheme(.dark)
