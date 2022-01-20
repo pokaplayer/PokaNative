@@ -126,6 +126,7 @@ struct PlayerLyricView: View {
                                 }) {
                                     VStack(alignment: .leading) {
                                         Text("Don't load lyrics")
+                                            .fontWeight(.bold)
                                         Text("This will remove lyrics of the song now playing.")
                                     }
                                 }.buttonStyle(PlainButtonStyle())
@@ -135,9 +136,15 @@ struct PlayerLyricView: View {
                                         saveLyric(lyric: item.lyric)
                                         self.showLyricSheet = false
                                     }) {
-                                        VStack(alignment: .leading) {
-                                            Text(item.name ?? "")
-                                            Text(item.artist ?? "") + Text("(\(NSLocalizedString(item.source, comment: "")))")
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(item.name ?? "")
+                                                    .fontWeight(.bold)
+                                                Text(item.artist ?? "")
+                                            }
+                                            Spacer()
+
+                                            Text("\(NSLocalizedString(item.source, comment: ""))").font(.caption).opacity(0.5)
                                         }
                                     }.buttonStyle(PlainButtonStyle())
                                 }
