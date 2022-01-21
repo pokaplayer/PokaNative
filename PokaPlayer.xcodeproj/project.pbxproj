@@ -77,7 +77,7 @@
 		159673C426DB1FBC00621279 /* PokaNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokaNativeApp.swift; sourceTree = "<group>"; };
 		159673C526DB1FBC00621279 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		159673C626DB1FBE00621279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		159673CB26DB1FBE00621279 /* PokaNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokaNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		159673CB26DB1FBE00621279 /* PokaPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokaPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		159673CE26DB1FBE00621279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		159673E526DB223D00621279 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		159673E826DB315C00621279 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		159673CC26DB1FBE00621279 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				159673CB26DB1FBE00621279 /* PokaNative.app */,
+				159673CB26DB1FBE00621279 /* PokaPlayer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,9 +261,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		159673CA26DB1FBE00621279 /* PokaNative */ = {
+		159673CA26DB1FBE00621279 /* PokaPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative" */;
+			buildConfigurationList = 159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaPlayer" */;
 			buildPhases = (
 				159673C726DB1FBE00621279 /* Sources */,
 				159673C826DB1FBE00621279 /* Frameworks */,
@@ -273,14 +273,14 @@
 			);
 			dependencies = (
 			);
-			name = PokaNative;
+			name = PokaPlayer;
 			packageProductDependencies = (
 				158F7346272990A800E39865 /* CachedAsyncImage */,
 				158F734E2729B3A500E39865 /* SwiftUIX */,
 				15D1012C272AFBA800B83A73 /* Introspect */,
 			);
 			productName = "PokaNative (iOS)";
-			productReference = 159673CB26DB1FBE00621279 /* PokaNative.app */;
+			productReference = 159673CB26DB1FBE00621279 /* PokaPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 159673C226DB1FBC00621279 /* Build configuration list for PBXProject "PokaNative" */;
+			buildConfigurationList = 159673C226DB1FBC00621279 /* Build configuration list for PBXProject "PokaPlayer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -317,7 +317,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				159673CA26DB1FBE00621279 /* PokaNative */,
+				159673CA26DB1FBE00621279 /* PokaPlayer */,
 			);
 		};
 /* End PBXProject section */
@@ -542,7 +542,7 @@
 				);
 				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
-				PRODUCT_NAME = PokaNative;
+				PRODUCT_NAME = PokaPlayer;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -572,7 +572,7 @@
 				);
 				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = gnehs.PokaNative;
-				PRODUCT_NAME = PokaNative;
+				PRODUCT_NAME = PokaPlayer;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -584,7 +584,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		159673C226DB1FBC00621279 /* Build configuration list for PBXProject "PokaNative" */ = {
+		159673C226DB1FBC00621279 /* Build configuration list for PBXProject "PokaPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				159673DD26DB1FBE00621279 /* Debug */,
@@ -593,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaNative" */ = {
+		159673DF26DB1FBE00621279 /* Build configuration list for PBXNativeTarget "PokaPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				159673E026DB1FBE00621279 /* Debug */,
