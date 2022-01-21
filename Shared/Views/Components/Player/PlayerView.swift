@@ -62,7 +62,7 @@ func formatTime(seconds: TimeInterval) -> String {
 
 struct PlayerView: View {
     @StateObject private var ppplayer = player
-
+    @State var coverSize: CGFloat = min(460, UIScreen.main.bounds.width - 40)
     var body: some View {
         if ppplayer.currentPlayingItem != nil {
             VStack {
@@ -71,7 +71,9 @@ struct PlayerView: View {
                     if #available(iOS 15.0, *) {
                         CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
                             image.resizable()
-                                .aspectRatio(1, contentMode: .fit)
+                                .scaledToFill()
+                                .frame(width: coverSize, height: coverSize)
+                                .clipped()
                                 .cornerRadius(5)
                         } placeholder: {
                             ZStack {
