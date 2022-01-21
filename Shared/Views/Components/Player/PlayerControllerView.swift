@@ -104,7 +104,7 @@ struct PlayerControllerView: View {
                     .ignoresSafeArea(.all)
                 CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
                     image
-                        .resizable(resizingMode: .tile)
+                        .resizable().scaledToFill()
                         .blur(radius: 50, opaque: true)
                 } placeholder: {
                     ProgressView()
