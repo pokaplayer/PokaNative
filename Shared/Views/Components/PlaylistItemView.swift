@@ -49,6 +49,7 @@ struct PlaylistItemView: View {
 
 struct VPlaylistItemView: View {
     var playlist: Playlist
+    @State private var hovered = false
     var body: some View {
         var imgLink: String? = playlist.image ?? playlist.cover ?? nil
         if imgLink != nil {
@@ -65,17 +66,28 @@ struct VPlaylistItemView: View {
                         ProgressView()
                     }
                     .frame(width: 140, height: 140)
-                    .cornerRadius(5)
+                    .cornerRadius(hovered ? 20 : 10)
                     .aspectRatio(1, contentMode: .fit)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
+                    .shadow(color: Color.black.opacity(hovered ? 0.4 : 0.2), radius: hovered ? 15.0 : 10, y: hovered ? 15 : 10)
+                    .onHover { isHovered in
+                        withAnimation {
+                            hovered = isHovered
+                        }
+                    }
                 } else {
                     Image(systemName: "music.note.list")
+                        .font(.system(size: 30))
                         .frame(width: 140, height: 140)
                         .foregroundColor(.white)
                         .background(Color.blue)
-                        .cornerRadius(5)
-                        .aspectRatio(1, contentMode: .fill)
-                        .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
+                        .cornerRadius(hovered ? 20 : 10)
+                        .aspectRatio(1, contentMode: .fit)
+                        .shadow(color: Color.black.opacity(hovered ? 0.4 : 0.2), radius: hovered ? 15.0 : 10, y: hovered ? 15 : 10)
+                        .onHover { isHovered in
+                            withAnimation {
+                                hovered = isHovered
+                            }
+                        }
                 }
                 Text(playlist.name)
                     .font(.body)
