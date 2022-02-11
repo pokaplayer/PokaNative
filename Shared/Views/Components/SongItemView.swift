@@ -19,8 +19,14 @@ struct SongItemView: View {
                 player.setTrack(index: index)
             }) {
                 HStack {
+                    Text(String(index + 1))
+                        .font(.title)
+                        .fontWeight(.ultraLight)
+                        .frame(width: 40)
+                        .opacity(0.5)
                     VStack(alignment: .leading) {
                         Text(item.name)
+                            .fontWeight(.bold)
                         Text(item.artist)
                             .font(.caption)
                             .opacity(0.75)
@@ -29,12 +35,15 @@ struct SongItemView: View {
                 }
             }
             .buttonStyle(PlainButtonStyle())
+            .contentShape(Rectangle())
             Button(action: {
                 showSheet = true
             }) {
                 Image(systemName: "info.circle")
             }
         }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5.0)
         .sheet(isPresented: $showSheet) {
             SongDetailView(item: item)
         }

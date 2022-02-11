@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "159673CA26DB1FBE00621279"
-               BuildableName = "PokaNative.app"
+               BuildableName = "PokaPlayer.app"
                BlueprintName = "PokaPlayer"
                ReferencedContainer = "container:PokaPlayer.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "159673CA26DB1FBE00621279"
-            BuildableName = "PokaNative.app"
+            BuildableName = "PokaPlayer.app"
             BlueprintName = "PokaPlayer"
             ReferencedContainer = "container:PokaPlayer.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "159673CA26DB1FBE00621279"
-            BuildableName = "PokaNative.app"
+            BuildableName = "PokaPlayer.app"
             BlueprintName = "PokaPlayer"
             ReferencedContainer = "container:PokaPlayer.xcodeproj">
          </BuildableReference>

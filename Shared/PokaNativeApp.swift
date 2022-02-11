@@ -32,7 +32,7 @@ struct PokaNativeApp: App {
                 if UIDevice.isIPhone {
                     ContentViewiOS()
                 } else {
-                    ContentView()
+                    ContentView()   .background(Color.clear)
                 }
             }
         }

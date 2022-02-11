@@ -9,46 +9,47 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var ppplayer = player
     @State var showFullScreenPlayer = false
+    @State private var selectName: String? = "Home"
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
                 List {
-                    NavigationLink(destination: Home()) {
+                    NavigationLink(destination: Home(),tag: "Home", selection: $selectName) {
                         Label("Home", systemImage: "house")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: SearchView()) {
+                    NavigationLink(destination: SearchView(),tag: "Search", selection: $selectName) {
                         Label("Search", systemImage: "magnifyingglass")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: AlbumsView()) {
+                    NavigationLink(destination: AlbumsView(),tag: "Albums", selection: $selectName) {
                         Label("Albums", systemImage: "opticaldisc")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: FolderView()) {
+                    NavigationLink(destination: FolderView(),tag: "Folders", selection: $selectName) {
                         Label("Folders", systemImage: "folder")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: ArtistView()) {
+                    NavigationLink(destination: ArtistView(),tag: "Artists", selection: $selectName) {
                         Label("Artists", systemImage: "music.mic")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: ComposerView()) {
+                    NavigationLink(destination: ComposerView(),tag: "Composers", selection: $selectName) {
                         Label("Composers", systemImage: "pencil")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: PlaylistsView()) {
+                    NavigationLink(destination: PlaylistsView(),tag: "Playlists", selection: $selectName) {
                         Label("Playlists", systemImage: "music.note.list")
                     }
                     .padding(5.0)
-                    NavigationLink(destination: SettingView()) {
+                    NavigationLink(destination: SettingView(),tag: "Settings", selection: $selectName) {
                         Label("Settings", systemImage: "gearshape")
                     }
                     .padding(5.0)
                 }
             }.navigationTitle("PokaPlayer")
-            Home()
         }
+        .listStyle(SidebarListStyle())
         .padding(.bottom, player.currentPlayingItem != nil ? 72.0 : 0)
         .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
         .overlay(
@@ -91,7 +92,7 @@ struct ContentView: View {
                     windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1000, height: 800)
                 }
             #endif
-        }
+        } 
     }
 }
 

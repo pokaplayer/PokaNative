@@ -31,6 +31,7 @@ struct PlayingItemView: View {
             }
             VStack(alignment: .leading) {
                 Text(item.song.name)
+                    .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 Text(item.song.artist)
                     .font(.caption)
@@ -40,8 +41,9 @@ struct PlayingItemView: View {
             Spacer()
         }
         .contentShape(Rectangle())
-        .padding(.all, 7)
-        .background(songIndex == currentTrack ? .black.opacity(0.1) : .clear)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 12.0)
+        .background(songIndex == currentTrack ? .gray.opacity(0.25) : .clear)
         .cornerRadius(10)
         .sheet(isPresented: $showPlaylistSheet) {
             SongDetailView(item: item.song)

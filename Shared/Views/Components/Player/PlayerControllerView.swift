@@ -8,6 +8,7 @@
 import CachedAsyncImage
 import SwiftUI
 struct PlayerControllerIconButtonView: View {
+    @State var isHovered = false
     var action: () -> Void
     var active: Bool = false
     var icon: String
@@ -19,8 +20,14 @@ struct PlayerControllerIconButtonView: View {
                 .foregroundColor(Color.white)
         }.buttonStyle(PlainButtonStyle())
             .frame(width: 56, height: 56)
-            .background(active ? Color.white.opacity(0.05) : Color.clear)
+            .background(active ? Color.gray.opacity(0.25) : isHovered ? Color.gray.opacity(0.1) : Color.clear)
             .cornerRadius(12)
+            .contentShape(Rectangle())
+            .onHover { hover in
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    isHovered = hover
+                }
+            }
     }
 }
 
@@ -45,13 +52,19 @@ struct PlayerControllerView: View {
                         active: false,
                         icon: "chevron.down"
                     )
+                    Rectangle()
+                        .frame(width: 5.0, height: 1.0)
+                        .opacity(0)
+                    
                 }
                 .contentShape(Rectangle())
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
                         .onEnded { value in
                             if value.translation.height > 0 {
-                                presentationMode.wrappedValue.dismiss()
+                                #if !targetEnvironment(macCatalyst)
+                                    presentationMode.wrappedValue.dismiss()
+                                #endif
                             }
                         }
                 )
@@ -77,18 +90,18 @@ struct PlayerControllerView: View {
                 Spacer()
                 if UIDevice.isIPhone {
                     PlayerControllerIconButtonView(
-                        action: { withAnimation(.easeInOut) { activeView = "player" }},
+                        action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "player" }},
                         active: activeView == "player",
                         icon: "play"
                     )
                 }
                 PlayerControllerIconButtonView(
-                    action: { withAnimation(.easeInOut) { activeView = "list" } },
+                    action: {  withAnimation(.easeInOut(duration: 0.1)) { activeView = "list" } },
                     active: activeView == "list",
                     icon: "list.bullet.circle"
                 )
                 PlayerControllerIconButtonView(
-                    action: { withAnimation(.easeInOut) { activeView = "lyric" } },
+                    action: { withAnimation(.easeInOut(duration: 0.1)){ activeView = "lyric" } },
                     active: activeView == "lyric",
                     icon: "captions.bubble"
                 )
