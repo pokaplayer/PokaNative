@@ -54,6 +54,8 @@ struct PokaMiniplayer: View {
             .padding(.horizontal)
             Spacer()
         }
+        .contentShape(Rectangle())
+        .overlay(Divider(), alignment: .top)
         .background(.systemGray6)
     }
 }
