@@ -55,7 +55,6 @@ struct PlayerControllerView: View {
                     Rectangle()
                         .frame(width: 5.0, height: 1.0)
                         .opacity(0)
-                    
                 }
                 .contentShape(Rectangle())
                 .gesture(
@@ -96,12 +95,12 @@ struct PlayerControllerView: View {
                     )
                 }
                 PlayerControllerIconButtonView(
-                    action: {  withAnimation(.easeInOut(duration: 0.1)) { activeView = "list" } },
+                    action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "list" } },
                     active: activeView == "list",
                     icon: "list.bullet.circle"
                 )
                 PlayerControllerIconButtonView(
-                    action: { withAnimation(.easeInOut(duration: 0.1)){ activeView = "lyric" } },
+                    action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "lyric" } },
                     active: activeView == "lyric",
                     icon: "captions.bubble"
                 )

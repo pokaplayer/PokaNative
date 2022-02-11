@@ -19,11 +19,6 @@ struct SongItemView: View {
                 player.setTrack(index: index)
             }) {
                 HStack {
-                    Text(String(index + 1))
-                        .font(.title)
-                        .fontWeight(.ultraLight)
-                        .frame(width: 40)
-                        .opacity(0.5)
                     VStack(alignment: .leading) {
                         Text(item.name)
                             .fontWeight(.bold)
