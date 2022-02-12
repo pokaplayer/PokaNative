@@ -73,6 +73,11 @@ struct VPlaylistItemView: View {
                         withAnimation {
                             hovered = isHovered
                         }
+                        if isHovered {
+                            NSCursor.pointingHand.push()
+                        } else {
+                            NSCursor.pop()
+                        }
                     }
                 } else {
                     Image(systemName: "music.note.list")
@@ -86,6 +91,11 @@ struct VPlaylistItemView: View {
                         .onHover { isHovered in
                             withAnimation {
                                 hovered = isHovered
+                            }
+                            if isHovered {
+                                NSCursor.pointingHand.push()
+                            } else {
+                                NSCursor.pop()
                             }
                         }
                 }

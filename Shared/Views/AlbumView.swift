@@ -17,31 +17,31 @@ struct AlbumView: View {
     var body: some View {
         List {
             VStack {
-                if #available(iOS 15.0, *) {
-                    CachedAsyncImage(url: URL(string: PokaURLParser(album.cover))) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ZStack {
-                            VStack {
-                                Rectangle()
-                                    .fill(Color.black.opacity(0.2))
-                                    .aspectRatio(1.0, contentMode: .fit)
-                                Spacer()
-                            }
-                            ProgressView()
+                CachedAsyncImage(url: URL(string: PokaURLParser(album.cover))) { image in
+                    image.resizable()
+                } placeholder: {
+                    ZStack {
+                        VStack {
+                            Rectangle()
+                                .fill(Color.black.opacity(0.2))
+                                .aspectRatio(1.0, contentMode: .fit)
+                            Spacer()
                         }
+                        ProgressView()
                     }
-                    .frame(width: 200, height: 200)
-                    .cornerRadius(5)
-                    .aspectRatio(1, contentMode: .fill)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                 }
+                .frame(width: 200, height: 200)
+                .cornerRadius(5)
+                .aspectRatio(1, contentMode: .fill)
+                .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
+
                 Text(album.name)
                     .font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
+                    .padding(.top, 4)
                 Text(album.artist)
-                    .font(.caption)
+                    .font(.body)
                     .opacity(0.75)
                     .multilineTextAlignment(.center)
                 HStack {

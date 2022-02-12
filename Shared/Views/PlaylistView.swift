@@ -20,6 +20,11 @@ struct PlaylistView: View {
                     .font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
+                    .padding(.top, 4)
+                Text("\(resData.count) songs")
+                    .font(/*@START_MENU_TOKEN@*/ .body/*@END_MENU_TOKEN@*/)
+                    .multilineTextAlignment(.center)
+                    .opacity(0.5)
                 HStack {
                     Spacer()
                 }
