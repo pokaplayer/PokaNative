@@ -14,40 +14,55 @@ struct ContentView: View {
         NavigationView {
             VStack(spacing: 30) {
                 List {
-                    NavigationLink(destination: Home(), tag: "Home", selection: $selectName) {
-                        Label("Home", systemImage: "house")
+                    Group {
+                        Text("Home")
+                            .foregroundColor(.gray)
+                        NavigationLink(destination: Home(), tag: "Home", selection: $selectName) {
+                            Label("Home", systemImage: "house")
+                        }
+                        .padding(5.0)
+                        NavigationLink(destination: SearchView(), tag: "Search", selection: $selectName) {
+                            Label("Search", systemImage: "magnifyingglass")
+                        }
+                        .padding(5.0)
                     }
-                    .padding(5.0)
-                    NavigationLink(destination: SearchView(), tag: "Search", selection: $selectName) {
-                        Label("Search", systemImage: "magnifyingglass")
+
+                    Group {
+                        Text("Library")
+                            .foregroundColor(.gray)
+                        NavigationLink(destination: AlbumsView(), tag: "Albums", selection: $selectName) {
+                            Label("Albums", systemImage: "opticaldisc")
+                        }
+                        .padding(5.0)
+                        NavigationLink(destination: FolderView(), tag: "Folders", selection: $selectName) {
+                            Label("Folders", systemImage: "folder")
+                        }
+                        .padding(5.0)
+                        NavigationLink(destination: ArtistView(), tag: "Artists", selection: $selectName) {
+                            Label("Artists", systemImage: "music.mic")
+                        }
+                        .padding(5.0)
+                        NavigationLink(destination: ComposerView(), tag: "Composers", selection: $selectName) {
+                            Label("Composers", systemImage: "pencil")
+                        }
+                        .padding(5.0)
+                        NavigationLink(destination: PlaylistsView(), tag: "Playlists", selection: $selectName) {
+                            Label("Playlists", systemImage: "music.note.list")
+                        }
+                        .padding(5.0)
                     }
-                    .padding(5.0)
-                    NavigationLink(destination: AlbumsView(), tag: "Albums", selection: $selectName) {
-                        Label("Albums", systemImage: "opticaldisc")
+
+                    Group {
+                        Text("Settings")
+                            .foregroundColor(.gray)
+                        NavigationLink(destination: SettingView(), tag: "Settings", selection: $selectName) {
+                            Label("Settings", systemImage: "gearshape")
+                        }
+                        .padding(5.0)
                     }
-                    .padding(5.0)
-                    NavigationLink(destination: FolderView(), tag: "Folders", selection: $selectName) {
-                        Label("Folders", systemImage: "folder")
-                    }
-                    .padding(5.0)
-                    NavigationLink(destination: ArtistView(), tag: "Artists", selection: $selectName) {
-                        Label("Artists", systemImage: "music.mic")
-                    }
-                    .padding(5.0)
-                    NavigationLink(destination: ComposerView(), tag: "Composers", selection: $selectName) {
-                        Label("Composers", systemImage: "pencil")
-                    }
-                    .padding(5.0)
-                    NavigationLink(destination: PlaylistsView(), tag: "Playlists", selection: $selectName) {
-                        Label("Playlists", systemImage: "music.note.list")
-                    }
-                    .padding(5.0)
-                    NavigationLink(destination: SettingView(), tag: "Settings", selection: $selectName) {
-                        Label("Settings", systemImage: "gearshape")
-                    }
-                    .padding(5.0)
                 }
-            }.navigationTitle("PokaPlayer")
+            }
+            .navigationBarTitleDisplayMode(.inline).navigationTitle("")
         }
         .listStyle(SidebarListStyle())
         .padding(.bottom, player.currentPlayingItem != nil ? 72.0 : 0)
