@@ -60,11 +60,10 @@ struct ContentView: View {
                         }
                         .padding(5.0)
                     }
-                }
+                }.listStyle(.sidebar)
             }
             .navigationBarTitleDisplayMode(.inline).navigationTitle("")
         }
-        .listStyle(SidebarListStyle())
         .padding(.bottom, player.currentPlayingItem != nil ? 72.0 : 0)
         .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
         .overlay(
