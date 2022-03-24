@@ -13,9 +13,10 @@ struct Home: View {
         ScrollView {
             HomeRandomPlay()
                 .padding(5)
-
             if resData != nil {
                 ForEach(resData!) { item in
+
+                    Divider()
                     HomeItem(item: item)
                         .padding(5)
                 }

@@ -11,23 +11,46 @@ struct PlayerControllerIconButtonView: View {
     @State var isHovered = false
     var action: () -> Void
     var active: Bool = false
+    var fill: Bool = false
     var icon: String
     var body: some View {
-        Button(action: action) {
-            Image(systemName: icon + (active ? ".fill" : ""))
-                .font(.system(size: 24))
-                .padding()
-                .foregroundColor(Color.white)
-        }.buttonStyle(PlainButtonStyle())
-            .frame(width: 56, height: 56)
-            .background(active ? Color.gray.opacity(0.25) : isHovered ? Color.gray.opacity(0.1) : Color.clear)
-            .cornerRadius(12)
-            .contentShape(Rectangle())
-            .onHover { hover in
-                withAnimation(.easeInOut(duration: 0.1)) {
-                    isHovered = hover
-                }
+        if active {
+            Button(action: action) {
+                Rectangle().fill(.white).frame(width: 48, height: 48)
+                    .cornerRadius(12)
+                    .mask(
+                        ZStack {
+                            Rectangle()
+                            Image(systemName: icon + (fill ? ".fill" : ""))
+                                .font(.system(size: 24))
+                                .padding()
+                                .foregroundColor(.black)
+                                .blendMode(.destinationOut)
+                        }
+                    )
+                    .onHover { hover in
+                        withAnimation(.easeInOut(duration: 0.1)) {
+                            isHovered = hover
+                        }
+                    }
             }
+        } else {
+            Button(action: action) {
+                Image(systemName: icon )
+                    .font(.system(size: 24))
+                    .padding()
+                    .foregroundColor(Color.white)
+            }.buttonStyle(PlainButtonStyle())
+                .frame(width: 48, height: 48)
+                .background(isHovered ? Color.gray.opacity(0.25) : Color.gray.opacity(0))
+                .cornerRadius(12)
+                .contentShape(Rectangle())
+                .onHover { hover in
+                    withAnimation(.easeInOut(duration: 0.1)) {
+                        isHovered = hover
+                    }
+                }
+        }
     }
 }
 
@@ -49,7 +72,6 @@ struct PlayerControllerView: View {
                     Spacer()
                     PlayerControllerIconButtonView(
                         action: { presentationMode.wrappedValue.dismiss() },
-                        active: false,
                         icon: "chevron.down"
                     )
                     Rectangle()
@@ -91,17 +113,19 @@ struct PlayerControllerView: View {
                     PlayerControllerIconButtonView(
                         action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "player" }},
                         active: activeView == "player",
+                        fill: true,
                         icon: "play"
                     )
                 }
                 PlayerControllerIconButtonView(
                     action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "list" } },
                     active: activeView == "list",
-                    icon: "list.bullet.circle"
+                    icon: "list.bullet"
                 )
                 PlayerControllerIconButtonView(
                     action: { withAnimation(.easeInOut(duration: 0.1)) { activeView = "lyric" } },
                     active: activeView == "lyric",
+                    fill: true,
                     icon: "captions.bubble"
                 )
                 Spacer()

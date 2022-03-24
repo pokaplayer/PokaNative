@@ -13,11 +13,9 @@ struct HomeItem: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(NSLocalizedString(item.title, comment: ""))
-                    .font(.title)
                     .fontWeight(.bold)
                 Spacer()
                 Text(NSLocalizedString(item.source, comment: ""))
-                    .font(.body)
                     .opacity(0.5)
             }
             .padding(.horizontal, 10.0)
@@ -25,7 +23,6 @@ struct HomeItem: View {
                 Text("Albums")
                     .padding(.horizontal, 10.0)
                     .opacity(0.5)
-                    .font(.body)
                 ScrollView(.horizontal) {
                     HStack(spacing: 10) {
                         ForEach(item.albums!) { item in
