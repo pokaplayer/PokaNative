@@ -36,7 +36,7 @@ struct PlayerControllerIconButtonView: View {
             }
         } else {
             Button(action: action) {
-                Image(systemName: icon )
+                Image(systemName: icon)
                     .font(.system(size: 24))
                     .padding()
                     .foregroundColor(Color.white)

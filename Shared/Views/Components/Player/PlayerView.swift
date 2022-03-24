@@ -68,24 +68,24 @@ struct PlayerView: View {
             VStack {
                 VStack {
                     Spacer()
-                    if #available(iOS 15.0, *) {
-                        CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
-                            image.resizable()
-                                .scaledToFill()
-                                .frame(width: coverSize, height: coverSize)
-                                .clipped()
-                                .cornerRadius(5)
-                        } placeholder: {
-                            ZStack {
-                                Rectangle().opacity(0)
-                                ProgressView()
-                            }
+
+                    CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
+                        image.resizable()
+                            .scaledToFill()
+                            .frame(width: coverSize, height: coverSize)
+                            .clipped()
+                            .cornerRadius(5)
+                    } placeholder: {
+                        ZStack {
+                            Rectangle().opacity(0)
+                            ProgressView()
                         }
-                        .frame(width: UIScreen.main.bounds.size.width - 40, alignment: .center)
-                        .aspectRatio(1, contentMode: .fit)
-                        .padding(20.0)
-                        .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
                     }
+                    .frame(width: UIScreen.main.bounds.size.width - 40, alignment: .center)
+                    .aspectRatio(1, contentMode: .fit)
+                    .padding(20.0)
+                    .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
+
                     VStack(alignment: .leading) {
                         Text(player.currentPlayingItem!.song.name)
                             .font(/*@START_MENU_TOKEN@*/ .headline/*@END_MENU_TOKEN@*/)
