@@ -23,11 +23,10 @@ struct Home: View {
                 ProgressView()
             }
             Spacer()
-            if UIDevice.isIPhone {
                 Rectangle()
                     .fill(.clear)
                     .frame(height: 56)
-            }
+            
         }
         .navigationTitle("Home")
         .onAppear {

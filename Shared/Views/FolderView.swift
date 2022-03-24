@@ -29,7 +29,7 @@ struct FolderView: View {
                 }
             }
         }
-        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+        .padding(.bottom, player.currentPlayingItem != nil  ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getFolder(folderID: folderID, source: source) { result in
                 self.resData = result

@@ -31,7 +31,7 @@ struct ArtistView: View {
                         }
                     }
                 }
-                .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+                .padding(.bottom, player.currentPlayingItem != nil  ? 56.0 : 0)
                 .navigationTitle("Artists")
                 .searchable(text: $searchText)
                 .onChange(of: searchText) { searchText in

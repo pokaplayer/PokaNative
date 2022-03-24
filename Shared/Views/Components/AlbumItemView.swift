@@ -36,11 +36,13 @@ struct AlbumItemView: View {
                     withAnimation {
                         hovered = isHovered
                     }
-                    if hovered {
-                        NSCursor.pointingHand.push()
-                    } else {
-                        NSCursor.pop()
-                    }
+                    #if targetEnvironment(macCatalyst)
+                        if hovered {
+                            NSCursor.pointingHand.push()
+                        } else {
+                            NSCursor.pop()
+                        }
+                    #endif
                 }
                 Text(item.name)
                     .font(.body)

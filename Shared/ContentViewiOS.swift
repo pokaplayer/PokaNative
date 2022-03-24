@@ -46,6 +46,7 @@ struct ContentViewiOS: View {
                 PlayerControllerView()
             }
             MiniPlayerView()
+                .background(.systemGray6)
                 .onTapGesture {
                     self.showPlayerOverlay = true
                 }

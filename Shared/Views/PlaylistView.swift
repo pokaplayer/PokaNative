@@ -33,7 +33,7 @@ struct PlaylistView: View {
 
             SongView(songs: resData)
         }
-        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+        .padding(.bottom, player.currentPlayingItem != nil ? 56.0 : 0)
         .onAppear {
             PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { result in
                 self.resData = result

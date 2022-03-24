@@ -64,7 +64,7 @@ struct SearchView: View {
             }
             Spacer()
 
-            if player.currentPlayingItem != nil && UIDevice.isIPhone {
+            if player.currentPlayingItem != nil {
                 Rectangle()
                     .fill(.clear)
                     .frame(height: 72)

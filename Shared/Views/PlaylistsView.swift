@@ -45,7 +45,7 @@ struct PlaylistsView: View {
                         }
                     }
                 }
-                .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+                .padding(.bottom, player.currentPlayingItem != nil  ? 56.0 : 0)
             } else {
                 ProgressView()
             }

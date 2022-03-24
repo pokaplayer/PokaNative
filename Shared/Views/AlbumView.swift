@@ -78,7 +78,7 @@ struct AlbumView: View {
                 self.loading = false
             }
         }
-        .padding(.bottom, player.currentPlayingItem != nil && UIDevice.isIPhone ? 56.0 : 0)
+        .padding(.bottom, player.currentPlayingItem != nil   ? 56.0 : 0)
         .listStyle(GroupedListStyle())
         .frame(maxWidth: .infinity)
         // .navigationTitle("Album")

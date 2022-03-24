@@ -73,11 +73,13 @@ struct VPlaylistItemView: View {
                         withAnimation {
                             hovered = isHovered
                         }
-                        if isHovered {
-                            NSCursor.pointingHand.push()
-                        } else {
-                            NSCursor.pop()
-                        }
+                        #if targetEnvironment(macCatalyst)
+                            if isHovered {
+                                NSCursor.pointingHand.push()
+                            } else {
+                                NSCursor.pop()
+                            }
+                        #endif
                     }
                 } else {
                     Image(systemName: "music.note.list")
@@ -92,11 +94,13 @@ struct VPlaylistItemView: View {
                             withAnimation {
                                 hovered = isHovered
                             }
-                            if isHovered {
-                                NSCursor.pointingHand.push()
-                            } else {
-                                NSCursor.pop()
-                            }
+                            #if targetEnvironment(macCatalyst)
+                                if isHovered {
+                                    NSCursor.pointingHand.push()
+                                } else {
+                                    NSCursor.pop()
+                                }
+                            #endif
                         }
                 }
                 Text(playlist.name)
