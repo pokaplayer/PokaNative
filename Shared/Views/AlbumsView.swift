@@ -30,7 +30,7 @@ struct AlbumsView: View {
                 }
                 .padding(.horizontal, 10)
 
-                if player.currentPlayingItem != nil   {
+                if player.currentPlayingItem != nil {
                     Rectangle()
                         .fill(.clear)
                         .frame(height: 56)

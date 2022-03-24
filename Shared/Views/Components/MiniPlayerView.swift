@@ -68,6 +68,19 @@ struct MiniPlayerView: View {
             if player.currentPlayingItem != nil {
                 if UIDevice.isIPhone {
                     PokaMiniplayer()
+                        .background(
+                            ZStack {
+                                Rectangle().fill(.regularMaterial)
+                                Color.systemGray6.mask(LinearGradient(
+                                    stops: [
+                                        Gradient.Stop(color: .clear, location: .zero),
+                                        Gradient.Stop(color: .black, location: 0.95),
+                                    ],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                            }.ignoresSafeArea()
+                        )
                         .frame(height: 56)
                         .offset(y: keyboardShowed ? -8 : -56)
                 } else {

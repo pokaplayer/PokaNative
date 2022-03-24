@@ -23,10 +23,9 @@ struct Home: View {
                 ProgressView()
             }
             Spacer()
-                Rectangle()
-                    .fill(.clear)
-                    .frame(height: 56)
-            
+            Rectangle()
+                .fill(.clear)
+                .frame(height: 56)
         }
         .navigationTitle("Home")
         .onAppear {

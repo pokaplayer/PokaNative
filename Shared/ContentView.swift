@@ -63,22 +63,22 @@ struct ContentView: View {
                         }
                     }.listStyle(.sidebar)
                 }
-                    .navigationBarTitleDisplayMode(.inline).navigationTitle("")
-                }
-                .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
-                .withHostingWindow { window in
-                    #if targetEnvironment(macCatalyst)
-                        if let titlebar = window?.windowScene?.titlebar {
-                            titlebar.titleVisibility = .hidden
-                            titlebar.toolbar = nil
-                        }
+                .navigationBarTitleDisplayMode(.inline).navigationTitle("")
+            }
+            .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
+            .withHostingWindow { window in
+                #if targetEnvironment(macCatalyst)
+                    if let titlebar = window?.windowScene?.titlebar {
+                        titlebar.titleVisibility = .hidden
+                        titlebar.toolbar = nil
+                    }
 
-                        UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
-                            windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1000, height: 800)
-                        }
-                    #endif
-                }
-            VStack{
+                    UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
+                        windowScene.sizeRestrictions?.minimumSize = CGSize(width: 1000, height: 800)
+                    }
+                #endif
+            }
+            VStack {
                 Color.clear
                 MiniPlayerView()
                     .frame(height: 72, alignment: .bottomLeading)
@@ -106,9 +106,7 @@ struct ContentView: View {
                             }
                     )
             }
-            }
-        
-    
+        }
     }
 }
 
