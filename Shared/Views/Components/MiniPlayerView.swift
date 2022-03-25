@@ -7,10 +7,34 @@
 
 import CachedAsyncImage
 import SwiftUI
+
+struct PlayerProgressView: View {
+    @StateObject private var ppplayer = player
+    let timeObserver = PlayerTimeObserver()
+    @State private var currentTime: TimeInterval = 0
+    @State private var duration: Double = 0
+    @State private var progress: Double = 0
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                Rectangle()
+                    .frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width),height: 2.5)
+                    .foregroundColor(.blue)
+                    .onReceive(timeObserver.publisher) { time in
+                        self.currentTime = time
+                        self.duration = ppplayer.currentItem?.asset.duration.seconds ?? 0
+                        self.progress = self.currentTime / self.duration
+                    }
+            }
+        }
+    }
+}
+
 struct PokaMiniplayer: View {
     @StateObject private var ppplayer = player
     var body: some View {
         VStack(alignment: .leading) {
+            PlayerProgressView()
             Spacer()
             HStack {
                 CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
@@ -73,8 +97,8 @@ struct MiniPlayerView: View {
                                 Rectangle().fill(.regularMaterial)
                                 Color.systemGray6.mask(LinearGradient(
                                     stops: [
-                                        Gradient.Stop(color: .clear, location: .zero),
-                                        Gradient.Stop(color: .black, location: 0.95),
+                                        Gradient.Stop(color: .black.opacity(0.5), location: .zero),
+                                        Gradient.Stop(color: .black, location: 1),
                                     ],
                                     startPoint: .top,
                                     endPoint: .bottom
