@@ -69,11 +69,13 @@ struct PokaMiniplayer: View {
                         .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
                         .frame(width: 36, height: 36)
                 }.buttonStyle(PlainButtonStyle())
+                    .hoverEffect()
                 Button(action: { player.nextTrack() }) {
                     Image(systemName: "forward.end.alt")
                         .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
                         .frame(width: 36, height: 36)
                 }.buttonStyle(PlainButtonStyle())
+                    .hoverEffect()
             }
             .padding(.horizontal)
             Spacer()

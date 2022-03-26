@@ -38,6 +38,7 @@ struct HomeRandomPlay: View {
             .padding(.top, 5)
             .opacity(items == nil ? 0.25 : 1)
             .disabled(items == nil)
+            .hoverEffect(.lift)
             HStack {
                 Spacer()
             }

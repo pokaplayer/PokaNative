@@ -107,23 +107,30 @@ struct PlayerView: View {
                                 .font(.system(size: 20))
                                 .padding()
                                 .foregroundColor(Color.white)
-                        }.buttonStyle(PlainButtonStyle())
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .hoverEffect()
                         Button(action: { ppplayer.isPaused ? player.playTrack() : player.pause() }) {
                             Image(systemName: ppplayer.isPaused ? "play" : "pause")
                                 .font(.system(size: 24))
                                 .padding()
                                 .foregroundColor(Color.white)
-                        }.buttonStyle(PlainButtonStyle())
-                            .frame(width: 56, height: 56)
-                            .background(Color.white.opacity(0.1))
-                            .cornerRadius(.infinity)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .frame(width: 56, height: 56)
+                        .background(Color.white.opacity(0.1))
+                        .cornerRadius(.infinity)
+                        .contentShape(RoundedRectangle(cornerRadius: 500, style: .continuous))
+                        .hoverEffect()
 
                         Button(action: { player.nextTrack() }) {
                             Image(systemName: "forward.end.alt")
                                 .font(.system(size: 20))
                                 .padding()
                                 .foregroundColor(Color.white)
-                        }.buttonStyle(PlainButtonStyle())
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .hoverEffect()
                         Spacer()
                     }
                     Spacer()

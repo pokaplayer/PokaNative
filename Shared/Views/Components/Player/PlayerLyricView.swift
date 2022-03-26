@@ -5,8 +5,8 @@
 //  Created by 勝勝寶寶 on 2021/10/19.
 //
 
-import SwiftUI
 import Introspect
+import SwiftUI
 struct PlayerLyricTextView: View {
     @StateObject private var lyricParser = LyricParser
     var currentLyricIndex: Int = -1
@@ -76,7 +76,7 @@ struct PlayerLyricView: View {
                             .frame(height: 300.0)
                             .opacity(0)
                     }
-                    .introspectScrollView { $0.setValue(0.25, forKeyPath: "contentOffsetAnimationDuration")}
+                    .introspectScrollView { $0.setValue(0.25, forKeyPath: "contentOffsetAnimationDuration") }
                     .mask(
                         LinearGradient(
                             stops: [
@@ -157,6 +157,7 @@ struct PlayerLyricView: View {
                                     Text("Search")
                                         .frame(minWidth: 0, maxWidth: .infinity)
                                 })
+                                .hoverEffect()
                                 .padding(.vertical, 10)
                                 .background(Color.purple)
                                 .foregroundColor(.white)

@@ -34,6 +34,7 @@ struct PlayerControllerIconButtonView: View {
                         }
                     }
             }
+            .hoverEffect()
         } else {
             Button(action: action) {
                 Image(systemName: icon)
@@ -50,6 +51,7 @@ struct PlayerControllerIconButtonView: View {
                         isHovered = hover
                     }
                 }
+                .hoverEffect()
         }
     }
 }

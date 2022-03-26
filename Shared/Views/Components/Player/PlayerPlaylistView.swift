@@ -7,7 +7,6 @@
 
 import SwiftUI
 struct PlayingItemView: View {
-    @State var isHovered = false
     var item: PPPlayerItem
     var currentTrack: Int
     var songIndex: Int
@@ -44,7 +43,7 @@ struct PlayingItemView: View {
         .contentShape(Rectangle())
         .padding(.horizontal, 10)
         .padding(.vertical, 12.0)
-        .background(songIndex == currentTrack ? .gray.opacity(0.25) : isHovered ? .gray.opacity(0.1) : .clear)
+        .background(songIndex == currentTrack ? .gray.opacity(0.25) : .clear)
         .cornerRadius(10)
         .sheet(isPresented: $showPlaylistSheet) {
             SongDetailView(item: item.song)
@@ -72,11 +71,6 @@ struct PlayingItemView: View {
                 }
             }
         }
-        .onHover { hover in
-            withAnimation(.easeInOut(duration: 0.1)) {
-                isHovered = hover
-            }
-        }
     }
 }
 
@@ -100,6 +94,7 @@ struct PlayerPlaylistView: View {
                     .id(index)
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 5.0)
+                    .hoverEffect()
                 }
                 .onAppear(perform: {
                     withAnimation {

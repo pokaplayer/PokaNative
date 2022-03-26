@@ -70,6 +70,7 @@ struct Login: View {
             .background(isLogining ? .systemGray6 : .purple)
             .foregroundColor(.white)
             .cornerRadius(13)
+            .hoverEffect()
             .padding(.top, 20)
             .padding(.bottom, 20)
             .disabled(isLogining)
@@ -79,7 +80,7 @@ struct Login: View {
                 Text("PokaNative \(version)")
                     .foregroundColor(Color.gray)
                     .font(.system(size: 10, weight: .regular, design: .monospaced))
-            }
+            }.hoverEffect()
         }
         .frame(width: 300.0)
         .padding(20.0)
