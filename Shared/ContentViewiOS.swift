@@ -22,50 +22,54 @@ struct ContentViewiOS: View {
     }
 
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-            TabView {
-                NavigationView { Home() }
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                Library()
-                    .tabItem {
-                        Label("Library", systemImage: "rectangle.stack")
-                    }
-                NavigationView { SearchView() }
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-
-                NavigationView { SettingView() }
-                    .tabItem {
-                        Label("Settings", systemImage: "gearshape")
-                    }
-            }
-            .sheet(isPresented: $showPlayerOverlay) {
-                PlayerControllerView()
-            }
-            MiniPlayerView()
-                .onTapGesture {
-                    self.showPlayerOverlay = true
+        TabView {
+            NavigationView { Home() }
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded { value in
-                        if value.translation.width < 0 {
-                            // left
-                        }
+            Library()
+                .tabItem {
+                    Label("Library", systemImage: "rectangle.stack")
+                }
+            NavigationView { SearchView() }
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
 
-                        if value.translation.width > 0 {
-                            // right
-                        }
-                        if value.translation.height < 0 {
-                            self.showPlayerOverlay = true
-                        }
+            NavigationView { SettingView() }
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
+        }
+        .sheet(isPresented: $showPlayerOverlay) {
+            PlayerControllerView()
+        }
 
-                        if value.translation.height > 0 {
-                            // down
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            MiniPlayerView()
+                .frame(height: 72, alignment: .bottomLeading)
+                .onTapGesture {
+                    showPlayerOverlay = true
+                }
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onEnded { value in
+                            if value.translation.width < 0 {
+                                // left
+                            }
+                            if value.translation.width > 0 {
+                                // right
+                            }
+                            if value.translation.height < 0 {
+                                showPlayerOverlay = true
+                            }
+
+                            if value.translation.height > 0 {
+                                // down
+                            }
                         }
-                    })
+                )
+                .ignoresSafeArea(.all)
         }
     }
 }
