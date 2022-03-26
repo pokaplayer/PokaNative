@@ -16,8 +16,6 @@ struct ContentView: View {
                 VStack(spacing: 30) {
                     List {
                         Group {
-                            Text("Home")
-                                .foregroundColor(.gray)
                             NavigationLink(destination: Home(), tag: "Home", selection: $selectName) {
                                 Label("Home", systemImage: "house")
                             }
@@ -62,9 +60,12 @@ struct ContentView: View {
                             .padding(5.0)
                         }
                     }.listStyle(.sidebar)
+                        .background(Color.black.opacity(0.05))
                 }
-                .navigationBarTitleDisplayMode(.inline).navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("")
             }
+            .background(.clear)
             .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
             .withHostingWindow { window in
                 #if targetEnvironment(macCatalyst)
