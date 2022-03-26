@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 struct PlayerLyricTextView: View {
     @StateObject private var lyricParser = LyricParser
     var currentLyricIndex: Int = -1
@@ -47,7 +48,7 @@ struct PlayerLyricView: View {
             }
             if gotLyric {
                 ScrollViewReader { value in
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         Rectangle()
                             .frame(height: 300.0)
                             .opacity(0)
@@ -75,6 +76,7 @@ struct PlayerLyricView: View {
                             .frame(height: 300.0)
                             .opacity(0)
                     }
+                    .introspectScrollView { $0.setValue(0.25, forKeyPath: "contentOffsetAnimationDuration")}
                     .mask(
                         LinearGradient(
                             stops: [
@@ -89,7 +91,7 @@ struct PlayerLyricView: View {
                         )
                     )
                     .onReceive(timeObserver.publisher) { time in
-                        withAnimation(.easeInOut(duration: 0.2)) {
+                        withAnimation(.easeInOut(duration: 0.25)) {
                             let temp = self.currentLyricIndex
                             self.currentLyricIndex = lyricParser.getCurrentLineIndex(time: time)
                             if temp != self.currentLyricIndex {
