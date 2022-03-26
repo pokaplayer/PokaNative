@@ -32,7 +32,7 @@ struct HomeRandomPlay: View {
                 .padding(.horizontal, 10)
                 .padding(.vertical, 7)
             }
-            .background(Color.purple)
+            .background(.accentColor)
             .foregroundColor(.white)
             .cornerRadius(5)
             .padding(.top, 5)

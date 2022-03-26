@@ -19,7 +19,7 @@ struct PlayerProgressView: View {
             VStack {
                 Rectangle()
                     .frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width), height: 2.5)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.accentColor)
                     .onReceive(timeObserver.publisher) { time in
                         self.currentTime = time
                         self.duration = ppplayer.currentItem?.asset.duration.seconds ?? 0
