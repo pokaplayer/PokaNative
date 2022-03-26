@@ -18,7 +18,7 @@ struct PlayerProgressView: View {
         GeometryReader { geometry in
             VStack {
                 Rectangle()
-                    .frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width),height: 2.5)
+                    .frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width), height: 2.5)
                     .foregroundColor(.blue)
                     .onReceive(timeObserver.publisher) { time in
                         self.currentTime = time

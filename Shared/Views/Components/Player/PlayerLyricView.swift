@@ -199,6 +199,7 @@ struct PlayerLyricView: View {
 
             if !gotLyric {
                 print("getLyric")
+                lyricSearchResult = []
                 getLyric()
             }
         }
