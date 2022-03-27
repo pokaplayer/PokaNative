@@ -226,9 +226,10 @@ class PPPlayer: AVPlayer, ObservableObject {
         seek(to: 0)
         playTrack()
     }
+
     // sort list random and update current playing track
     func shuffle() {
-        let currentPlayingTrack = self.currentPlayingItem
+        let currentPlayingTrack = currentPlayingItem
         let shuffled = playerItems.shuffled()
         playerItems = shuffled
         // find current playing item and setTrack

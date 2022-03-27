@@ -74,19 +74,25 @@ struct ContentView: View {
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
                         .onEnded { value in
-                            if value.translation.width < 0 {
-                                // left
-                            }
+                            if abs(value.translation.width) > abs(value.translation.height) {
+                                if value.translation.width < 0 {
+                                    player.nextTrack()
+                                    let impact = UIImpactFeedbackGenerator(style: .medium)
+                                    impact.impactOccurred()
+                                }
+                                if value.translation.width > 0 {
+                                    player.previousTrack()
+                                    let impact = UIImpactFeedbackGenerator(style: .medium)
+                                    impact.impactOccurred()
+                                }
+                            } else {
+                                if value.translation.height < 0 {
+                                    showFullScreenPlayer = true
+                                }
 
-                            if value.translation.width > 0 {
-                                // right
-                            }
-                            if value.translation.height < 0 {
-                                showFullScreenPlayer = true
-                            }
-
-                            if value.translation.height > 0 {
-                                // down
+                                if value.translation.height > 0 {
+                                    // down
+                                }
                             }
                         }
                 )
