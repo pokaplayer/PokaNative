@@ -73,6 +73,10 @@ struct PlayerControllerView: View {
                 HStack {
                     Spacer()
                     PlayerControllerIconButtonView(
+                        action: { player.shuffle() },
+                        icon: "dice"
+                    )
+                    PlayerControllerIconButtonView(
                         action: { presentationMode.wrappedValue.dismiss() },
                         icon: "chevron.down"
                     )
