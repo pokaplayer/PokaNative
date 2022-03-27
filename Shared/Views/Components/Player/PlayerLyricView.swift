@@ -109,6 +109,9 @@ struct PlayerLyricView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(count: 2) {
+            let impact = UIImpactFeedbackGenerator(style: .medium)
+            impact.impactOccurred()
+
             let currentPlayingItem = ppplayer.currentPlayingItem!.song
             searchText = "\(currentPlayingItem.name) \(currentPlayingItem.artist)"
 
