@@ -102,6 +102,16 @@ struct PlayerView: View {
                     PlayerTimeView()
                     HStack {
                         Spacer()
+
+                        Button(action: { player.shuffle() }) {
+                            Image(systemName: "dice")
+                                .font(.system(size: 20))
+                                .padding()
+                                .foregroundColor(Color.white)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .hoverEffect()
+
                         Button(action: { player.previousTrack() }) {
                             Image(systemName: "backward.end.alt")
                                 .font(.system(size: 20))
@@ -110,6 +120,7 @@ struct PlayerView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         .hoverEffect()
+
                         Button(action: { ppplayer.isPaused ? player.playTrack() : player.pause() }) {
                             Image(systemName: ppplayer.isPaused ? "play" : "pause")
                                 .font(.system(size: 24))
@@ -131,6 +142,16 @@ struct PlayerView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         .hoverEffect()
+
+                        Button(action: {}) {
+                            Image(systemName: "forward.end.alt")
+                                .font(.system(size: 20))
+                                .padding()
+                                .foregroundColor(Color.white)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .opacity(0)
+
                         Spacer()
                     }
                     Spacer()
