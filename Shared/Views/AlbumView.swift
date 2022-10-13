@@ -56,7 +56,9 @@ struct AlbumView: View {
                     .preference(key: TitleY_CoordinatePreferenceKey.self, value: geo.frame(in: .global).maxY)
             })
             .onPreferenceChange(TitleY_CoordinatePreferenceKey.self) { y in
-                isNavigationTitlePresented = y < navigationY_Coordinate + 10
+                withAnimation{
+                    isNavigationTitlePresented = y < navigationY_Coordinate - 10
+                }
             }
             if loading {
                 VStack {
@@ -67,20 +69,20 @@ struct AlbumView: View {
             } else {
                 SongView(songs: resData)
             }
-        } 
+        }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if isNavigationTitlePresented {
-                ToolbarItem(placement: .principal) {
-                    VStack {
-                        Text(album.name)
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(album.name)
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .opacity(isNavigationTitlePresented ? 1: 0)
 
-                        Text(album.artist)
-                            .font(.caption)
-                            .multilineTextAlignment(.center)
-                    }
+                    Text(album.artist)
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .opacity(isNavigationTitlePresented ? 0.75 : 0)
                 }
             }
         }.onAppear {
@@ -98,7 +100,7 @@ struct AlbumView: View {
 
 private struct TitleY_CoordinatePreferenceKey: PreferenceKey {
     static var defaultValue: CGFloat = .zero
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+    static func reduce(value _: inout CGFloat, nextValue _: () -> CGFloat) {}
 }
 
 /*
