@@ -56,7 +56,7 @@ struct AlbumView: View {
                     .preference(key: TitleY_CoordinatePreferenceKey.self, value: geo.frame(in: .global).maxY)
             })
             .onPreferenceChange(TitleY_CoordinatePreferenceKey.self) { y in
-                withAnimation{
+                withAnimation {
                     isNavigationTitlePresented = y < navigationY_Coordinate - 10
                 }
             }
@@ -77,7 +77,7 @@ struct AlbumView: View {
                     Text(album.name)
                         .font(.headline)
                         .multilineTextAlignment(.center)
-                        .opacity(isNavigationTitlePresented ? 1: 0)
+                        .opacity(isNavigationTitlePresented ? 1 : 0)
 
                     Text(album.artist)
                         .font(.caption)
