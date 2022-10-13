@@ -12,6 +12,8 @@ struct AlbumView: View {
     var album: Album
     @State var loading = false
     @State var resData = [Song]()
+    @State private var isNavigationTitlePresented = false
+    @State private var navigationY_Coordinate: CGFloat = .zero
     var baseURL = defaults.string(forKey: "baseURL") ?? ""
 
     var body: some View {
@@ -25,6 +27,7 @@ struct AlbumView: View {
                             Rectangle()
                                 .fill(Color.black.opacity(0.2))
                                 .aspectRatio(1.0, contentMode: .fit)
+                                .cornerRadius(5)
                             Spacer()
                         }
                         ProgressView()
@@ -48,7 +51,13 @@ struct AlbumView: View {
                     Spacer()
                 }
             }
-            .padding(.top, 10.0)
+            .background(GeometryReader { geo in
+                Color.clear
+                    .preference(key: TitleY_CoordinatePreferenceKey.self, value: geo.frame(in: .global).maxY)
+            })
+            .onPreferenceChange(TitleY_CoordinatePreferenceKey.self) { y in
+                isNavigationTitlePresented = y < navigationY_Coordinate + 10
+            }
             if loading {
                 VStack {
                     Spacer()
@@ -58,17 +67,20 @@ struct AlbumView: View {
             } else {
                 SongView(songs: resData)
             }
-        }
-        .navigationTitle("Album")
+        } 
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack {
-                    Text(album.name)
-                        .fontWeight(.bold)
-                    Text(album.artist)
-                        .font(.caption)
-                        .opacity(0.75)
+            if isNavigationTitlePresented {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text(album.name)
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+
+                        Text(album.artist)
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                    }
                 }
             }
         }.onAppear {
@@ -79,10 +91,14 @@ struct AlbumView: View {
             }
         }
         .padding(.bottom, player.currentPlayingItem != nil ? 56.0 : 0)
-        .listStyle(GroupedListStyle())
         .frame(maxWidth: .infinity)
         // .navigationTitle("Album")
     }
+}
+
+private struct TitleY_CoordinatePreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
 }
 
 /*
