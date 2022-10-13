@@ -15,6 +15,7 @@ extension UIApplication {
 struct SearchView: View {
     @State var searchText: String = ""
     @State var searching = false
+    @State var loading = false
     @State var resData: SearchReponse?
     var body: some View {
         VStack(alignment: .leading) {
@@ -57,7 +58,13 @@ struct SearchView: View {
                     .padding(.trailing, 10.0)
                 }
             }
-            if resData != nil {
+            if loading {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            } else if resData != nil {
                 ScrollView {
                     SearchResultView(items: resData!)
                 }
@@ -105,8 +112,10 @@ struct SearchView: View {
 
     func getSearchResult() {
         resData = nil
+        loading = true
         PokaAPI.shared.getSearchResult(keyword: searchText) { result in
             self.resData = result
+            self.loading = false
         }
     }
 }
