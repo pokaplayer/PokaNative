@@ -25,6 +25,8 @@
 "Search ..." = "搜寻 ...";
 "Cancel" = "取消";
 "Library" = "媒体库";
+"Song" = "歌曲";
+"Songs" = "歌曲";
 "Album" = "专辑";
 "Albums" = "专辑";
 "Playlist" = "播放清单";
@@ -34,7 +36,9 @@
 "Artists" = "演出者";
 "Composers" = "作曲者";
 "Play" = "播放";
-"Close" = "關閉";
+"Close" = "关闭";
+"Create" = "建立";
+"Delete" = "删除";
 // MARK: - Settings
 "Settings" = "设定";
 // MARK: - About
@@ -62,6 +66,15 @@
 "Uncompressed audio, only use when the internet is fast" = "在网络状况许可下，可选择此选项聆听高音质音乐";
 
 "The audio quality setting will not work for songs that are currently in the queue" = "音质设定不会对目前伫列中的歌曲生效";
+// MARK: - Data record
+"Data record" = "资料纪录";
+"Record playback data" = "记录播放资料";
+"Clear the recorded data" = "清除已记录的资料";
+"%lld records have been recorded" = "目前已记录 %lld 笔资料";
+"The data will only be calculated on your server and will not be uploaded to the Internet. The feature can provide you with a better experience (like: annual review, recent play). You can turn off this feature and clear the recorded data if you want." = "资料仅会于您的服务器进行运算，不会被上传至网络进行分析。 该功能可提供您更优质的使用体验（如：年度回顾、最近播放）。 若您有疑虑可关闭此功能，并将已记录的资料清除。";
+// MARK: - User
+"User" = "使用者";
+"Auto login" = "自动登入";
 // MARK: - Login
 "Server" = "服务器";
 "Username" = "使用者名称";
@@ -78,4 +91,6 @@
 "Codec" = "编码格式";
 "Bitrate" = "位元率";
 "Year" = "年份";
-
+// MARK: - Create playlist
+"Create playlist" = "建立播放清单";
+"Playlist name" = "播放清单名称";
