@@ -57,7 +57,7 @@ struct AlbumView: View {
             })
             .onPreferenceChange(TitleY_CoordinatePreferenceKey.self) { y in
                 withAnimation {
-                    isNavigationTitlePresented = y < navigationY_Coordinate - 10
+                    isNavigationTitlePresented = y < navigationY_Coordinate + 128
                 }
             }
             if loading {
