@@ -32,10 +32,10 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
                   endingLineNumber = "21"
-                  offsetFromSymbolStart = "612">
+                  offsetFromSymbolStart = "460">
                </Location>
                <Location
-                  uuid = "E97DAE37-F924-4084-B721-DCA5FFA0FAEF - b6a325c70706852d"
+                  uuid = "E97DAE37-F924-4084-B721-DCA5FFA0FAEF - b6a325c70706850c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,9 +45,9 @@
                   urlString = "file:///Users/gnehs/Repos/PokaNative/Shared/Views/ArtistView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "1604">
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "465">
                </Location>
             </Locations>
          </BreakpointContent>
