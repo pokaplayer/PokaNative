@@ -39,6 +39,7 @@
 "Close" = "關閉";
 "Create" = "建立";
 "Delete" = "刪除";
+"%lld songs" = "%lld 首歌曲";
 // MARK: - Settings
 "Settings" = "設定";
 // MARK: - About
@@ -94,3 +95,6 @@
 // MARK: - Create playlist
 "Create playlist" = "建立播放清單";
 "Playlist name" = "播放清單名稱";
+// MARK: - Lyric
+"Don't load lyrics" = "不載入歌詞";
+"This will remove lyrics of the song now playing." = "點選清除目前的歌詞";

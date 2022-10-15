@@ -1,8 +1,8 @@
-/* 
+/*
  Localizable.strings
  PokaNative
  
- Created by 勝勝寶寶 on 2021/10/27.
+ Created by 胜胜宝宝 on 2021/10/27.
  
  */
 
@@ -39,6 +39,7 @@
 "Close" = "关闭";
 "Create" = "建立";
 "Delete" = "删除";
+"%lld songs" = "%lld 首歌曲";
 // MARK: - Settings
 "Settings" = "设定";
 // MARK: - About
@@ -94,3 +95,6 @@
 // MARK: - Create playlist
 "Create playlist" = "建立播放清单";
 "Playlist name" = "播放清单名称";
+// MARK: - Lyric
+"Don't load lyrics" = "不载入歌词";
+"This will remove lyrics of the song now playing." = "点选清除目前的歌词";
