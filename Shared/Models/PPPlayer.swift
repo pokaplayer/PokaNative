@@ -46,6 +46,7 @@ class PPPlayer: AVPlayer, ObservableObject {
 
     @Published var playerItems = [PPPlayerItem]()
     @Published var isPaused: Bool = true
+    @Published var isLoading: Bool = false
     var currentTrack = 0
 
     override init() {
@@ -153,7 +154,6 @@ class PPPlayer: AVPlayer, ObservableObject {
     func playTrack() {
         if playerItems.count > 0 {
             print("playTrack")
-            currentPlayingItem = playerItems[currentTrack]
 
             currentPlayingItem?.observer?.invalidate()
             currentPlayingItem?.observer = currentPlayingItem?.observe(
@@ -193,12 +193,14 @@ class PPPlayer: AVPlayer, ObservableObject {
         nextPlayItem = playerItems[currentTrack + 1 > playerItems.count - 1 ? 0 : currentTrack + 1]
 
         pause()
+        isLoading = true
         // init item
         initPlayerAsset(with: URL(string: baseURL + playerItems[index].song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self?.playerItems[index].item = item
                 self?.seek(to: 0)
+                self?.isLoading = false
                 self?.playTrack()
             }
         }

@@ -65,9 +65,15 @@ struct PokaMiniplayer: View {
                 }
                 Spacer()
                 Button(action: { player.isPaused ? player.playTrack() : player.pause() }) {
-                    Image(systemName: player.isPaused ? "play" : "pause")
-                        .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
-                        .frame(width: 36, height: 36)
+                    if player.isLoading {
+                        ProgressView()
+                            .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
+                            .frame(width: 36, height: 36)
+                    } else {
+                        Image(systemName: player.isPaused ? "play" : "pause")
+                            .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
+                            .frame(width: 36, height: 36)
+                    }
                 }.buttonStyle(PlainButtonStyle())
                     .hoverEffect()
                 Button(action: { player.nextTrack() }) {
