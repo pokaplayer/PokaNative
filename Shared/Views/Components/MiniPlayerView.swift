@@ -88,13 +88,13 @@ struct PokaMiniplayer: View {
                     .offset(x: translation)
                     .gesture(
                         DragGesture().updating($translation) { value, state, _ in
-                            if abs(value.translation.width) / geometry.size.width > 0.1 {
+                            if abs(value.translation.width) > 10 {
                                 withAnimation(.interactiveSpring()) {
                                     state = value.translation.width
                                 }
                             }
                         }.onEnded { value in
-                            if abs(value.translation.width) * 2 > geometry.size.width {
+                            if abs(value.translation.width) / geometry.size.width > 0.1 {
                                 let impact = UIImpactFeedbackGenerator(style: .medium)
                                 impact.impactOccurred()
                                 if value.translation.width < 0 {
