@@ -41,6 +41,9 @@ class PPPlayer: AVPlayer, ObservableObject {
     private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
 
     @Published var currentPlayingItem: PPPlayerItem?
+    @Published var previousPlayItem: PPPlayerItem?
+    @Published var nextPlayItem: PPPlayerItem?
+
     @Published var playerItems = [PPPlayerItem]()
     @Published var isPaused: Bool = true
     var currentTrack = 0
@@ -184,6 +187,11 @@ class PPPlayer: AVPlayer, ObservableObject {
 
     func setTrack(index: Int) {
         currentTrack = index
+
+        currentPlayingItem = playerItems[currentTrack]
+        previousPlayItem = playerItems[currentTrack - 1 < 0 ? playerItems.count - 1 : currentTrack - 1]
+        nextPlayItem = playerItems[currentTrack + 1 > playerItems.count - 1 ? 0 : currentTrack + 1]
+
         pause()
         // init item
         initPlayerAsset(with: URL(string: baseURL + playerItems[index].song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
