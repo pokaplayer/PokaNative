@@ -66,7 +66,7 @@ struct ContentView: View {
         }
         .safeAreaInset(edge: .bottom, spacing: 72) {
             MiniPlayerView()
-                .frame(height: 72, alignment: .bottomLeading)
+                .frame(height: 64, alignment: .bottomLeading)
                 .onTapGesture {
                     showFullScreenPlayer = true
                 }
@@ -74,18 +74,7 @@ struct ContentView: View {
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
                         .onEnded { value in
-                            if abs(value.translation.width) > abs(value.translation.height) {
-                                if value.translation.width < 0 {
-                                    player.nextTrack()
-                                    let impact = UIImpactFeedbackGenerator(style: .medium)
-                                    impact.impactOccurred()
-                                }
-                                if value.translation.width > 0 {
-                                    player.previousTrack()
-                                    let impact = UIImpactFeedbackGenerator(style: .medium)
-                                    impact.impactOccurred()
-                                }
-                            } else {
+                            if abs(value.translation.width) < abs(value.translation.height) {
                                 if value.translation.height < 0 {
                                     showFullScreenPlayer = true
                                 }

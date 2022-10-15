@@ -30,40 +30,83 @@ struct PlayerProgressView: View {
     }
 }
 
+struct PlayerItemInfoView: View {
+    var item: PPPlayerItem
+    var body: some View {
+        HStack(alignment: .center) {
+            CachedAsyncImage(url: URL(string: PokaURLParser(item.song.cover))) { image in
+                image.resizable()
+            } placeholder: {
+                ZStack {
+                    Rectangle()
+                        .fill(.white.opacity(0.1))
+                        .aspectRatio(1.0, contentMode: .fit)
+                        .frame(width: 52, height: 52)
+                    ProgressView()
+                }
+            }
+            .frame(width: 52, height: 52)
+            .cornerRadius(8.0)
+            .aspectRatio(1, contentMode: .fill)
+            VStack(alignment: .leading) {
+                Text(item.song.name)
+                    .font(/*@START_MENU_TOKEN@*/ .headline/*@END_MENU_TOKEN@*/)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                Text(item.song.artist)
+                    .font(.subheadline)
+                    .opacity(0.75)
+                    .lineLimit(1)
+            }
+            Spacer()
+        }
+        .contentShape(Rectangle())
+    }
+}
+
 struct PokaMiniplayer: View {
     @StateObject private var ppplayer = player
+    @GestureState private var translation: CGFloat = 0
     var body: some View {
         VStack(alignment: .leading) {
             PlayerProgressView()
             Spacer()
-            HStack {
-                CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
-                    image.resizable()
-                } placeholder: {
-                    ZStack {
-                        VStack {
-                            Rectangle()
-                                .fill(Color.black.opacity(0))
-                                .aspectRatio(1.0, contentMode: .fit)
-                            Spacer()
-                        }
-                        ProgressView()
+            HStack(alignment: .top) {
+                GeometryReader { geometry in
+                    LazyHStack(spacing: 0) {
+                        PlayerItemInfoView(item: player.previousPlayItem!)
+                            .frame(width: geometry.size.width)
+                            .opacity(translation / geometry.size.width - 0.5)
+                        PlayerItemInfoView(item: player.currentPlayingItem!)
+                            .frame(width: geometry.size.width)
+                        PlayerItemInfoView(item: player.nextPlayItem!)
+                            .frame(width: geometry.size.width)
+                            .opacity(-translation / geometry.size.width - 0.5)
                     }
+                    .frame(width: geometry.size.width, height: nil, alignment: .topLeading)
+                    .offset(x: -geometry.size.width)
+                    .offset(x: translation)
+                    .gesture(
+                        DragGesture().updating($translation) { value, state, _ in
+                            if abs(value.translation.width) / geometry.size.width > 0.1 {
+                                withAnimation(.interactiveSpring()) {
+                                    state = value.translation.width
+                                }
+                            }
+                        }.onEnded { value in
+                            if abs(value.translation.width) * 2 > geometry.size.width {
+                                let impact = UIImpactFeedbackGenerator(style: .medium)
+                                impact.impactOccurred()
+                                if value.translation.width < 0 {
+                                    ppplayer.nextTrack()
+                                } else {
+                                    ppplayer.previousTrack()
+                                }
+                            }
+                        }
+                    )
                 }
-                .frame(width: 55, height: 55)
-                .cornerRadius(8.0)
-                .aspectRatio(1, contentMode: .fill)
-                VStack(alignment: .leading) {
-                    Text(player.currentPlayingItem!.song.name)
-                        .font(/*@START_MENU_TOKEN@*/ .headline/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                        .lineLimit(1)
-                    Text(player.currentPlayingItem!.song.artist)
-                        .font(.subheadline)
-                        .opacity(0.75)
-                        .lineLimit(1)
-                }
-                Spacer()
+
                 Button(action: { player.isPaused ? player.playTrack() : player.pause() }) {
                     if player.isLoading {
                         ProgressView()
@@ -83,11 +126,13 @@ struct PokaMiniplayer: View {
                 }.buttonStyle(PlainButtonStyle())
                     .hoverEffect()
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 12.0)
+
             Spacer()
         }
-        .contentShape(Rectangle())
         .overlay(Divider(), alignment: .top)
+        .contentShape(Rectangle())
+        .frame(height: 64)
     }
 }
 
@@ -113,8 +158,7 @@ struct MiniPlayerView: View {
                                 ))
                             }.ignoresSafeArea()
                         )
-                        .frame(height: 56)
-                        .offset(y: keyboardShowed ? -8 : -56)
+                        .offset(y: keyboardShowed ? 0 : -48)
                 } else {
                     PokaMiniplayer()
                 }
