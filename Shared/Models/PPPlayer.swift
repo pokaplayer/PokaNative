@@ -190,6 +190,7 @@ class PPPlayer: AVPlayer, ObservableObject {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self?.playerItems[index].item = item
+                self?.seek(to: 0)
                 self?.playTrack()
             }
         }
@@ -201,7 +202,6 @@ class PPPlayer: AVPlayer, ObservableObject {
         } else {
             setTrack(index: currentTrack - 1)
         }
-        seek(to: 0)
     }
 
     @objc func playerDidFinishPlaying() {
@@ -223,8 +223,6 @@ class PPPlayer: AVPlayer, ObservableObject {
         } else {
             setTrack(index: currentTrack + 1)
         }
-        seek(to: 0)
-        playTrack()
     }
 
     // sort list random and update current playing track
