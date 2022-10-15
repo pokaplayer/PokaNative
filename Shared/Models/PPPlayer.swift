@@ -232,11 +232,12 @@ class PPPlayer: AVPlayer, ObservableObject {
         let currentPlayingTrack = currentPlayingItem
         let shuffled = playerItems.shuffled()
         playerItems = shuffled
-        // find current playing item and setTrack
+        // find current playing item and move to first
         if let currentPlayingTrack = currentPlayingTrack {
             for i in 0 ... playerItems.count - 1 {
                 if playerItems[i].song.id == currentPlayingTrack.song.id {
-                    currentTrack = i
+                    playerItems.insert(playerItems.remove(at: i), at: 0)
+                    currentTrack = 0
                     break
                 }
             }
