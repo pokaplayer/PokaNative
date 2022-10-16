@@ -68,16 +68,18 @@ struct PlayerView: View {
             VStack {
                 VStack {
                     Spacer()
-
                     CachedAsyncImage(url: URL(string: PokaURLParser(player.currentPlayingItem!.song.cover))) { image in
                         image.resizable()
                             .scaledToFill()
                             .frame(width: coverSize, height: coverSize)
                             .clipped()
-                            .cornerRadius(5)
+                            .cornerRadius(8)
                     } placeholder: {
                         ZStack {
-                            Rectangle().opacity(0)
+                            Rectangle()
+                                .fill(.white.opacity(0.1))
+                                .aspectRatio(1.0, contentMode: .fit)
+                                .cornerRadius(8)
                             ProgressView()
                         }
                     }
@@ -122,10 +124,16 @@ struct PlayerView: View {
                         .hoverEffect()
 
                         Button(action: { ppplayer.isPaused ? player.playTrack() : player.pause() }) {
-                            Image(systemName: ppplayer.isPaused ? "play" : "pause")
-                                .font(.system(size: 24))
-                                .padding()
-                                .foregroundColor(Color.white)
+                            if player.isLoading {
+                                ProgressView()
+                                    .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
+                                    .frame(width: 24, height: 24)
+                            } else {
+                                Image(systemName: ppplayer.isPaused ? "play" : "pause")
+                                    .font(.system(size: 24))
+                                    .padding()
+                                    .foregroundColor(Color.white)
+                            }
                         }
                         .buttonStyle(PlainButtonStyle())
                         .frame(width: 56, height: 56)

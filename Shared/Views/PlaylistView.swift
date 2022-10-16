@@ -38,9 +38,7 @@ struct PlaylistView: View {
             PokaAPI.shared.getPlaylistSongs(playlistID: playlist.id, source: playlist.source) { result in
                 self.resData = result
             }
-        }.listStyle(GroupedListStyle())
-
-        .frame(maxWidth: .infinity)
+        }
         .navigationTitle("Playlist")
     }
 }

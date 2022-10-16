@@ -48,7 +48,7 @@ struct ContentView: View {
                             .foregroundColor(.gray)
                         NavigationLink(destination: SettingView(), tag: "Settings", selection: $selectName) {
                             Label("Settings", systemImage: "gearshape")
-                        } 
+                        }
                     }
                 }.listStyle(.sidebar)
                     .background(Color.black.opacity(0.05))

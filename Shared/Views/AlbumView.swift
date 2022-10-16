@@ -34,7 +34,7 @@ struct AlbumView: View {
                     }
                 }
                 .frame(width: 200, height: 200)
-                .cornerRadius(5)
+                .cornerRadius(8)
                 .aspectRatio(1, contentMode: .fill)
                 .shadow(color: Color.black.opacity(0.2), radius: 10.0, y: 10.0)
 

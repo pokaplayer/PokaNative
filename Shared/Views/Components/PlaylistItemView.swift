@@ -21,7 +21,7 @@ struct PlaylistCoverView: View {
             ProgressView()
         }
         .frame(width: size, height: size)
-        .cornerRadius(5)
+        .cornerRadius(8)
     }
 }
 
