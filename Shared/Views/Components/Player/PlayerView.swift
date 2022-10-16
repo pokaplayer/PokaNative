@@ -8,6 +8,23 @@
 import CachedAsyncImage
 import Introspect
 import SwiftUI
+import AVKit
+
+struct AirPlayView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+
+        let routePickerView = AVRoutePickerView()
+        routePickerView.backgroundColor = UIColor.clear
+        routePickerView.activeTintColor = UIColor.orange
+        routePickerView.tintColor = UIColor.white
+
+        return routePickerView
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+    }
+}
+
 struct PlayerTimeView: View {
     @StateObject private var ppplayer = player
     let timeObserver = PlayerTimeObserver()
@@ -196,14 +213,8 @@ struct PlayerView: View {
                     .buttonStyle(PlainButtonStyle())
                     .hoverEffect()
 
-                    Button(action: {}) {
-                        Image(systemName: "forward.end.alt")
-                            .font(.system(size: 20))
-                            .padding()
-                            .foregroundColor(Color.white)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .opacity(0)
+                    AirPlayView()
+                        .frame(width: 48, height: 48)
 
                     Spacer()
                 }
