@@ -168,7 +168,7 @@ struct PlayerView: View {
                     Spacer()
 
                     Button(action: { player.shuffle() }) {
-                        Image(systemName: "dice")
+                        Image(systemName: "shuffle")
                             .font(.system(size: 20))
                             .padding()
                             .foregroundColor(Color.white)
@@ -215,6 +215,9 @@ struct PlayerView: View {
 
                     AirPlayView()
                         .frame(width: 48, height: 48)
+                        .padding(.leading, 12.0)
+                        .buttonStyle(PlainButtonStyle())
+                        .hoverEffect()
 
                     Spacer()
                 }

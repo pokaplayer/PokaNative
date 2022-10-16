@@ -74,7 +74,7 @@ struct PlayerControllerView: View {
                     Spacer()
                     PlayerControllerIconButtonView(
                         action: { player.shuffle() },
-                        icon: "dice"
+                        icon: "shuffle"
                     )
                     PlayerControllerIconButtonView(
                         action: { presentationMode.wrappedValue.dismiss() },
