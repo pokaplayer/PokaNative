@@ -127,20 +127,20 @@ struct PokaMiniplayer: View {
                 Button(action: { player.isPaused ? player.playTrack() : player.pause() }) {
                     if player.isLoading {
                         ProgressView()
-                            .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
-                            .frame(width: 36, height: 36)
+                            .font(.title3)
+                            .frame(width: 36, height: 48)
                     } else {
                         Image(systemName: player.isPaused ? "play" : "pause")
-                            .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
-                            .frame(width: 36, height: 36)
+                            .font(.title3)
+                            .frame(width: 36, height: 48)
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
                 .hoverEffect()
                 Button(action: { player.nextTrack() }) {
                     Image(systemName: "forward.end.alt")
-                        .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
-                        .frame(width: 36, height: 36)
+                        .font(.title3)
+                        .frame(width: 36, height: 48)
                 }
                 .buttonStyle(PlainButtonStyle())
                 .hoverEffect()
