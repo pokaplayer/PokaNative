@@ -67,6 +67,8 @@ struct PlayerItemInfoView: View {
 struct PokaMiniplayer: View {
     @StateObject private var ppplayer = player
     @GestureState private var translation: CGFloat = 0
+    @State var showPlayerOverlay = false
+    @State var showPlayerSheet = false
     var body: some View {
         VStack(alignment: .leading) {
             PlayerProgressView()
@@ -86,6 +88,9 @@ struct PokaMiniplayer: View {
                     .frame(width: geometry.size.width, height: nil, alignment: .topLeading)
                     .offset(x: -geometry.size.width)
                     .offset(x: translation)
+                    .onTapGesture {
+                        showPlayerOverlay = true
+                    }
                     .gesture(
                         DragGesture().updating($translation) { value, state, _ in
                             if abs(value.translation.width) > 10 {
@@ -101,6 +106,14 @@ struct PokaMiniplayer: View {
                                     ppplayer.nextTrack()
                                 } else {
                                     ppplayer.previousTrack()
+                                }
+                            } else {
+                                if value.translation.height < 0 {
+                                    if UIDevice.isIPhone {
+                                        showPlayerSheet = true
+                                    } else {
+                                        showPlayerOverlay = true
+                                    }
                                 }
                             }
                         }
@@ -133,6 +146,10 @@ struct PokaMiniplayer: View {
         .overlay(Divider(), alignment: .top)
         .contentShape(Rectangle())
         .frame(height: 64)
+        .sheet(isPresented: $showPlayerSheet) {
+            PlayerControllerView()
+        }
+        .fullScreenCover(isPresented: $showPlayerOverlay, content: PlayerControllerView.init)
     }
 }
 

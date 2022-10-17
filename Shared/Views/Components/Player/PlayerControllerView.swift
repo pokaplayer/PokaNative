@@ -59,7 +59,7 @@ struct PlayerControllerIconButtonView: View {
 struct PlayerControllerView: View {
     @StateObject private var ppplayer = player
     @State var activeView = UIDevice.isIPhone ? "player" : "list"
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack {
             if UIDevice.isIPhone {
@@ -77,7 +77,7 @@ struct PlayerControllerView: View {
                         icon: "shuffle"
                     )
                     PlayerControllerIconButtonView(
-                        action: { presentationMode.wrappedValue.dismiss() },
+                        action: { dismiss() },
                         icon: "chevron.down"
                     )
                     Rectangle()
@@ -90,7 +90,7 @@ struct PlayerControllerView: View {
                         .onEnded { value in
                             if value.translation.height > 0 {
                                 #if !targetEnvironment(macCatalyst)
-                                    presentationMode.wrappedValue.dismiss()
+                                    dismiss()
                                 #endif
                             }
                         }
@@ -153,7 +153,6 @@ struct PlayerControllerView: View {
                     ProgressView()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-
                 .ignoresSafeArea(.all)
                 .opacity(0.5)
             }

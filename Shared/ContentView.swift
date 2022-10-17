@@ -8,7 +8,6 @@
 import SwiftUI
 struct ContentView: View {
     @StateObject private var ppplayer = player
-    @State var showFullScreenPlayer = false
     @State private var selectName: String? = "Home"
     var body: some View {
         NavigationView {
@@ -59,28 +58,10 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom, spacing: 72) {
             MiniPlayerView()
                 .frame(height: 64, alignment: .bottomLeading)
-                .onTapGesture {
-                    showFullScreenPlayer = true
-                }
                 .background(.regularMaterial)
-                .gesture(
-                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                        .onEnded { value in
-                            if abs(value.translation.width) < abs(value.translation.height) {
-                                if value.translation.height < 0 {
-                                    showFullScreenPlayer = true
-                                }
-
-                                if value.translation.height > 0 {
-                                    // down
-                                }
-                            }
-                        }
-                )
                 .ignoresSafeArea(.all)
         }
         .background(.clear)
-        .fullScreenCover(isPresented: $showFullScreenPlayer, content: PlayerControllerView.init)
         .withHostingWindow { window in
             #if targetEnvironment(macCatalyst)
                 if let titlebar = window?.windowScene?.titlebar {
