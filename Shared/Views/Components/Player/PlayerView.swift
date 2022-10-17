@@ -5,14 +5,13 @@
 //  Created by 勝勝寶寶 on 2021/10/8.
 //
 
+import AVKit
 import CachedAsyncImage
 import Introspect
 import SwiftUI
-import AVKit
 
 struct AirPlayView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-
+    func makeUIView(context _: Context) -> UIView {
         let routePickerView = AVRoutePickerView()
         routePickerView.backgroundColor = UIColor.clear
         routePickerView.activeTintColor = UIColor.orange
@@ -21,7 +20,14 @@ struct AirPlayView: UIViewRepresentable {
         return routePickerView
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {
+    func updateUIView(_: UIView, context _: Context) {}
+}
+
+struct PlayerButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
+            .hoverEffect()
     }
 }
 
@@ -119,7 +125,7 @@ struct PlayerView: View {
                             .scaleEffect(min(1, translation / geometry.size.width + 0.5), anchor: .center)
                         PlayerCoverView(coverURL: player.currentPlayingItem!.song.cover, coverSize: coverSize)
                             .frame(width: UIDevice.isIPhone ? UIScreen.main.bounds.size.width - 40 : 500.0)
-                            .scaleEffect(translation == 0 ? 1 : max(((coverSize - abs(translation)) / coverSize), 0.5), anchor: .center)
+                            .scaleEffect(translation == 0 ? 1 : max((coverSize - abs(translation)) / coverSize, 0.5), anchor: .center)
                             .opacity(translation == 0 ? 1 : ((coverSize - abs(translation)) / coverSize))
                         PlayerCoverView(coverURL: player.nextPlayItem!.song.cover, coverSize: coverSize)
                             .frame(width: UIDevice.isIPhone ? UIScreen.main.bounds.size.width - 40 : 500.0)
@@ -173,8 +179,7 @@ struct PlayerView: View {
                             .padding()
                             .foregroundColor(Color.white)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .hoverEffect()
+                    .buttonStyle(PlayerButtonStyle())
 
                     Button(action: { player.previousTrack() }) {
                         Image(systemName: "backward.end.alt")
@@ -182,8 +187,7 @@ struct PlayerView: View {
                             .padding()
                             .foregroundColor(Color.white)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .hoverEffect()
+                    .buttonStyle(PlayerButtonStyle())
 
                     Button(action: { ppplayer.isPaused ? player.playTrack() : player.pause() }) {
                         if player.isLoading {
@@ -193,11 +197,12 @@ struct PlayerView: View {
                         } else {
                             Image(systemName: ppplayer.isPaused ? "play" : "pause")
                                 .font(.system(size: 24))
+                                .frame(width: 24, height: 24)
                                 .padding()
                                 .foregroundColor(Color.white)
                         }
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(PlayerButtonStyle())
                     .frame(width: 56, height: 56)
                     .background(Color.white.opacity(0.1))
                     .cornerRadius(.infinity)
@@ -210,14 +215,12 @@ struct PlayerView: View {
                             .padding()
                             .foregroundColor(Color.white)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .hoverEffect()
+                    .buttonStyle(PlayerButtonStyle())
 
                     AirPlayView()
                         .frame(width: 48, height: 48)
                         .padding(.leading, 12.0)
-                        .buttonStyle(PlainButtonStyle())
-                        .hoverEffect()
+                        .buttonStyle(PlayerButtonStyle())
 
                     Spacer()
                 }
