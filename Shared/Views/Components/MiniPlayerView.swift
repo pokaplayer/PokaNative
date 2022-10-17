@@ -73,7 +73,7 @@ struct PokaMiniplayer: View {
         VStack(alignment: .leading) {
             PlayerProgressView()
             Spacer()
-            HStack(alignment: .top) {
+            HStack(alignment: .center) {
                 GeometryReader { geometry in
                     LazyHStack(spacing: 0) {
                         PlayerItemInfoView(item: player.previousPlayItem!)
@@ -85,11 +85,15 @@ struct PokaMiniplayer: View {
                             .frame(width: geometry.size.width)
                             .opacity(-translation / geometry.size.width - 0.5)
                     }
-                    .frame(width: geometry.size.width, height: nil, alignment: .topLeading)
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                     .offset(x: -geometry.size.width)
                     .offset(x: translation)
                     .onTapGesture {
-                        showPlayerOverlay = true
+                        if UIDevice.isIPhone {
+                            showPlayerSheet = true
+                        } else {
+                            showPlayerOverlay = true
+                        }
                     }
                     .gesture(
                         DragGesture().updating($translation) { value, state, _ in
@@ -108,7 +112,7 @@ struct PokaMiniplayer: View {
                                     ppplayer.previousTrack()
                                 }
                             } else {
-                                if value.translation.height < 0 {
+                                if value.translation.height < -10 {
                                     if UIDevice.isIPhone {
                                         showPlayerSheet = true
                                     } else {
@@ -130,14 +134,16 @@ struct PokaMiniplayer: View {
                             .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
                             .frame(width: 36, height: 36)
                     }
-                }.buttonStyle(PlainButtonStyle())
-                    .hoverEffect()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .hoverEffect()
                 Button(action: { player.nextTrack() }) {
                     Image(systemName: "forward.end.alt")
                         .font(/*@START_MENU_TOKEN@*/ .title3/*@END_MENU_TOKEN@*/)
                         .frame(width: 36, height: 36)
-                }.buttonStyle(PlainButtonStyle())
-                    .hoverEffect()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .hoverEffect()
             }
             .padding(.horizontal, 12.0)
 
@@ -146,9 +152,7 @@ struct PokaMiniplayer: View {
         .overlay(Divider(), alignment: .top)
         .contentShape(Rectangle())
         .frame(height: 64)
-        .sheet(isPresented: $showPlayerSheet) {
-            PlayerControllerView()
-        }
+        .sheet(isPresented: $showPlayerSheet) { PlayerControllerView() }
         .fullScreenCover(isPresented: $showPlayerOverlay, content: PlayerControllerView.init)
     }
 }
