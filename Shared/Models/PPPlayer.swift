@@ -237,16 +237,18 @@ class PPPlayer: AVPlayer, ObservableObject {
 
     // sort list random and update current playing track
     func shuffle() {
-        let currentPlayingTrack = currentPlayingItem
-        let shuffled = playerItems.shuffled()
-        playerItems = shuffled
-        // find current playing item and move to first
-        if let currentPlayingTrack = currentPlayingTrack {
-            for i in 0 ... playerItems.count - 1 {
-                if playerItems[i].song.id == currentPlayingTrack.song.id {
-                    playerItems.insert(playerItems.remove(at: i), at: 0)
-                    currentTrack = 0
-                    break
+        withAnimation {
+            let currentPlayingTrack = currentPlayingItem
+            let shuffled = playerItems.shuffled()
+            playerItems = shuffled
+            // find current playing item and move to first
+            if let currentPlayingTrack = currentPlayingTrack {
+                for i in 0 ... playerItems.count - 1 {
+                    if playerItems[i].song.id == currentPlayingTrack.song.id {
+                        playerItems.insert(playerItems.remove(at: i), at: 0)
+                        currentTrack = 0
+                        break
+                    }
                 }
             }
         }
