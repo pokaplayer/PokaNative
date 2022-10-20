@@ -150,7 +150,6 @@ struct PlayerControllerView: View {
                         .scaledToFill()
                         .blur(radius: 50, opaque: true)
                         .id(player.currentPlayingItem!.song.cover)
-                        .transition(.opacity.animation(.default))
                 } placeholder: {
                     ProgressView()
                 }

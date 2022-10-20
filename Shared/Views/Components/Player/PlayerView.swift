@@ -127,6 +127,7 @@ struct PlayerView: View {
                             .frame(width: UIDevice.isIPhone ? UIScreen.main.bounds.size.width - 40 : 500.0)
                             .scaleEffect(translation == 0 ? 1 : max((coverSize - abs(translation)) / coverSize, 0.5), anchor: .center)
                             .opacity(translation == 0 ? 1 : ((coverSize - abs(translation)) / coverSize))
+                            .id( player.currentPlayingItem!.song.cover)
                         PlayerCoverView(coverURL: player.nextPlayItem!.song.cover, coverSize: coverSize)
                             .frame(width: UIDevice.isIPhone ? UIScreen.main.bounds.size.width - 40 : 500.0)
                             .opacity(-translation / geometry.size.width)

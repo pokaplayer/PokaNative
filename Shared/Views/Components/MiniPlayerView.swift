@@ -152,8 +152,8 @@ struct PokaMiniplayer: View {
         .overlay(Divider(), alignment: .top)
         .contentShape(Rectangle())
         .frame(height: 64)
-        .sheet(isPresented: $showPlayerSheet) { PlayerControllerView() }
         .fullScreenCover(isPresented: $showPlayerOverlay, content: PlayerControllerView.init)
+        .sheet(isPresented: $showPlayerSheet) { PlayerControllerView() }
     }
 }
 

@@ -186,14 +186,16 @@ class PPPlayer: AVPlayer, ObservableObject {
     }
 
     func setTrack(index: Int) {
-        currentTrack = index
-
-        currentPlayingItem = playerItems[currentTrack]
-        previousPlayItem = playerItems[currentTrack - 1 < 0 ? playerItems.count - 1 : currentTrack - 1]
-        nextPlayItem = playerItems[currentTrack + 1 > playerItems.count - 1 ? 0 : currentTrack + 1]
-
-        pause()
-        isLoading = true
+        withAnimation {
+            currentTrack = index
+            
+            currentPlayingItem = playerItems[currentTrack]
+            previousPlayItem = playerItems[currentTrack - 1 < 0 ? playerItems.count - 1 : currentTrack - 1]
+            nextPlayItem = playerItems[currentTrack + 1 > playerItems.count - 1 ? 0 : currentTrack + 1]
+            
+            pause()
+            isLoading = true
+        }
         // init item
         initPlayerAsset(with: URL(string: baseURL + playerItems[index].song.url + "&songRes=" + (defaults.string(forKey: "audioQuality") ?? "high"))!) { [weak self] (asset: AVAsset) in
             DispatchQueue.main.async {
